@@ -16,9 +16,16 @@ function HomePage() {
             <div className="navBar">
                 <div className="logo"> <p>AstaGuru</p> </div>
                 <div className="rightMenu">
-                    <div className="dropdown">
-                        <p></p>
+                    <div className="navigationBar">
+                        <p>AUCTIONS</p>
+                        <p>DEPARTMENTS</p>
+                        <p>SERVICES</p>
+                        <p>ABOUT US</p>
+                        <p>LOGIN</p>
                     </div>
+                    {/* <div className="dropdown">
+                        <p></p>
+                    </div> */}
                     <div className="rightBtn">
                         <div className="searchBar">
                             <i className="fa-solid fa-magnifying-glass"></i>
