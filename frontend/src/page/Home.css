@@ -1,0 +1,45 @@
+.homePage {
+    height: 100vh;
+    width: 100vw;
+}
+
+.homePage .navBar {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.homePage .navBar .logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+}
+
+.homePage .navBar .rightMenu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.homePage .navBar .rightMenu .rightBtn {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    .searchBar, .menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+
+    }
+
+    .menu {
+        font-size: 28px;
+    }
+
+}
