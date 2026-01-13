@@ -13,11 +13,13 @@ body .container {
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
 }
 
 .container .login-container {
+    margin-top: 8rem;
+    
     h1 {
         text-align: center;
         margin-bottom: 1rem;
