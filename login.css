@@ -13,13 +13,12 @@ body .container {
     height: 100%;
     width: 100%;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
 }
 
 .container .login-container {
     margin-top: 8rem;
-    
+
     h1 {
         text-align: center;
         margin-bottom: 1rem;
@@ -36,13 +35,6 @@ body .container {
         text-align: center;
         padding: 0 0 1rem 0;
     }
-
-    input {
-        width: 380px;
-        outline: none;
-        padding: 1rem;
-        border-radius: 0.5rem;
-    }
 }
 
 .login-form .login-field {
@@ -50,6 +42,13 @@ body .container {
     display: flex;
     flex-direction: column;
 
+    input {
+        width: 380px;
+        outline: none;
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+    
     select {
         height: 50px;
         border-radius: 0.5rem;
