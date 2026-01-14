@@ -40,10 +40,6 @@ body .container {
 .identify-form .account {
     padding: 1rem;
     overflow: auto;
-
-    p {
-        margin-bottom: 1rem;
-    }
 }
 
 .account .user-info {
@@ -51,7 +47,6 @@ body .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid gray;
 }
 
 .user-info .left {
