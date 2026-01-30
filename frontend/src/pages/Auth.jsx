@@ -86,16 +86,27 @@ export default function Auth() {
       if (field === "mobile") {
         const cleaned = value.replace(/\D/g, "");
         const finalValue = cleaned.slice(0, 10);
-
+      
         setRegisterData({ ...registerData, mobile: finalValue });
+      
+        setErrors((prev) => {
+          let fieldError = prev.mobile; 
 
-        let fieldError = "";
-        if (finalValue.length > 0 && finalValue.length !== 10)
-          fieldError = "Enter valid 10-digit mobile number";
-
-        setErrors((prev) => ({ ...prev, mobile: fieldError }));
+          if (finalValue.length === 0) {
+            fieldError = "Mobile number is required";
+          } 
+          else if (finalValue.length < 10) {
+            fieldError = "Enter valid 10-digit mobile number";
+          } 
+          else if (finalValue.length === 10) {
+            fieldError = ""; 
+          }
+      
+          return { ...prev, mobile: fieldError };
+        });
+      
         return;
-      }
+      }      
 
       const updated = { ...registerData, [field]: value };
       setRegisterData(updated);
