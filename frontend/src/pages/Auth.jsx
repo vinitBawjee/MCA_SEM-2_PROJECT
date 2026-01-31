@@ -2,7 +2,12 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./Auth.css";
 
+import { useDispatch } from "react-redux";
+import { registerUser } from "../features/auth/authActions";
+
 export default function Auth() {
+  const dispatch = useDispatch();
+
     const [searchParams] = useSearchParams();
     const tabFromURL = searchParams.get("tab");
     const [activeTab, setActiveTab] = useState(tabFromURL === "login" ? "login" : "register");
@@ -16,7 +21,7 @@ export default function Auth() {
   });
 
   const [loginData, setLoginData] = useState({
-    mobile: "",
+    email: "",
     password: "",
     terms: false,
   });
@@ -48,27 +53,32 @@ export default function Auth() {
   /* ================= LOGIN VALIDATION ================= */
   const validateLogin = () => {
     let err = {};
-
-    const mobilePattern = /^[0-9]{10}$/;
-    if (!mobilePattern.test(loginData.mobile))
-      err.loginMobile = "Enter valid mobile number";
-
-    if (!loginData.password.trim())
+  
+    if (!loginData.email.trim()) {
+      err.email = "Email is required";
+    } else if (!/^\S+@\S+\.\S+$/.test(loginData.email)) {
+      err.email = "Enter a valid email address";
+    }
+  
+    if (!loginData.password.trim()) {
       err.password = "Password is required";
-
-    if (!loginData.terms)
+    }
+  
+    if (!loginData.terms) {
       err.loginTerms = "Please agree to the Terms and Conditions";
-
+    }
+  
     setErrors(err);
     return Object.keys(err).length === 0;
-  };
+  };  
 
-  const handleRegisterSubmit = (e) => {
+const handleRegisterSubmit = (e) => {
     e.preventDefault();
     if (validateRegister()) {
-      console.log("Register Data:", registerData);
+        console.log("Register Data:", registerData); // ✅ debug
+        dispatch(registerUser(registerData));          // ✅ dispatch action
     }
-  };
+};
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -130,38 +140,33 @@ export default function Auth() {
 
     /* ---------------- LOGIN FORM ---------------- */
     if (formType === "login") {
-      if (field === "mobile") {
-        const cleaned = value.replace(/\D/g, "");
-        const finalValue = cleaned.slice(0, 10);
-
-        setLoginData({ ...loginData, mobile: finalValue });
-
-        let fieldError = "";
-        if (finalValue.length > 0 && finalValue.length !== 10)
-          fieldError = "Enter valid mobile number";
-
-        setErrors((prev) => ({ ...prev, loginMobile: fieldError }));
-        return;
-      }
-
+      if (field === "email" && value.includes(" ")) return;
+    
       const updated = { ...loginData, [field]: value };
       setLoginData(updated);
-
+    
       let fieldError = "";
-
+    
+      if (field === "email") {
+        if (!value.trim()) fieldError = "Email is required";
+        else if (!/^\S+@\S+\.\S+$/.test(value))
+          fieldError = "Enter a valid email address";
+      }
+    
       if (field === "password" && !value.trim())
         fieldError = "Password is required";
-
+    
       if (field === "terms" && !value)
         fieldError = "Please agree to the Terms and Conditions";
-
+    
       const keyMap = {
+        email: "email",
         password: "password",
         terms: "loginTerms",
       };
-
+    
       setErrors((prev) => ({ ...prev, [keyMap[field]]: fieldError }));
-    }
+    }    
   };
 
   return (
@@ -241,7 +246,7 @@ export default function Auth() {
 
       {activeTab === "login" && (
         <form onSubmit={handleLoginSubmit}>
-          <div className="d-flex gap-2">
+          {/* <div className="d-flex gap-2">
             <select className="form-select country-code">
               <option>+91</option>
             </select>
@@ -253,7 +258,16 @@ export default function Auth() {
               onChange={(e) => handleChange("login", "mobile", e.target.value)}
             />
           </div>
-          {errors.loginMobile && <div className="error-text">{errors.loginMobile}</div>}
+          {errors.loginMobile && <div className="error-text">{errors.loginMobile}</div>} */}
+
+          <input
+            type="email"
+            placeholder="Enter Email ID"
+            value={loginData.email}
+            className={`form-control custom-input ${errors.email && "input-error"}`}
+            onChange={(e) => handleChange("login", "email", e.target.value)}
+          />
+          {errors.email && <div className="error-text">{errors.email}</div>}
 
           <input
             type="password"
