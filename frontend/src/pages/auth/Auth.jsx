@@ -2,11 +2,8 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./Auth.css";
 
-import { useDispatch } from "react-redux";
-import { registerUser } from "../features/auth/authActions";
 
 export default function Auth() {
-  const dispatch = useDispatch();
 
     const [searchParams] = useSearchParams();
     const tabFromURL = searchParams.get("tab");
@@ -76,7 +73,6 @@ const handleRegisterSubmit = (e) => {
     e.preventDefault();
     if (validateRegister()) {
         console.log("Register Data:", registerData); // ✅ debug
-        dispatch(registerUser(registerData));          // ✅ dispatch action
     }
 };
 

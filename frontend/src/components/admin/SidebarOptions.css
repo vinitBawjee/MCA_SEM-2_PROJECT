@@ -1,0 +1,40 @@
+:root {
+    --british-racing-green: #004225;
+    --light-green: #e6f2ed;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    /* background-color: var(--british-racing-green); */
+    /* padding: 12px; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  /* Button default */
+  .sidebar-btn {
+    background-color: transparent;
+    color: var(--light-green);
+    border: 1px solid var(--light-green);
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: left;
+    transition: all 0.2s ease;
+  }
+  
+  /*  Hover effect */
+  .sidebar-btn:hover {
+    background-color: var(--light-green);
+    color: var(--british-racing-green);
+  }
+  
+  /*  Clicked / Active button */
+  .sidebar-btn.active {
+    background-color: var(--light-green);
+    color: var(--british-racing-green);
+  }
+
+  
