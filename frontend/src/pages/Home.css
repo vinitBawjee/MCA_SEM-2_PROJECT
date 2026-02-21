@@ -1,0 +1,13 @@
+/* Reset and Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  /* background: url('https://images.unsplash.com/photo-1557683316-973673baf926') no-repeat center center/cover; */
+  /* background: linear-gradient(to bottom, #050D16, #0B1C2D, #163A53); */
+  /* background: linear-gradient(to bottom, #081520, #1A4D6E); */
+  /* background: linear-gradient(to bottom, #0B1C2D 0%, #ffffff 100%); */
+  background: linear-gradient(to bottom, #0B1C2D 0%, #2E5873 50%, #ffffff 100%) !important;
+  font-family: 'Poppins', sans-serif;
+}

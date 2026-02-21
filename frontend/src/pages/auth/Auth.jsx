@@ -72,7 +72,7 @@ export default function Auth() {
 const handleRegisterSubmit = (e) => {
     e.preventDefault();
     if (validateRegister()) {
-        console.log("Register Data:", registerData); // ✅ debug
+        console.log("Register Data:", registerData); 
     }
 };
 

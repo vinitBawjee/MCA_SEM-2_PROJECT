@@ -1,0 +1,168 @@
+/* ============ MODAL OVERLAY ============ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      #0B1C2D 0%,
+      #2E5873 50%,
+      #ffffff 100%
+    ) !important;
+    backdrop-filter: blur(18px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  /* ============ GLASS CARD ============ */
+  .glass-card {
+    width: 420px;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(11, 28, 45, 0.85); /* dark navy glass */
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f1f5f9;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  }
+  
+  /* ============ CLOSE BUTTON ============ */
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #e2e8f0;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .close-btn:hover {
+    transform: scale(1.2);
+    color: #ffffff;
+  }
+  
+  /* ============ TABS (LOGIN / REGISTER SWITCH) ============ */
+  .tab-container {
+    display: flex;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    /* background: rgba(255, 255, 255, 0.05); */
+  }
+  
+  .tab-container button {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* ACTIVE TAB */
+  .tab-container button.active {
+    background: #ffffff;   /* white like navbar button */
+    color: #0B1C2D;
+    font-weight: 600;
+  }
+  
+  /* ============ INPUTS ============ */
+  .glass-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    background-color: rgba(11, 28, 45, 0.9);
+    color: #ffffff;
+    /* background: rgba(255, 255, 255, 0.06); */
+    /* color: #f1f5f9; */
+    outline: none;
+    transition: 0.3s;
+  }
+
+  .glass-input option {
+    background-color: #0B1C2D;  /* dark navy */
+    color: #ffffff;             /* white text */
+  }
+  
+  /* On hover (some browsers support this) */
+  .glass-input option:hover {
+    background-color: #2E5873;
+  }
+  
+  .glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .glass-input:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+  }
+  
+  /* ============ SELECT DROPDOWN ============ */
+  select.glass-input {
+    appearance: none;
+    cursor: pointer;
+  }
+  
+  /* ============ TERMS ============ */
+  .terms-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    margin-top: 5px;
+    color: #cbd5e1;
+  }
+  
+  .terms-container input {
+    accent-color: #ffffff;
+  }
+  
+  /* ============ SUBMIT BUTTON (WHITE LIKE HOME) ============ */
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    border-radius: 25px;
+    border: none;
+    background: #ffffff;
+    color: #0B1C2D;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+  }
+  
+  /* ============ ERROR TEXT ============ */
+  .error-text {
+    color: #fca5a5; /* soft error tone */
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 480px) {
+    .glass-card {
+      width: 90%;
+      padding: 25px;
+    }
+  }

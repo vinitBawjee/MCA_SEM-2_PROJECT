@@ -2,12 +2,14 @@
     max-width: 420px;
     margin: 80px auto;
     font-family: Arial, sans-serif;
+    border: 1px solid green;
   }
   
   .brand-title {
     text-align: center;
     font-size: 34px;
     margin-bottom: 20px;
+    border: 1px solid green;
   }
   
   .tab-container {
@@ -16,6 +18,7 @@
     border-radius: 6px;
     overflow: hidden;
     margin-bottom: 20px;
+    border: 1px solid green;
   }
   
   .tab-btn {
@@ -24,6 +27,7 @@
     background: #fff;
     border: none;
     font-weight: 500;
+    border: 1px solid green;
   }
   
   .tab-btn.active {
@@ -35,6 +39,7 @@
     border-radius: 6px;
     margin-top: 12px;
   }
+  
   
   .country-code {
     max-width: 90px;
