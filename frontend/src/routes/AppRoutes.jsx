@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import AdminRoute from "./AdminRoute";
 
-import Auth from "../pages/auth/Auth";
 import Home from "../pages/Home";
 
 const AppRoutes = () => {
