@@ -1,14 +1,14 @@
 /* Navbar Container */
 .navbar {
   display: flex;
-  flex-direction: column; /* Stacks Top Row and Bottom Row */
+  flex-direction: column;
   padding: 10px 5%;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Top Row: Logo and Search */
+/* Top Row */
 .nav-top {
   display: flex;
   justify-content: space-between;
@@ -17,10 +17,27 @@
   padding-bottom: 15px;
 }
 
-.logo-group { display: flex; align-items: center; gap: 10px; color: white; }
-.logo-box { background: #ff4757; padding: 5px 12px; border-radius: 8px; font-weight: bold; }
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
 
-.search-box { flex: 0 1 60%; display: flex; align-items: center; justify-content: center;}
+.logo-box {
+  background: #ff4757;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.search-box {
+  flex: 0 1 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .search-box input {
   width: 80%;
   padding: 10px 25px;
@@ -29,14 +46,13 @@
   background: rgba(11, 28, 45, 0.8);
   color: white;
   outline: none;
-  margin: auto;
 }
 
 .search-box input::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Bottom Row: Categories and Login */
+/* Bottom Row */
 .nav-bottom {
   display: flex;
   justify-content: center;
@@ -51,43 +67,62 @@
   list-style: none;
   gap: 30px;
   color: white;
+  margin: 0;
+  padding: 0;
 }
 
+/* Menu Item */
 .menu-item {
   position: relative;
   cursor: pointer;
   font-size: 15px;
   padding-bottom: 5px;
+  transition: 0.3s ease;
 }
 
-/* Dropdown Content */
+.menu-item:hover {
+  color: #ffffff;
+}
+
+/* Dropdown */
 .dropdown-content {
-  display: none;
   position: absolute;
-  top: 100%;
+  top: 120%;
   left: 0;
-  background: #0B1C2D;
   min-width: 200px;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 0;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  z-index: 10;
+  list-style: none;
+  background: rgba(11, 28, 45, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.menu-item:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .dropdown-content li {
   padding: 10px 20px;
-  list-style: none;
-  color: #E6E6E6;
-  transition: 0.3s;
+  color: #cbd5e1;
+  font-size: 14px;
+  transition: 0.25s ease;
 }
 
 .dropdown-content li:hover {
-  background: rgba(212, 175, 55, 0.15);
-  color: #D4AF37;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
 }
-.menu-item:hover .dropdown-content { display: block; }
 
+/* Login Button */
 .login-btn {
   padding: 8px 25px;
   border-radius: 20px;
@@ -95,49 +130,9 @@
   background: white;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-/* --- MODAL & GLASS EFFECTS (AS PER YOUR CSS) --- */
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(12px);
-  display: flex; justify-content: center; align-items: center;
-  z-index: 100;
+.login-btn:hover {
+  background: #e2e8f0;
 }
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 40px; border-radius: 25px;
-  width: 420px; color: white;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute; top: 15px; right: 20px;
-  background: none; border: none; color: white; font-size: 24px; cursor: pointer;
-}
-
-.glass-input {
-  width: 100%; padding: 12px; margin: 10px 0;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px; color: white;
-}
-
-.submit-btn {
-  width: 100%; padding: 12px; background: #ff4757;
-  color: white; border: none; border-radius: 10px;
-  font-weight: bold; margin-top: 15px; cursor: pointer;
-}
-
-.social-btn { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: none; cursor: pointer; }
-.google { background: white; color: #444; }
-.facebook { background: #1877f2; color: white; }
-.switch-text span { color: #ff4757; cursor: pointer; font-weight: bold; }
-.divider { text-align: center; margin: 15px 0; font-size: 12px; }
-.terms-container { display: flex; align-items: center; gap: 8px; font-size: 12px; margin: 5px 0; }

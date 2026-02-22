@@ -29,9 +29,31 @@ export default function Navbar() {
 
         <div className="nav-bottom">
           <ul className="category-menu">
-            <li className="menu-item">Auction</li>
-            <li className="menu-item">Department</li>
-            <li className="menu-item">Series</li>
+            <li className="menu-item">
+              Auction
+              <ul className="dropdown-content">
+                <li>Buy</li>
+                <li>Sell</li>
+              </ul>
+            </li>
+
+            <li className="menu-item">
+              Department
+              <ul className="dropdown-content">
+                <li>Indian Art</li>
+                <li>Electronics</li>
+                <li>Jewellery</li>
+              </ul>
+            </li>
+
+            <li className="menu-item">
+              Series
+              <ul className="dropdown-content">
+                <li>Private Services</li>
+                <li>Storage Series</li>
+              </ul>
+            </li>
+
             <li className="menu-item">About Us</li>
           </ul>
         </div>
