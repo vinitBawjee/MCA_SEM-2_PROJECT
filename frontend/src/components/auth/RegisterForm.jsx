@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser, clearMessage } from "../../features/auth/authSlice";
 
-export default function RegisterForm({ switchToLogin }) {
+export default function RegisterForm() {
+  const dispatch = useDispatch();
+  const { message, error } = useSelector((state) => state.auth);
+
   const [data, setData] = useState({
     name: "",
     email: "",
     mobile: "",
+    role: "",
+    password: "",
+    confirmPassword: "",
     terms: false,
   });
 
-  const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -22,11 +27,28 @@ export default function RegisterForm({ switchToLogin }) {
     else if (/\d/.test(fieldValues.name))
       err.name = "Name cannot contain numbers";
 
-    if (!/^\S+@\S+\.\S+$/.test(fieldValues.email))
+    if (!fieldValues.email)
+      err.email = "Enter email";
+    else if (!/^\S+@\S+\.\S+$/.test(fieldValues.email))
       err.email = "Invalid email";
 
-    if (!/^[0-9]{10}$/.test(fieldValues.mobile))
+    if (!fieldValues.mobile)
+      err.mobile = "Enter mobile";
+    else if (!/^[0-9]{10}$/.test(fieldValues.mobile))
       err.mobile = "Invalid mobile";
+
+    if (!fieldValues.role)
+      err.role = "Select role";
+
+    if (!fieldValues.password)
+      err.password = "Enter password";
+    else if (fieldValues.password.length < 6)
+      err.password = "Password must be at least 6 characters";
+
+    if (!fieldValues.confirmPassword)
+      err.confirmPassword = "Confirm your password";
+    else if (fieldValues.password !== fieldValues.confirmPassword)
+      err.confirmPassword = "Passwords do not match";
 
     if (!fieldValues.terms)
       err.terms = "Accept terms";
@@ -54,75 +76,121 @@ export default function RegisterForm({ switchToLogin }) {
 
     setData(newData);
 
-    // 🔹 run validation ONLY after first submit attempt
     if (isSubmitted) {
       validate(newData);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-  
+
     if (validate()) {
-      dispatch(registerUser(data));
-  
-      setData({
-        name: "",
-        email: "",
-        mobile: "",
-        terms: false,
-      });
-  
-      setErrors({});
-      setIsSubmitted(false);
+      const { confirmPassword, terms, ...finalData } = data;
+
+      try {
+        await dispatch(registerUser(finalData)).unwrap();
+
+        setData({
+          name: "",
+          email: "",
+          mobile: "",
+          role: "",
+          password: "",
+          confirmPassword: "",
+          terms: false,
+        });
+
+        setErrors({});
+        setIsSubmitted(false);
+      } catch (err) {}
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Full Name"
-        className="glass-input"
-        value={data.name}
-        onChange={handleChange}
-      />
-      {errors.name && <div className="error-text">{errors.name}</div>}
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        className="glass-input"
-        value={data.email}
-        onChange={handleChange}
-      />
-      {errors.email && <div className="error-text">{errors.email}</div>}
-
-      <input
-        type="text"
-        name="mobile"
-        placeholder="Mobile"
-        className="glass-input"
-        value={data.mobile}
-        onChange={handleChange}
-      />
-      {errors.mobile && <div className="error-text">{errors.mobile}</div>}
-
-      <div className="terms-container">
+    <>
+      <form onSubmit={handleSubmit}>
         <input
-          type="checkbox"
-          name="terms"
-          checked={data.terms}
+          type="text"
+          name="name"
+          placeholder="Name"
+          className="glass-input"
+          value={data.name}
           onChange={handleChange}
         />
-        <label>Agree to Terms</label>
-      </div>
-      {errors.terms && <div className="error-text">{errors.terms}</div>}
+        {errors.name && <div className="error-text">{errors.name}</div>}
 
-      <button className="submit-btn">Register</button>
-    </form>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          className="glass-input"
+          value={data.email}
+          onChange={handleChange}
+        />
+        {errors.email && <div className="error-text">{errors.email}</div>}
+
+        <input
+          type="text"
+          name="mobile"
+          placeholder="Mobile"
+          className="glass-input"
+          value={data.mobile}
+          onChange={handleChange}
+        />
+        {errors.mobile && <div className="error-text">{errors.mobile}</div>}
+
+        <select
+          name="role"
+          className="glass-input glass-select"
+          value={data.role}
+          onChange={handleChange}
+        >
+          <option value="" disabled>
+            Select Role
+          </option>
+          <option value="buyer">Buyer</option>
+          <option value="seller">Seller</option>
+        </select>
+        {errors.role && <div className="error-text">{errors.role}</div>}
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          className="glass-input"
+          value={data.password}
+          onChange={handleChange}
+        />
+        {errors.password && <div className="error-text">{errors.password}</div>}
+
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          className="glass-input"
+          value={data.confirmPassword}
+          onChange={handleChange}
+        />
+        {errors.confirmPassword && (
+          <div className="error-text">{errors.confirmPassword}</div>
+        )}
+
+        <div className="terms-container">
+          <input
+            type="checkbox"
+            name="terms"
+            checked={data.terms}
+            onChange={handleChange}
+          />
+          <label>Agree to Terms</label>
+        </div>
+        {errors.terms && <div className="error-text">{errors.terms}</div>}
+
+        <button type="submit" className="submit-btn">
+          Register
+        </button>
+      </form>
+    </>
   );
 }

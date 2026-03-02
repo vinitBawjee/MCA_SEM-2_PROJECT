@@ -1,0 +1,75 @@
+.action-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: rgba(0, 0, 0, 0.5); simple dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Card Bigger */
+  .action-card {
+    /* background: #f9fafb; clean light background */
+    width: 600px;        /* increased width */
+    min-height: 420px;   /* increased height */
+    padding: 35px;
+    border-radius: 12px;
+    /* box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); */
+    position: relative;
+    /* border-top: 5px solid #1b5e20; theme touch */
+  }
+  
+  /* Heading */
+  .action-card h2 {
+    /* margin-bottom: 20px; */
+    /* color: #1b5e20; */
+    font-size: 22px;
+    margin-left: 2rem;
+  }
+
+  .back-arrow {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Textarea Bigger */
+  .action-textarea {
+    width: 100%;
+    height: 200px;     /* increased textarea height */
+    margin: 20px 0;
+    padding: 15px;
+    resize: none;
+    border-radius: 8px;
+    /* border: 1px solid #ccc; */
+    font-size: 15px;
+    line-height: 1.6;
+    transition: 0.2s ease;
+  }
+  
+  .action-textarea:focus {
+    outline: none;
+    border-color: #1b5e20;
+    /* box-shadow: 0 0 5px rgba(0,0,0,0.1); */
+  }
+  
+  /* Submit Button */
+  .action-submit {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: #1b5e20;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s ease;
+  }
+  
+  .action-submit:hover {
+    background-color: #145a1a;
+  }

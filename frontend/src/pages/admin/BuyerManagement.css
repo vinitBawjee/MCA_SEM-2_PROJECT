@@ -1,0 +1,88 @@
+.buyer-container {
+    padding: 30px;
+    background-color: #f4f6f9;   /* Page light hi rahe */
+    min-height: 100vh;
+  }
+  
+  /* Title */
+  .buyer-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #14532d; /* Dark green theme */
+  }
+  
+  /* Table */
+  .buyer-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Header */
+  .buyer-table thead {
+    background-color: #14532d; /* Sidebar green match */
+    color: white;
+  }
+  
+  .buyer-table th,
+  .buyer-table td {
+    padding: 14px 16px;
+    text-align: left;
+  }
+  
+  /* Rows */
+  .buyer-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background 0.2s ease;
+  }
+  
+  .buyer-table tbody tr:hover {
+    background-color: #f0fdf4; /* Light green hover */
+  }
+  
+  /* Status */
+  .active {
+    color: #16a34a;
+    font-weight: 600;
+  }
+  
+  .blocked {
+    color: #dc2626;
+    font-weight: 600;
+  }
+  
+  /* Buttons */
+  .block-btn {
+    padding: 6px 14px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #f59e0b;
+    color: white;
+    font-weight: 500;
+    transition: 0.2s ease;
+  }
+  
+  .block-btn:hover {
+    background-color: #d97706;
+  }
+  
+  .delete-btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #dc2626;
+    color: white;
+    font-weight: 500;
+    transition: 0.2s ease;
+  }
+  
+  .delete-btn:hover {
+    background-color: #b91c1c;
+  }

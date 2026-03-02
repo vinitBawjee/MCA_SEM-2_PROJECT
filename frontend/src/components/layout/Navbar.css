@@ -1,11 +1,12 @@
 /* Navbar Container */
 .navbar {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 5%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  padding: 15px 5%;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* border: 1px solid red; */
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
 }
 
 /* Top Row */
@@ -14,7 +15,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
+  /* border: 1px solid green; */
 }
 
 .logo-group {
@@ -63,6 +65,7 @@
 }
 
 .category-menu {
+  /* border: 1px solid red; */
   display: flex;
   list-style: none;
   gap: 30px;
@@ -75,7 +78,7 @@
 .menu-item {
   position: relative;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
   padding-bottom: 5px;
   transition: 0.3s ease;
 }
@@ -135,4 +138,31 @@
 
 .login-btn:hover {
   background: #e2e8f0;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.profile-icon {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: red;
 }

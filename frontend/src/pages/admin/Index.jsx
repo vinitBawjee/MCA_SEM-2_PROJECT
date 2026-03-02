@@ -1,12 +1,18 @@
 import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../features/auth/authSlice";
 
 import SidebarOptions from "../../components/admin/SidebarOptions";
 
 import "./index.css";
 
 const Index = () => {
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
+
+    const handleLogout = () => {
+      dispatch(logout()); 
+    };
 
     return (
         <div className="container-fluid vh-100 p-0">
@@ -16,10 +22,19 @@ const Index = () => {
                     Auction Admin
                 </h5>
 
-                <button className="btn btn-new-admin" onClick={() => navigate("/admin/new-admin")}>
+                {/* <button className="btn btn-new-admin" onClick={() => navigate("/admin/new-admin")}>
                     <i className="fa-solid fa-user-plus me-2"></i>
                     New Admin
-                </button>
+                </button> */}
+                <div className="logout">
+                <span className="user-name">{user.name}</span>
+                    <button
+                        className="btn btn-danger"
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </button>
+                </div>
             </div>
 
             <div className="row-2">

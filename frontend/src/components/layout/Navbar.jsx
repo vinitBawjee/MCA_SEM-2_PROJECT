@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../features/auth/authSlice";
 
 import AuthModal from "../auth/AuthModal";
 import "./Navbar.css";
@@ -6,56 +8,45 @@ import "./Navbar.css";
 export default function Navbar() {
   const [showModal, setShowModal] = useState(false);
 
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   return (
     <>
       <nav className="navbar">
         <div className="nav-top">
           <div className="logo-group">
-            <div className="logo-box">USV</div>
+            {/* <div className="logo-box">USV</div> */}
             <h2 className="brand-name">AuctionSite</h2>
           </div>
 
-          <div className="search-box">
+          {/* <div className="search-box">
             <input type="text" placeholder="Search for items..." />
-          </div>
+          </div> */}
 
-          <button
-            className="login-btn"
-            onClick={() => setShowModal(true)}
-          >
-            Sign in / Sign up
-          </button>
-        </div>
-
-        <div className="nav-bottom">
           <ul className="category-menu">
-            <li className="menu-item">
-              Auction
-              <ul className="dropdown-content">
-                <li>Buy</li>
-                <li>Sell</li>
-              </ul>
-            </li>
-
-            <li className="menu-item">
-              Department
-              <ul className="dropdown-content">
-                <li>Indian Art</li>
-                <li>Electronics</li>
-                <li>Jewellery</li>
-              </ul>
-            </li>
-
-            <li className="menu-item">
-              Series
-              <ul className="dropdown-content">
-                <li>Private Services</li>
-                <li>Storage Series</li>
-              </ul>
-            </li>
-
-            <li className="menu-item">About Us</li>
+            <li className="menu-item">Home</li>
+            <li className="menu-item">Auction</li>
+            <li className="menu-item">Blog</li>
+            <li className="menu-item">About</li>
+            <li className="menu-item">Contact</li>
           </ul>
+
+          {!user ? (
+            <button
+              className="login-btn"
+              onClick={() => setShowModal(true)}
+            >
+              Sign in / Sign up
+            </button>
+          ) : (
+            <div className="user-profile">
+              <div className="profile-icon">
+                {user.name?.charAt(0).toUpperCase()}
+              </div>
+              <span className="user-name">{user.name}</span>
+            </div>
+          )}
         </div>
       </nav>
 

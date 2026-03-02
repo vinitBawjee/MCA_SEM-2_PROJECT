@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, clearMessage } from "../../features/auth/authSlice";
+import AlertMessage from "../../components/layout/AlertMessage";
 
-export default function LoginForm() {
+export default function LoginForm({ close }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { message, error } = useSelector((state) => state.auth);
 
   const [data, setData] = useState({
     role: "",
-    emailOrMobile: "",
+    identifier: "",
     password: "",
     terms: false,
   });
@@ -22,14 +24,14 @@ export default function LoginForm() {
 
     if (!fieldValues.role) err.role = "Select role";
 
-    if (!fieldValues.emailOrMobile.trim()) {
-      err.emailOrMobile = "Required field";
-    } else if (fieldValues.emailOrMobile.includes("@")) {
-      if (!/^\S+@\S+\.\S+$/.test(fieldValues.emailOrMobile))
-        err.emailOrMobile = "Invalid email";
+    if (!fieldValues.identifier.trim()) {
+      err.identifier = "Required field";
+    } else if (fieldValues.identifier.includes("@")) {
+      if (!/^\S+@\S+\.\S+$/.test(fieldValues.identifier))
+        err.identifier = "Invalid email";
     } else {
-      if (!/^[0-9]{10}$/.test(fieldValues.emailOrMobile))
-        err.emailOrMobile = "Enter valid 10 digit mobile";
+      if (!/^[0-9]{10}$/.test(fieldValues.identifier))
+        err.identifier = "Enter valid 10 digit mobile";
     }
 
     if (!fieldValues.password.trim())
@@ -46,8 +48,7 @@ export default function LoginForm() {
     const { name, value, type, checked } = e.target;
     let newValue = value;
 
-    // 🔹 allow only email OR mobile characters
-    if (name === "emailOrMobile") {
+    if (name === "identifier") {
       if (/^[0-9]*$/.test(value)) {
         newValue = value.slice(0, 10);
       } else {
@@ -62,72 +63,89 @@ export default function LoginForm() {
 
     setData(newData);
 
-    // 🔹 run live validation only after first submit
-    if (isSubmitted) {
-      validate(newData);
-    }
+    if (isSubmitted) validate(newData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitted(true);
   
-    if (validate()) {
-      dispatch(loginUser(data));
-    }
+    if (!validate()) return;
+  
+    try {
+      const res = await dispatch(loginUser(data)).unwrap();
+  
+      setData({
+        role: "",
+        identifier: "",
+        password: "",
+        terms: false,
+      });
+  
+      const role = res.user.role;
+  
+      if (role === "admin") navigate("/admin");
+      else if (role === "seller") navigate("/seller");
+      else navigate("/");
+  
+    } catch (err) {}
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <select
-        name="role"
-        value={data.role}
-        onChange={handleChange}
-        className="glass-input glass-select"
-      >
-        <option value="">Select Role</option>
-        <option value="admin">Admin</option>
-        <option value="user">User</option>
-        <option value="seller">Seller</option>
-      </select>
-      {errors.role && <div className="error-text">{errors.role}</div>}
+    <>
+      <form onSubmit={handleSubmit}>
+        <select
+          name="role"
+          value={data.role}
+          onChange={handleChange}
+          className="glass-input glass-select"
+        >
+          <option value="" disabled>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="buyer">Buyer</option>
+          <option value="seller">Seller</option>
+        </select>
+        {errors.role && <div className="error-text">{errors.role}</div>}
 
-      <input
-        type="text"
-        name="emailOrMobile"
-        placeholder="Email or Mobile"
-        className="glass-input"
-        value={data.emailOrMobile}
-        onChange={handleChange}
-      />
-      {errors.emailOrMobile && (
-        <div className="error-text">{errors.emailOrMobile}</div>
-      )}
-
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        className="glass-input"
-        value={data.password}
-        onChange={handleChange}
-      />
-      {errors.password && (
-        <div className="error-text">{errors.password}</div>
-      )}
-
-      <div className="terms-container">
         <input
-          type="checkbox"
-          name="terms"
-          checked={data.terms}
+          type="text"
+          name="identifier"
+          placeholder="Email or Mobile"
+          className="glass-input"
+          value={data.identifier}
           onChange={handleChange}
         />
-        <label>Agree to Terms</label>
-      </div>
-      {errors.terms && <div className="error-text">{errors.terms}</div>}
+        {errors.identifier && (
+          <div className="error-text">{errors.identifier}</div>
+        )}
 
-      <button className="submit-btn">Login</button>
-    </form>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          className="glass-input"
+          value={data.password}
+          onChange={handleChange}
+        />
+        {errors.password && (
+          <div className="error-text">{errors.password}</div>
+        )}
+
+        <div className="terms-container">
+          <input
+            type="checkbox"
+            name="terms"
+            checked={data.terms}
+            onChange={handleChange}
+          />
+          <label>Agree to Terms</label>
+        </div>
+        {errors.terms && <div className="error-text">{errors.terms}</div>}
+
+        <button type="submit" className="submit-btn">
+          Login
+        </button>
+      </form>
+    </>
   );
 }

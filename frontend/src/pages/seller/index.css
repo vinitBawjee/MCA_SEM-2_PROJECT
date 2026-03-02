@@ -1,0 +1,75 @@
+/* Header */
+.row-1 {
+    height: 70px;
+    background: #0f3b2e; /* british racing green */
+    color: #f4f1ea;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid #c2a14d; /* antique gold */
+  }
+
+.row-1-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logout button {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.logout button:hover {
+  background: #bb2d3b;
+}
+
+/* Remaining layout */
+.row-2 {
+  height: calc(100vh - 70px); /* remaining height */
+  display: flex;
+}
+
+/* Sidebar */
+.col-1 {
+    width: 250px;
+    background: #162822;
+    color: #e8e5dc;
+    padding: 10px;
+    border-right: 1px solid #2f4a40;
+  }
+
+/* Main content */
+.col-2 {
+  flex: 1;                   /* remaining width */
+  background: #f8f9fa;
+  padding: 20px;
+  overflow-y: auto;          /* scroll if content large */
+}
+
+.btn-new-admin {
+    background: transparent;
+    color: #c2a14d;
+    border: 1px solid #c2a14d;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+  
+  .btn-new-admin i {
+    font-size: 0.9rem;
+    margin-right: 3px;
+  }
+  
+  .btn-new-admin:hover {
+    background: #c2a14d;
+    color: #0f3b2e; /* green text */
+  }

@@ -31,9 +31,9 @@ export default function AuthModal({ close }) {
         </div>
 
         {activeTab === "login" ? (
-          <LoginForm />
+          <LoginForm close={close} />
         ) : (
-          <RegisterForm switchToLogin={() => setActiveTab("login")} />
+          <RegisterForm />
         )}
       </div>
     </div>

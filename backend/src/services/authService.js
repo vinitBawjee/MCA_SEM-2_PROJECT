@@ -1,34 +1,96 @@
 import bcrypt from "bcryptjs";
-import User from "../models/User.js";
-import generatePassword from "../utils/generatePassword.js";
-import transporter from "../config/mailer.js";
+import jwt from "jsonwebtoken";
+import Buyer from "../models/Buyer.js";
+import Seller from "../models/Seller.js";
 
 class AuthService {
   async registerUser(data) {
-    const { name, email, mobile } = data;
+    const { name, email, mobile, password, role } = data;
 
-    const existing = await User.findOne({ email });
-    if (existing) throw new Error("User already exists");
+    if (!name || !email || !mobile || !password || !role) {
+      throw new Error("All fields are required");
+    }
 
-    const plainPassword = generatePassword();
-    const hashedPassword = await bcrypt.hash(plainPassword, 10);
+    if (role !== "buyer" && role !== "seller") {
+      throw new Error("Invalid role selected");
+    }
 
-      await transporter.sendMail({
-        from: '"Auction App" <bawjee0@gmail.com>',
-        to: email,
-        subject: "Your Account Password",
-        text: `Your password is: ${plainPassword}`,
+    const Model = role === "buyer" ? Buyer : Seller;
+
+    const existingEmail = await Model.findOne({ email });
+    if (existingEmail) {
+      throw new Error("Email already registered");
+    }
+
+    const existingMobile = await Model.findOne({ mobile });
+    if (existingMobile) {
+      throw new Error("Mobile already registered");
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await Model.create({
+      name,
+      email,
+      mobile,
+      password: hashedPassword,
+      role,
+    });
+
+    return user;
+  }
+
+  async loginUser(data) {
+    const { identifier, password, role } = data;
+
+    if (!identifier || !password || !role) {
+      throw new Error("All fields are required");
+    }
+
+    let user;
+
+    if (role === "buyer") {
+      user = await Buyer.findOne({
+        $or: [{ email: identifier }, { mobile: identifier }],
       });
-
-      const user = await User.create({
-        name,
-        email,
-        mobile,
-        password: hashedPassword,
+    } else if (role === "seller" || role === "admin") {
+      user = await Seller.findOne({
+        $or: [{ email: identifier }, { mobile: identifier }],
       });
+    } else {
+      throw new Error("Invalid role");
+    }
 
-      return user;
-  
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (user.isBlocked) {
+      throw new Error("Account is blocked");
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      throw new Error("Invalid credentials");
+    }
+
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    return {
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        mobile: user.mobile,
+        role: user.role,
+      },
+      token,
+    };
   }
 }
 

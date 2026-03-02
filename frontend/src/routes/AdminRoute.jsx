@@ -1,17 +1,14 @@
-import { Routes, Route } from "react-router-dom";
-
-import Index from "../pages/admin/Index";
-import NewAdmin from "../pages/admin/NewAdmin";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
 
 const AdminRoute = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Index />}>
-        <Route index element={<div>Dashboard</div>} />
-        <Route path="new-admin" element={<NewAdmin />} />*
-      </Route>
-    </Routes>
-  );
+  const { user } = useSelector((state) => state.auth);
+
+  if (!user || user.role !== "admin") {
+    return <Navigate to="/" />;
+  }
+
+  return <Outlet />;
 };
 
 export default AdminRoute;
