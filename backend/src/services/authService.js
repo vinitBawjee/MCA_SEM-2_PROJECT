@@ -42,45 +42,54 @@ class AuthService {
 
   async loginUser(data) {
     const { identifier, password, role } = data;
-
+  
     if (!identifier || !password || !role) {
-      throw new Error("All fields are required");
+      throw { status: 400, message: "All fields are required" };
     }
-
+  
     let user;
-
+  
     if (role === "buyer") {
       user = await Buyer.findOne({
         $or: [{ email: identifier }, { mobile: identifier }],
       });
-    } else if (role === "seller" || role === "admin") {
+    } 
+    else if (role === "seller" || role === "admin") {
       user = await Seller.findOne({
         $or: [{ email: identifier }, { mobile: identifier }],
       });
-    } else {
-      throw new Error("Invalid role");
+    } 
+    else {
+      throw { status: 400, message: "Invalid role selected" };
     }
-
+  
     if (!user) {
-      throw new Error("User not found");
+      throw { status: 404, message: "User not found" };
     }
-
-    if (user.isBlocked) {
-      throw new Error("Account is blocked");
+  
+    if (user.role !== role) {
+      throw { status: 403, message: "Access denied for this role" };
     }
-
+  
+    // if (user.isBlocked) {
+    //   throw { 
+    //     status: 403, 
+    //     message: "Your account is blocked by admin" 
+    //   };
+    // }
+  
     const isMatch = await bcrypt.compare(password, user.password);
-
+  
     if (!isMatch) {
-      throw new Error("Invalid credentials");
+      throw { status: 401, message: "Invalid credentials" };
     }
-
+  
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
-
+  
     return {
       user: {
         id: user._id,

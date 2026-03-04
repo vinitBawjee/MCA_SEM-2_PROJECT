@@ -36,7 +36,6 @@ const productSchema = new mongoose.Schema(
       type: String,
     },
 
-    // ✅ Auction Status Added
     status: {
       type: String,
       enum: ["pending", "active", "inactive", "complete"],

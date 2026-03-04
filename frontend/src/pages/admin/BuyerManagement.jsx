@@ -31,7 +31,7 @@ export default function BuyerManagement() {
           }
         );
 
-        console.log("Buyers Response:", res.data);
+        // console.log("Buyers Response:", res.data);
 
         setBuyers(res.data?.data || []);
         setError(null);
@@ -50,6 +50,57 @@ export default function BuyerManagement() {
 
     fetchBuyers();
   }, []);
+
+  const handleBlock = async (id) => {
+    try {
+      const token = sessionStorage.getItem("token");
+  
+      const res = await axios.put(
+        `http://localhost:5000/api/buyer/block/${id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+  
+      setBuyers((prev) =>
+        prev.map((buyer) =>
+          buyer._id === id
+            ? { ...buyer, isBlocked: res.data.isBlocked }
+            : buyer
+        )
+      );
+  
+    } catch (error) {
+      alert("Block action failed");
+    }
+  };
+
+  const handleDelete = async (id, email) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this buyer?"
+    );
+  
+    if (!confirmDelete) return;
+  
+    try {
+      const token = sessionStorage.getItem("token");
+  
+      await axios.delete(
+        `http://localhost:5000/api/buyer/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+  
+      setBuyers((prev) =>
+        prev.filter((buyer) => buyer._id !== id)
+      );
+  
+    } catch (err) {
+      alert("Delete failed");
+    }
+  };
 
   return (
     <div className="buyer-container">
@@ -103,32 +154,14 @@ export default function BuyerManagement() {
                 <td>
                   <button
                     className="block-btn"
-                    onClick={() =>
-                      navigate("/admin/action-email", {
-                        state: {
-                          type: buyer.isBlocked
-                            ? "unblock"
-                            : "block",
-                          role: "buyer",
-                          id: buyer._id,
-                        },
-                      })
-                    }
+                    onClick={() => handleBlock(buyer._id)}
                   >
                     {buyer.isBlocked ? "Unblock" : "Block"}
                   </button>
 
                   <button
                     className="delete-btn"
-                    onClick={() =>
-                      navigate("/admin/action-email", {
-                        state: {
-                          type: "delete",
-                          role: "buyer",
-                          id: buyer._id,
-                        },
-                      })
-                    }
+                    onClick={() => handleDelete(buyer._id, buyer.email)}
                   >
                     Delete
                   </button>

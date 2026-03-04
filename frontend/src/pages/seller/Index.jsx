@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
 
 import SidebarOptions from "../../components/seller/SidebarOptions";
@@ -9,6 +9,7 @@ import "./index.css";
 const Index = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());     // redux clear
@@ -31,6 +32,7 @@ const Index = () => {
 
 
         <div className="logout">
+        <span className="user-name">{user.name}</span>
           <button
             className="btn btn-danger"
             onClick={handleLogout}

@@ -8,7 +8,7 @@ import SellerLayout from "../pages/seller/Index";
 
 import BuyerManagement from "../pages/admin/BuyerManagement";
 import SellerManagement from "../pages/admin/SellerManagement";
-import EmailActionForm from "../components/layout/EmailActionForm";
+import AdminProductManagement from "../pages/admin/ProductManagement";
 
 import ProductManagement from "../pages/seller/ProductManagement";
 import AddProduct from "../pages/seller/AddProduct";
@@ -23,7 +23,6 @@ const AppRoutes = () => {
         <Route path="/admin/*" element={<AdminLayout />}>
           <Route path="buyers" element={<BuyerManagement />} />
           <Route path="sellers" element={<SellerManagement />} />
-          <Route path="action-email" element={<EmailActionForm />} />
         </Route>
       </Route>
 
@@ -32,6 +31,7 @@ const AppRoutes = () => {
           <Route path="products" element={<ProductManagement />} />
           <Route path="add-product" element={<AddProduct />} />
           <Route path="edit-product/:id" element={<AddProduct />} />
+          <Route path="products" element={<AdminProductManagement />} />
         </Route>
       </Route>
 

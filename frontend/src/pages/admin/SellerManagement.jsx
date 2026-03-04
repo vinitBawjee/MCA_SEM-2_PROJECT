@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SellerManagement.css";
 
@@ -8,38 +7,78 @@ const SellerManagement = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
-    const fetchSellers = async () => {
-      try {
-        setLoading(true);
-
-        const token = sessionStorage.getItem("token");
-
-        const res = await axios.get(
-          "http://localhost:5000/api/getsellers",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        setSellers(res.data?.data || []);
-        setError(null);
-      } catch (err) {
-        setError(
-          err.response?.data?.message || "Failed to fetch sellers"
-        );
-        setSellers([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchSellers();
   }, []);
+
+  const fetchSellers = async () => {
+    try {
+      setLoading(true);
+      const token = sessionStorage.getItem("token");
+
+      const res = await axios.get(
+        "http://localhost:5000/api/getsellers",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setSellers(res.data?.data || []);
+      setError(null);
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Failed to fetch sellers"
+      );
+      setSellers([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBlock = async (id) => {
+    try {
+      const token = sessionStorage.getItem("token");
+
+      const res = await axios.put(
+        `http://localhost:5000/api/seller/block/${id}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setSellers((prev) =>
+        prev.map((seller) =>
+          seller._id === id
+            ? { ...seller, isBlocked: res.data.isBlocked }
+            : seller
+        )
+      );
+    } catch (error) {
+      alert("Block action failed");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this seller?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const token = sessionStorage.getItem("token");
+
+      await axios.delete(
+        `http://localhost:5000/api/seller/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setSellers((prev) =>
+        prev.filter((seller) => seller._id !== id)
+      );
+    } catch (error) {
+      alert("Delete failed");
+    }
+  };
 
   return (
     <div className="seller-container">
@@ -83,32 +122,14 @@ const SellerManagement = () => {
                 <td>
                   <button
                     className="block-btn"
-                    onClick={() =>
-                      navigate("/admin/action-email", {
-                        state: {
-                          type: seller.isBlocked
-                            ? "unblock"
-                            : "block",
-                          role: "seller",
-                          id: seller._id,
-                        },
-                      })
-                    }
+                    onClick={() => handleBlock(seller._id)}
                   >
                     {seller.isBlocked ? "Unblock" : "Block"}
                   </button>
 
                   <button
                     className="delete-btn"
-                    onClick={() =>
-                      navigate("/admin/action-email", {
-                        state: {
-                          type: "delete",
-                          role: "seller",
-                          id: seller._id,
-                        },
-                      })
-                    }
+                    onClick={() => handleDelete(seller._id)}
                   >
                     Delete
                   </button>

@@ -9,6 +9,7 @@ const SidebarOptions = () => {
   const buttons = [
     { name: "BuyerManagement", path: "/admin/buyers" },
     { name: "SellerManagement", path: "/admin/sellers" },
+    { name: "ProductManagement", path: "/admin/products" },
   ];
 
   const handleClick = (btn) => {
