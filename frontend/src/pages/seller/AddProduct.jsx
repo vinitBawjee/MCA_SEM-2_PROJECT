@@ -20,7 +20,7 @@ export default function AddProduct() {
   const [existingImage, setExistingImage] = useState("");
   const [errors, setErrors] = useState({});
 
-  const categories = ["Electronics", "Fashion", "Home", "Books", "Other"];
+  const categories = ["painting", "jewellery", "timepieces", "silver", "furniture and decorative"];
 
   useEffect(() => {
     if (id) fetchProduct();

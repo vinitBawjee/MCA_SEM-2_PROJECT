@@ -1,13 +1,250 @@
-/* Reset and Base */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .container {
-  width: 100vw;
-  height: 100vh;
-  /* background: url('https://images.unsplash.com/photo-1557683316-973673baf926') no-repeat center center/cover; */
-  /* background: linear-gradient(to bottom, #050D16, #0B1C2D, #163A53); */
-  /* background: linear-gradient(to bottom, #081520, #1A4D6E); */
-  /* background: linear-gradient(to bottom, #0B1C2D 0%, #ffffff 100%); */
-  background: linear-gradient(to bottom, #0B1C2D 0%, #2E5873 50%, #ffffff 100%) !important;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #0A2F1F 0%, #145A32 50%, #F1F8F4 100%);
+  background-attachment: fixed;
   font-family: 'Poppins', sans-serif;
+  padding-top: 90px;
+}
+
+.recent-section {
+  background: transparent;
+  padding: 70px 5%;
+}
+
+.recent-header h1 {
+  font-size: 30px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 40px;
+}
+
+.recent-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+}
+
+.recent-card {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+  transition: 0.3s ease;
+}
+
+.recent-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.recent-image {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.recent-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recent-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.recent-date {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.result-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  background: #eaeaea;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.result-btn:hover {
+  background: #dcdcdc;
+}
+
+.recent-view {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.recent-view button {
+  padding: 12px 35px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.recent-view button:hover {
+  background: #333;
+}
+
+.record-section {
+  padding: 60px 5%;
+}
+
+.record-header {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.record-header h1 {
+  font-size: 32px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: white;
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+  background: rgba(255,255,255,0.15);
+  padding: 10px;
+  border-radius: 12px;
+  width: fit-content;
+  backdrop-filter: blur(10px);
+}
+
+.tab {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  transition: 0.3s;
+}
+
+.tab.active {
+  background: white;
+  color: #0A2F1F;
+  font-weight: 600;
+}
+
+.card-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+}
+
+.auction-card {
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 14px;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.auction-card:hover {
+  transform: translateY(-6px);
+}
+
+.image-box {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lot {
+  font-size: 12px;
+  background: #e8f5ee;
+  color: #145A32;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.artist {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0A2F1F;
+}
+
+.title {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.date {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.sold {
+  font-size: 13px;
+  color: #555;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #145A32;
+}
+
+.margin {
+  font-size: 12px;
+  color: #888;
+}
+
+.view-all {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.view-all button {
+  padding: 12px 35px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-all button:hover {
+  background: #333;
+}
+
+body {
+  overflow-x: hidden;
 }

@@ -1,141 +1,127 @@
-/* ===== Overlay Background ===== */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #0d2a40, #3c6b8b);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
 }
 
-/* ===== Glass Card ===== */
 .glass-card {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 35px 30px;
-  border-radius: 18px;
-  width: 380px;
-  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 45px 40px;
+  border-radius: 22px;
+  width: 420px;
+  color: #ffffff;
   position: relative;
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
 }
 
-/* ===== Close Button ===== */
 .close-btn {
   position: absolute;
-  top: 12px;
-  right: 16px;
+  top: 14px;
+  right: 18px;
   background: none;
   border: none;
   color: white;
   font-size: 20px;
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
-/* ===== Tabs ===== */
 .tab-container {
   display: flex;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 4px;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
+  margin-bottom: 28px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 5px;
 }
 
 .tab-container button {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: none;
   background: transparent;
   color: white;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: 600;
   transition: 0.3s;
 }
 
 .tab-container button.active {
-  background: white;
-  color: #2c4f6a;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1b4332;
 }
 
-/* ===== Inputs ===== */
 .glass-input {
   width: 100%;
-  padding: 14px;
-  margin: 5px 0;
-  background: rgba(255, 255, 255, 0.18);
-  border: none;
-  border-radius: 10px;
+  padding: 16px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
   color: white;
   outline: none;
   font-size: 14px;
+  transition: 0.3s;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .glass-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* Select dropdown arrow color */
 .glass-select {
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.07);
   color: white;
 }
 
 .glass-select option {
-  background: #2c4f6a;
+  background: #1b4332;
   color: white;
 }
 
-/* ===== Terms Checkbox ===== */
 .terms-container {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  /* margin-top: 5px; */
-  margin: 5px 0;
-  opacity: 0.9;
+  margin: 12px 0;
+  opacity: 0.85;
 }
 
-/* ===== Error Text ===== */
 .error-text {
   color: #ffb3b3;
   font-size: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
-/* ===== Buttons ===== */
 .submit-btn {
   width: 100%;
-  padding: 13px;
+  padding: 15px;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   font-weight: bold;
-  margin-top: 18px;
+  margin-top: 22px;
   cursor: pointer;
   transition: 0.3s;
-  background: white;
-  color: #2c4f6a;
-}
-
-/* Register Tab Active -> Button Red */
-.tab-container button.active:last-child ~ form .submit-btn,
-form button.submit-btn:last-child {
-  background: #ff4b5c;
-  color: white;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1b4332;
 }
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  opacity: 0.95;
+  background: white;
 }

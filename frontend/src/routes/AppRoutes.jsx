@@ -5,6 +5,7 @@ import SellerRoute from "./SellerRoute";
 import Home from "../pages/Home";
 import AdminLayout from "../pages/admin/Index";
 import SellerLayout from "../pages/seller/Index";
+import AuctionsPage from "../pages/AuctionsPage";
 
 import BuyerManagement from "../pages/admin/BuyerManagement";
 import SellerManagement from "../pages/admin/SellerManagement";
@@ -18,11 +19,14 @@ const AppRoutes = () => {
     <Routes>
 
       <Route path="/" element={<Home />} />
+      <Route path="/auctions" element={<AuctionsPage />} />
 
       <Route element={<AdminRoute />}>
         <Route path="/admin/*" element={<AdminLayout />}>
           <Route path="buyers" element={<BuyerManagement />} />
           <Route path="sellers" element={<SellerManagement />} />
+          <Route path="products" element={<AdminProductManagement />} />
+          
         </Route>
       </Route>
 
@@ -31,7 +35,6 @@ const AppRoutes = () => {
           <Route path="products" element={<ProductManagement />} />
           <Route path="add-product" element={<AddProduct />} />
           <Route path="edit-product/:id" element={<AddProduct />} />
-          <Route path="products" element={<AdminProductManagement />} />
         </Route>
       </Route>
 
