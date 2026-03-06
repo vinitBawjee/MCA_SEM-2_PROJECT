@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import connectDB from "./config/db.js";
-import authRoutes from "./routes/authRoutes.js";
+import routes from "./routes/index.js";
 
 dotenv.config();
 connectDB();
@@ -19,7 +19,7 @@ app.use(
 );
 app.use(express.json());
 
-app.use("/api", authRoutes);
+routes(app);
 
 app.use("/uploads", express.static("uploads"));
 

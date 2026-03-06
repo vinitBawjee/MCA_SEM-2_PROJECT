@@ -58,43 +58,6 @@ export default function Home() {
 
       <Navbar />
 
-      <section className="recent-section">
-        <div className="recent-header">
-          <h1>UPCOMING AUCTIONS</h1>
-        </div>
-
-        <div className="recent-grid">
-          {pendingProducts.length > 0 ? (
-            pendingProducts.slice(0, 5).map((item) => (
-              <div className="recent-card" key={item._id}>
-                <div className="recent-image">
-                  <img
-                    src={
-                      item.image
-                        ? `http://localhost:5000/${item.image}`
-                        : "https://via.placeholder.com/300x300"
-                    }
-                    alt={item.title}
-                  />
-                </div>
-
-                <h3 className="recent-title">{item.title}</h3>
-
-                <button className="result-btn">
-                  VIEW DETAILS
-                </button>
-              </div>
-            ))
-          ) : (
-            <p style={{ color: "white" }}>No Upcoming Auctions</p>
-          )}
-        </div>
-
-        <div className="recent-view">
-          <button onClick={() => navigate("/auctions", { state: { type: "pending" } })}>View All</button>
-        </div>
-      </section>
-
       <section className="record-section">
         <div className="record-header">
           <h1>LIVE AUCTIONS</h1>
@@ -115,7 +78,7 @@ export default function Home() {
         <div className="card-grid">
           {filteredLiveProducts.length > 0 ? (
             filteredLiveProducts.map((item) => (
-              <div className="auction-card" key={item._id}>
+              <div className="auction-card" key={item._id} onClick={() => navigate(`/product/${item._id}`)}>
                 <div className="image-box">
                   <img
                     src={
@@ -158,6 +121,43 @@ export default function Home() {
 
       <section className="recent-section">
         <div className="recent-header">
+          <h1>UPCOMING AUCTIONS</h1>
+        </div>
+
+        <div className="recent-grid">
+          {pendingProducts.length > 0 ? (
+            pendingProducts.slice(0, 5).map((item) => (
+              <div className="recent-card" key={item._id}>
+                <div className="recent-image">
+                  <img
+                    src={
+                      item.image
+                        ? `http://localhost:5000/${item.image}`
+                        : "https://via.placeholder.com/300x300"
+                    }
+                    alt={item.title}
+                  />
+                </div>
+
+                <h3 className="recent-title">{item.title}</h3>
+
+                <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
+                  VIEW DETAILS
+                </button>
+              </div>
+            ))
+          ) : (
+            <p style={{ color: "white" }}>No Upcoming Auctions</p>
+          )}
+        </div>
+
+        <div className="recent-view">
+          <button onClick={() => navigate("/auctions", { state: { type: "pending" } })}>View All</button>
+        </div>
+      </section>
+
+      <section className="recent-section">
+        <div className="recent-header">
           <h1>PAST AUCTIONS</h1>
         </div>
 
@@ -178,7 +178,7 @@ export default function Home() {
 
                 <h3 className="recent-title">{item.title}</h3>
 
-                <button className="result-btn">
+                <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
                   VIEW DETAILS
                 </button>
               </div>

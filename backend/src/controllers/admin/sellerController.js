@@ -1,5 +1,5 @@
-import Seller from "../models/Seller.js";
-import sendEmail from "../utils/sendEmail.js";
+import Seller from "../../models/Seller.js";
+import sendEmail from "../../utils/sendEmail.js";
 
 export const getAllSellers = async (req, res) => {
   try {

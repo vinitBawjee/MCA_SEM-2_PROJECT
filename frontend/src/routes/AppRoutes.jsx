@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import AdminLayout from "../pages/admin/Index";
 import SellerLayout from "../pages/seller/Index";
 import AuctionsPage from "../pages/AuctionsPage";
+import ProductDetails from "../pages/ProductDetails";
 
 import BuyerManagement from "../pages/admin/BuyerManagement";
 import SellerManagement from "../pages/admin/SellerManagement";
@@ -20,6 +21,7 @@ const AppRoutes = () => {
 
       <Route path="/" element={<Home />} />
       <Route path="/auctions" element={<AuctionsPage />} />
+      <Route path="/product/:id" element={<ProductDetails />} />
 
       <Route element={<AdminRoute />}>
         <Route path="/admin/*" element={<AdminLayout />}>

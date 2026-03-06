@@ -1,7 +1,7 @@
-import { fetchBuyersService } from "../services/buyerService.js";
+import { fetchBuyersService } from "../../services/buyerService.js";
 
-import Buyer from "../models/Buyer.js";
-import sendEmail from "../utils/sendEmail.js";
+import Buyer from "../../models/Buyer.js";
+import sendEmail from "../../utils/sendEmail.js";
 
 export const getAllBuyers = async (req, res) => {
   try {
