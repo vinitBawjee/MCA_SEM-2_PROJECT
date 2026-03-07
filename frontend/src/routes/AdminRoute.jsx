@@ -1,14 +1,20 @@
-import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import { Route } from "react-router-dom";
+import AdminLayout from "../pages/admin/Index";
 
-const AdminRoute = () => {
-  const { user } = useSelector((state) => state.auth);
+import BuyerManagement from "../pages/admin/BuyerManagement";
+import SellerManagement from "../pages/admin/SellerManagement";
+import AdminProductManagement from "../pages/admin/ProductManagement";
 
-  if (!user || user.role !== "admin") {
-    return <Navigate to="/" />;
-  }
-
-  return <Outlet />;
+const AdminRoutes = () => {
+  return (
+    <>
+      <Route path="/admin/*" element={<AdminLayout />}>
+        <Route path="buyers" element={<BuyerManagement />} />
+        <Route path="sellers" element={<SellerManagement />} />
+        <Route path="products" element={<AdminProductManagement />} />
+      </Route>
+    </>
+  );
 };
 
-export default AdminRoute;
+export default AdminRoutes;

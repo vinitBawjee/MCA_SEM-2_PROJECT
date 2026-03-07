@@ -1,44 +1,29 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import AdminRoute from "./AdminRoute";
-import SellerRoute from "./SellerRoute";
-import Home from "../pages/Home";
-import AdminLayout from "../pages/admin/Index";
-import SellerLayout from "../pages/seller/Index";
-import AuctionsPage from "../pages/AuctionsPage";
-import ProductDetails from "../pages/ProductDetails";
-
-import BuyerManagement from "../pages/admin/BuyerManagement";
-import SellerManagement from "../pages/admin/SellerManagement";
-import AdminProductManagement from "../pages/admin/ProductManagement";
-
-import ProductManagement from "../pages/seller/ProductManagement";
-import AddProduct from "../pages/seller/AddProduct";
+import PublicRoutes from "./PublicRoute";
+import AdminRoutes from "./AdminRoute";
+import SellerRoutes from "./SellerRoute";
 
 const AppRoutes = () => {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <Routes>
 
-      <Route path="/" element={<Home />} />
-      <Route path="/auctions" element={<AuctionsPage />} />
-      <Route path="/product/:id" element={<ProductDetails />} />
+      {PublicRoutes()}
 
-      <Route element={<AdminRoute />}>
-        <Route path="/admin/*" element={<AdminLayout />}>
-          <Route path="buyers" element={<BuyerManagement />} />
-          <Route path="sellers" element={<SellerManagement />} />
-          <Route path="products" element={<AdminProductManagement />} />
-          
-        </Route>
-      </Route>
+      {user?.role === "admin" ? (
+        AdminRoutes()
+      ) : (
+        <Route path="/admin/*" element={<Navigate to="/" />} />
+      )}
 
-      <Route element={<SellerRoute />}>
-        <Route path="/seller/*" element={<SellerLayout />}>
-          <Route path="products" element={<ProductManagement />} />
-          <Route path="add-product" element={<AddProduct />} />
-          <Route path="edit-product/:id" element={<AddProduct />} />
-        </Route>
-      </Route>
+      {user?.role === "seller" ? (
+        SellerRoutes()
+      ) : (
+        <Route path="/seller/*" element={<Navigate to="/" />} />
+      )}
 
     </Routes>
   );

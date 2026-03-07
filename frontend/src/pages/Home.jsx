@@ -1,7 +1,7 @@
-import Navbar from "../components/layout/Navbar";
 import "./Home.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import AlertMessage from "../components/layout/AlertMessage";
@@ -55,8 +55,6 @@ export default function Home() {
         message={error || message}
         onClose={() => dispatch(clearMessage())}
       />
-
-      <Navbar />
 
       <section className="record-section">
         <div className="record-header">
@@ -141,9 +139,10 @@ export default function Home() {
 
                 <h3 className="recent-title">{item.title}</h3>
 
-                <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
+                {/* <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
                   VIEW DETAILS
-                </button>
+                </button> */}
+                <Link className="result-btn" to={`/product/${item._id}`} state={{ from: "home" }}> View Details </Link>
               </div>
             ))
           ) : (
@@ -178,9 +177,10 @@ export default function Home() {
 
                 <h3 className="recent-title">{item.title}</h3>
 
-                <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
+                {/* <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
                   VIEW DETAILS
-                </button>
+                </button> */}
+                <Link className="result-btn" to={`/product/${item._id}`} state={{ from: "home" }}> View Details </Link>
               </div>
             ))
           ) : (

@@ -1,9 +1,10 @@
-import Navbar from "../components/layout/Navbar";
 import "./ProductDetails.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const ProductDetails = () => {
+  const location = useLocation();
+  const from = location.state?.from;
 
   const [activeTab, setActiveTab] = useState("history");
 
@@ -29,14 +30,18 @@ const ProductDetails = () => {
   ];
 
   return (
-    <>
-      <Navbar />
-
+    <div className="container">
       <div className="productPage">
         <div className="breadcrumb">
-          <Link to="/" className="home">
-            Home
-          </Link>
+          <Link to="/" className="home"> Home </Link>
+
+          {from === "auctions" && (
+            <>
+              <span className="arrow">›</span>
+              <Link to="/auctions" className="home"> Live Auctions </Link>
+            </>
+          )}
+
           <span className="arrow">›</span>
           <span className="current">78964</span>
         </div>
@@ -146,7 +151,7 @@ const ProductDetails = () => {
         )}
 
       </div>
-    </>
+    </div>
   );
 };
 

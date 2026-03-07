@@ -1,14 +1,19 @@
-import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import { Route } from "react-router-dom";
+import SellerLayout from "../pages/seller/Index";
 
-const SellerRoute = () => {
-  const { user } = useSelector((state) => state.auth);
+import ProductManagement from "../pages/seller/ProductManagement";
+import AddProduct from "../pages/seller/AddProduct";
 
-  if (!user || user.role !== "seller") {
-    return <Navigate to="/" />;
-  }
-
-  return <Outlet />;
+const SellerRoutes = () => {
+  return (
+    <>
+      <Route path="/seller/*" element={<SellerLayout />}>
+        <Route path="products" element={<ProductManagement />} />
+        <Route path="add-product" element={<AddProduct />} />
+        <Route path="edit-product/:id" element={<AddProduct />} />
+      </Route>
+    </>
+  );
 };
 
-export default SellerRoute;
+export default SellerRoutes;
