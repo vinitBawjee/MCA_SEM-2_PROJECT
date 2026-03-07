@@ -6,6 +6,8 @@ import * as adminSellerController from "./admin/sellerController.js";
 
 import * as sellerProductController from "./seller/productController.js";
 
+import * as buyerBidController from "./buyer/bidController.js"
+
 import * as publicProductController from "./public/ProductController.js";
 
 export {
@@ -14,5 +16,6 @@ export {
   adminBuyerController,
   adminSellerController,
   sellerProductController,
-  publicProductController
+  publicProductController,
+  buyerBidController
 };

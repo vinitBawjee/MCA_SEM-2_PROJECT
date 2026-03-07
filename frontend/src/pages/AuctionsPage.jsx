@@ -82,8 +82,14 @@ export default function AuctionsPage() {
 
                 <h2 className="price">₹ {item.price}</h2>
 
-                {/* <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>VIEW DETAILS</button> */}
-                <Link className="result-btn"  to={`/product/${item._id}`} state={{ from: "auctions" }}> View Details </Link>
+                <Link
+                  className="result-btn"
+                  to={`/product/${item._id}`}
+                  state={{ from: "auctions" }}
+                >
+                  {" "}
+                  View Details{" "}
+                </Link>
               </div>
             ))
           ) : (
