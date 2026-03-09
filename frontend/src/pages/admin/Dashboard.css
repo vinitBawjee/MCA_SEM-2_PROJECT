@@ -1,0 +1,69 @@
+.dashboard-container {
+    padding: 30px;
+    background: #f4f6f8;
+    /* min-height: 100vh; */
+  }
+  
+  .dashboard-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .card h3 {
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 26px;
+    font-weight: 600;
+    color: #2563eb;
+  }
+  
+  .charts-row {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .chart-box {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .recent-table {
+    margin-top: 40px;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .recent-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  .recent-table th,
+  .recent-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  
+  .recent-table th {
+    background: #f1f5f9;
+  }

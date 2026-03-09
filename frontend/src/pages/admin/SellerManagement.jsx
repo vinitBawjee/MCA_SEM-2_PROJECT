@@ -17,7 +17,7 @@ const SellerManagement = () => {
       const token = sessionStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/getsellers",
+        "http://localhost:5000/api/admin/sellers",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -68,7 +68,7 @@ const SellerManagement = () => {
       const token = sessionStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:5000/api/seller/${id}`,
+        `http://localhost:5000/api/admin/seller/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

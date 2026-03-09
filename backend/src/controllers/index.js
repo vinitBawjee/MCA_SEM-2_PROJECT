@@ -3,6 +3,7 @@ import * as authController from "./authController.js";
 import * as adminProductController from "./admin/productController.js";
 import * as adminBuyerController from "./admin/buyerController.js";
 import * as adminSellerController from "./admin/sellerController.js";
+import * as adminAuctionController from "./admin/adminAuctionController.js";
 
 import * as sellerProductController from "./seller/productController.js";
 
@@ -17,5 +18,6 @@ export {
   adminSellerController,
   sellerProductController,
   publicProductController,
-  buyerBidController
+  buyerBidController,
+  adminAuctionController
 };

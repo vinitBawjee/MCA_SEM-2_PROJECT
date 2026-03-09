@@ -18,11 +18,11 @@ export default function Navbar() {
           </div>
 
           <ul className="category-menu">
-            <li className="menu-item">Home</li>
+            {/* <li className="menu-item">Home</li> */}
             {/* <li className="menu-item">Auction</li> */}
             {/* <li className="menu-item">Blog</li> */}
-            <li className="menu-item">About</li>
-            <li className="menu-item">Contact</li>
+            {/* <li className="menu-item">About</li> */}
+            {/* <li className="menu-item">Contact</li> */}
           </ul>
 
           {!user ? (

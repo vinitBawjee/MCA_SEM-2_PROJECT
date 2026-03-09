@@ -61,12 +61,16 @@ const ProductDetails = () => {
     <div className="container">
       <div className="productPage">
         <div className="breadcrumb">
-          <Link to="/" className="home">Home</Link>
+          <Link to="/" className="home">
+            Home
+          </Link>
 
           {from === "auctions" && (
             <>
               <span className="arrow">›</span>
-              <Link to="/auctions" className="home">Live Auctions</Link>
+              <Link to="/auctions" className="home">
+                Live Auctions
+              </Link>
             </>
           )}
 
@@ -106,9 +110,9 @@ const ProductDetails = () => {
                 </p>
               )}
 
-              {product.status === "complete" && (
+              {product.status === "inactive" && (
                 <p className="loginMessage">
-                  This auction has ended. Bidding is closed.
+                  This auction is currently unavailable.
                 </p>
               )}
 

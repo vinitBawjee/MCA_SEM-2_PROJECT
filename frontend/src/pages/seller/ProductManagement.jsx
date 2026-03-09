@@ -14,7 +14,7 @@ export default function ProductManagement() {
 
   const fetchProducts = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/products",
+      "http://localhost:5000/api/seller/products",
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setProducts(res.data.data);
@@ -25,7 +25,7 @@ export default function ProductManagement() {
     if (!confirmDelete) return;
 
     await axios.delete(
-      `http://localhost:5000/api/products/${id}`,
+      `http://localhost:5000/api/seller/products/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 

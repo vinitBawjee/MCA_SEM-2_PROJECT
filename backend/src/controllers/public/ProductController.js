@@ -3,7 +3,7 @@ import Auction from "../../models/Auction.js";
 
 export const getActiveProducts = async (req, res) => {
   try {
-    const products = await Product.find({ status: "active" })
+    const products = await Product.find({ status: { $in: ["active", "inactive"] } })
       .populate("seller", "name")
       .sort({ createdAt: -1 });
 

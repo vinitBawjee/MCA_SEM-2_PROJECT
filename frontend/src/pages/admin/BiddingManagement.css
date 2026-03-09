@@ -1,0 +1,60 @@
+.admin-table-container{
+    padding:20px;
+  }
+  
+  .table-filter{
+    margin-bottom:20px;
+  }
+  
+  .table-filter button{
+    padding:8px 16px;
+    margin-right:10px;
+    border:none;
+    background:#e6e6e6;
+    cursor:pointer;
+  }
+  
+  .table-filter button:hover{
+    background:#14532d;
+    color:white;
+  }
+  
+  .admin-table{
+    width:100%;
+    border-collapse:collapse;
+  }
+  
+  .admin-table th{
+    background:#f4f4f4;
+    padding:12px;
+    text-align:left;
+  }
+  
+  .admin-table td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+  }
+  
+  .complete-btn{
+    padding:6px 12px;
+    border:none;
+    background:#28a745;
+    color:white;
+    cursor:pointer;
+  }
+  
+  .active-btn{
+    padding:6px 12px;
+    border:none;
+    background:#14532d;
+    color:white;
+    cursor:pointer;
+  }
+  
+  .delete-btn{
+    padding:6px 12px;
+    border:none;
+    background:#dc2626;
+    color:white;
+    cursor:pointer;
+  }

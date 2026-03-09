@@ -1,29 +1,26 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./SidebarOptions.css";
 
 const SidebarOptions = () => {
-  const [active, setActive] = useState("BuyerManagement");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const buttons = [
-    { name: "BuyerManagement", path: "/admin/buyers" },
-    { name: "SellerManagement", path: "/admin/sellers" },
-    { name: "ProductManagement", path: "/admin/products" },
+    { name: "Dashboard", path: "/admin/dashboard" },
+    { name: "Product", path: "/admin/products" },
+    { name: "Seller", path: "/admin/sellers" },
+    { name: "Buyer", path: "/admin/buyers" },
   ];
-
-  const handleClick = (btn) => {
-    setActive(btn.name);
-    navigate(btn.path);
-  };
 
   return (
     <div className="sidebar">
       {buttons.map((btn) => (
         <button
           key={btn.name}
-          className={`sidebar-btn ${active === btn.name ? "active" : ""}`}
-          onClick={() => handleClick(btn)}
+          className={`sidebar-btn ${
+            location.pathname === btn.path ? "active" : ""
+          }`}
+          onClick={() => navigate(btn.path)}
         >
           {btn.name}
         </button>

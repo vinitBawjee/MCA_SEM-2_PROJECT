@@ -13,14 +13,11 @@ export default function ProductManagement() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/admin/products",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const res = await axios.get("http://localhost:5000/api/admin/products", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setProducts(res.data.data);
-    } catch (err) {
+    } catch {
       alert("Failed to fetch products");
     }
   };
@@ -30,13 +27,10 @@ export default function ProductManagement() {
 
     if (currentStatus === "pending" && action === "approve")
       newStatus = "active";
-
     if (currentStatus === "pending" && action === "reject")
       newStatus = "inactive";
-
     if (currentStatus === "active" && action === "disable")
       newStatus = "inactive";
-
     if (currentStatus === "inactive" && action === "activate")
       newStatus = "active";
 
@@ -54,10 +48,30 @@ export default function ProductManagement() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
       fetchProducts();
     } catch {
       alert("Status update failed");
+    }
+  };
+
+  const completeAuction = async (id) => {
+    const confirmComplete = window.confirm(
+      "Are you sure you want to complete this auction?"
+    );
+
+    if (!confirmComplete) return;
+
+    try {
+      await axios.put(
+        `http://localhost:5000/api/admin/biddings/complete/${id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      fetchProducts();
+    } catch {
+      alert("Auction complete failed");
     }
   };
 
@@ -69,12 +83,9 @@ export default function ProductManagement() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(
-        `http://localhost:5000/api/admin/products/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.delete(`http://localhost:5000/api/admin/products/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       fetchProducts();
     } catch {
@@ -117,9 +128,7 @@ export default function ProductManagement() {
               <td>₹ {product.price}</td>
               <td>{product.stock}</td>
 
-              <td className={`status ${product.status}`}>
-                {product.status}
-              </td>
+              <td className={`status ${product.status}`}>{product.status}</td>
 
               <td>
                 {product.status === "pending" && (
@@ -127,11 +136,7 @@ export default function ProductManagement() {
                     <button
                       className="approve-btn"
                       onClick={() =>
-                        updateStatus(
-                          product._id,
-                          product.status,
-                          "approve"
-                        )
+                        updateStatus(product._id, product.status, "approve")
                       }
                     >
                       Approve
@@ -140,11 +145,7 @@ export default function ProductManagement() {
                     <button
                       className="reject-btn"
                       onClick={() =>
-                        updateStatus(
-                          product._id,
-                          product.status,
-                          "reject"
-                        )
+                        updateStatus(product._id, product.status, "reject")
                       }
                     >
                       Reject
@@ -153,29 +154,30 @@ export default function ProductManagement() {
                 )}
 
                 {product.status === "active" && (
-                  <button
-                    className="reject-btn"
-                    onClick={() =>
-                      updateStatus(
-                        product._id,
-                        product.status,
-                        "disable"
-                      )
-                    }
-                  >
-                    Disable
-                  </button>
+                  <>
+                    <button
+                      className="complete-btn"
+                      onClick={() => completeAuction(product._id)}
+                    >
+                      Complete
+                    </button>
+
+                    <button
+                      className="reject-btn"
+                      onClick={() =>
+                        updateStatus(product._id, product.status, "disable")
+                      }
+                    >
+                      Disable
+                    </button>
+                  </>
                 )}
 
                 {product.status === "inactive" && (
                   <button
                     className="approve-btn"
                     onClick={() =>
-                      updateStatus(
-                        product._id,
-                        product.status,
-                        "activate"
-                      )
+                      updateStatus(product._id, product.status, "activate")
                     }
                   >
                     Activate
@@ -184,9 +186,7 @@ export default function ProductManagement() {
 
                 <button
                   className="delete-btn"
-                  onClick={() =>
-                    handleDelete(product._id)
-                  }
+                  onClick={() => handleDelete(product._id)}
                 >
                   Delete
                 </button>

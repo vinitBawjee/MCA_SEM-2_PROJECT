@@ -28,7 +28,7 @@ export default function AddProduct() {
 
   const fetchProduct = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/products/${id}`,
+      `http://localhost:5000/api/seller/products/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -80,13 +80,13 @@ export default function AddProduct() {
 
     if (id) {
       await axios.put(
-        `http://localhost:5000/api/products/${id}`,
+        `http://localhost:5000/api/seller/products/${id}`,
         data,
         { headers: { Authorization: `Bearer ${token}` } }
       );
     } else {
       await axios.post(
-        "http://localhost:5000/api/products",
+        "http://localhost:5000/api/seller/products",
         data,
         { headers: { Authorization: `Bearer ${token}` } }
       );

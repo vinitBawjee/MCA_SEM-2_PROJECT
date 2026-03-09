@@ -23,7 +23,7 @@ export default function BuyerManagement() {
         }
 
         const res = await axios.get(
-          "http://localhost:5000/api/getbuyers",
+          "http://localhost:5000/api/admin/buyers",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -87,7 +87,7 @@ export default function BuyerManagement() {
       const token = sessionStorage.getItem("token");
   
       await axios.delete(
-        `http://localhost:5000/api/buyer/${id}`,
+        `http://localhost:5000/api/admin/buyer/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
