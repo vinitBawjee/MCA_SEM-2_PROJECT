@@ -1,0 +1,330 @@
+[{
+  "_id": {
+    "$oid": "69adad046597e2182ac0656a"
+  },
+  "seller": {
+    "$oid": "69ada9b86597e2182ac0655f"
+  },
+  "title": "Raja Ravi Varma Original Painting",
+  "description": "Rare collectible artwork inspired by the legendary Indian painter Raja Ravi Varma.",
+  "price": 850000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1772989700796.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-03-08T17:08:20.805Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:27:40.720Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adad4c6597e2182ac0656d"
+  },
+  "seller": {
+    "$oid": "69ada9b86597e2182ac0655f"
+  },
+  "title": "Vintage Mughal Era Gold Necklace",
+  "description": "Handcrafted Mughal style gold necklace with traditional design.",
+  "price": 620000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1772989772358.jpeg",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-03-08T17:09:32.362Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:09:32.362Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adadb36597e2182ac06570"
+  },
+  "seller": {
+    "$oid": "69ada9b86597e2182ac0655f"
+  },
+  "title": "Rolex Submariner Luxury Watch",
+  "description": "Premium Swiss luxury watch highly demanded in collectors auctions.",
+  "price": 950000,
+  "category": "timepieces",
+  "stock": 1,
+  "image": "uploads/1772989875854.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-03-08T17:11:15.860Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:27:36.505Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adae486597e2182ac06573"
+  },
+  "seller": {
+    "$oid": "69ada9b86597e2182ac0655f"
+  },
+  "title": "Antique Silver Royal Dinner Set",
+  "description": "Pure silver royal dinner set used in ceremonial dining.",
+  "price": 540000,
+  "category": "silver",
+  "stock": 1,
+  "image": "uploads/1772990024451.jpeg",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-03-08T17:13:44.454Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:13:44.454Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adae8b6597e2182ac06576"
+  },
+  "seller": {
+    "$oid": "69ada9b86597e2182ac0655f"
+  },
+  "title": "Victorian Style Royal Sofa Set",
+  "description": "Luxury handcrafted Victorian sofa set with premium upholstery.",
+  "price": 790000,
+  "category": "furniture and decorative",
+  "stock": 1,
+  "image": "uploads/1772990091969.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-03-08T17:14:51.973Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:28:57.416Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adaf176597e2182ac06585"
+  },
+  "seller": {
+    "$oid": "69ada9d16597e2182ac06563"
+  },
+  "title": "Diamond Studded Platinum Ring",
+  "description": "Luxury platinum ring embedded with certified diamonds.",
+  "price": 430000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1772990231251.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-03-08T17:17:11.254Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:27:29.059Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adaf496597e2182ac06588"
+  },
+  "seller": {
+    "$oid": "69ada9d16597e2182ac06563"
+  },
+  "title": "Patek Philippe Grand Complications Watch",
+  "description": "Ultra luxury Swiss watch famous among collectors.",
+  "price": 2400000,
+  "category": "timepieces",
+  "stock": 1,
+  "image": "uploads/1772990281559.jpeg",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-03-08T17:18:01.562Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:18:01.562Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adaf7f6597e2182ac0658b"
+  },
+  "seller": {
+    "$oid": "69ada9d16597e2182ac06563"
+  },
+  "title": "Royal Silver Temple Lamp",
+  "description": "Traditional handcrafted silver temple lamp used in royal ceremonies.",
+  "price": 320000,
+  "category": "silver",
+  "stock": 1,
+  "image": "uploads/1772990335479.jpeg",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-03-08T17:18:55.482Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:18:55.482Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adafc16597e2182ac0658e"
+  },
+  "seller": {
+    "$oid": "69ada9d16597e2182ac06563"
+  },
+  "title": "Modern Abstract Luxury Painting",
+  "description": "Premium abstract artwork designed for luxury interiors.",
+  "price": 275000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1772990401486.jpeg",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-03-08T17:20:01.489Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:20:01.489Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adaff36597e2182ac06591"
+  },
+  "seller": {
+    "$oid": "69ada9d16597e2182ac06563"
+  },
+  "title": "Antique Carved Wooden Royal Bed",
+  "description": "Luxury king size wooden bed with intricate hand carvings.",
+  "price": 910000,
+  "category": "furniture and decorative",
+  "stock": 1,
+  "image": "uploads/1772990451007.jpeg",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-03-08T17:20:51.010Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:20:51.010Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adb04f6597e2182ac0659a"
+  },
+  "seller": {
+    "$oid": "69adaa056597e2182ac06567"
+  },
+  "title": "Emerald and Diamond Royal Necklace",
+  "description": "Luxury necklace crafted with emerald gemstones and diamonds.",
+  "price": 1500000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1772990543814.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-03-08T17:22:23.816Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:28:06.470Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adb08c6597e2182ac0659f"
+  },
+  "seller": {
+    "$oid": "69adaa056597e2182ac06567"
+  },
+  "title": "Luxury Swiss Skeleton Watch",
+  "description": "High-end skeleton watch showcasing intricate mechanics.",
+  "price": 670000,
+  "category": "timepieces",
+  "stock": 1,
+  "image": "uploads/1772990604126.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-03-08T17:23:24.129Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:27:22.448Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adb0c26597e2182ac065a2"
+  },
+  "seller": {
+    "$oid": "69adaa056597e2182ac06567"
+  },
+  "title": "Handcrafted Silver Tea Set",
+  "description": "Premium silver tea set with royal engravings.",
+  "price": 390000,
+  "category": "silver",
+  "stock": 1,
+  "image": "uploads/1772990658270.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-03-08T17:24:18.272Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:28:48.975Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adb0f76597e2182ac065a5"
+  },
+  "seller": {
+    "$oid": "69adaa056597e2182ac06567"
+  },
+  "title": "Rajasthani Miniature Heritage Painting",
+  "description": "Traditional miniature painting inspired by royal Rajput courts.",
+  "price": 180000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1772990711561.jpeg",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-03-08T17:25:11.563Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:25:11.563Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adb12e6597e2182ac065a8"
+  },
+  "seller": {
+    "$oid": "69adaa056597e2182ac06567"
+  },
+  "title": "Italian Marble Luxury Coffee Table",
+  "description": "Luxury imported Italian marble coffee table for premium interiors.",
+  "price": 520000,
+  "category": "furniture and decorative",
+  "stock": 1,
+  "image": "uploads/1772990766760.jpeg",
+  "status": "inactive",
+  "createdAt": {
+    "$date": "2026-03-08T17:26:06.762Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-09T04:47:39.856Z"
+  },
+  "__v": 0
+}]

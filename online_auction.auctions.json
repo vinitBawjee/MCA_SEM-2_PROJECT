@@ -1,0 +1,114 @@
+[{
+  "_id": {
+    "$oid": "69adb2926597e2182ac06621"
+  },
+  "product": {
+    "$oid": "69adad046597e2182ac0656a"
+  },
+  "buyer": {
+    "$oid": "69ada9356597e2182ac06553"
+  },
+  "bidAmount": 850030,
+  "createdAt": {
+    "$date": "2026-03-08T17:32:02.473Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T17:32:02.473Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adced32e53ae345141aecf"
+  },
+  "product": {
+    "$oid": "69adad046597e2182ac0656a"
+  },
+  "buyer": {
+    "$oid": "69ada95e6597e2182ac06557"
+  },
+  "bidAmount": 850060,
+  "createdAt": {
+    "$date": "2026-03-08T19:32:35.579Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T19:32:35.579Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adcefb2e53ae345141aee1"
+  },
+  "product": {
+    "$oid": "69adad046597e2182ac0656a"
+  },
+  "buyer": {
+    "$oid": "69ada97b6597e2182ac0655b"
+  },
+  "bidAmount": 850100,
+  "createdAt": {
+    "$date": "2026-03-08T19:33:15.697Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T19:33:15.697Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69ae4f76823448ffd264f80e"
+  },
+  "product": {
+    "$oid": "69adad046597e2182ac0656a"
+  },
+  "buyer": {
+    "$oid": "69ada9356597e2182ac06553"
+  },
+  "bidAmount": 850150,
+  "createdAt": {
+    "$date": "2026-03-09T04:41:26.878Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-09T04:41:26.878Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69ae50df823448ffd264f845"
+  },
+  "product": {
+    "$oid": "69adae8b6597e2182ac06576"
+  },
+  "buyer": {
+    "$oid": "69ada9356597e2182ac06553"
+  },
+  "bidAmount": 790010,
+  "createdAt": {
+    "$date": "2026-03-09T04:47:27.679Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-09T04:47:27.679Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69ae58d05540d9f01ad35a7b"
+  },
+  "product": {
+    "$oid": "69adad046597e2182ac0656a"
+  },
+  "buyer": {
+    "$oid": "69ada9356597e2182ac06553"
+  },
+  "bidAmount": 850160,
+  "createdAt": {
+    "$date": "2026-03-09T05:21:20.125Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-09T05:21:20.125Z"
+  },
+  "__v": 0
+}]

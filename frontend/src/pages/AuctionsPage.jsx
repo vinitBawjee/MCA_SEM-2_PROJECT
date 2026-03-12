@@ -1,11 +1,9 @@
 import "./AuctionsPage.css";
 import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function AuctionsPage() {
-  const navigate = useNavigate();
   const location = useLocation();
   const type = location.state?.type || "active";
 
@@ -64,8 +62,19 @@ export default function AuctionsPage() {
         <div className="auction-grid">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((item) => (
-              <div className="auction-card" key={item._id}>
+              <div
+                className={`auction-card ${
+                  item.status !== "active" ? "inactive-card" : ""
+                }`}
+                key={item._id}
+              >
                 <div className="image-box">
+                  {item.status !== "active" && (
+                    <span className="auction-status">
+                      This auction is not active
+                    </span>
+                  )}
+
                   <img
                     src={
                       item.image
@@ -87,8 +96,7 @@ export default function AuctionsPage() {
                   to={`/product/${item._id}`}
                   state={{ from: "auctions" }}
                 >
-                  {" "}
-                  View Details{" "}
+                  View Details
                 </Link>
               </div>
             ))

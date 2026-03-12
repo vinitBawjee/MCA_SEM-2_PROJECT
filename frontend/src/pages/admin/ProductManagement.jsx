@@ -58,19 +58,22 @@ export default function ProductManagement() {
     const confirmComplete = window.confirm(
       "Are you sure you want to complete this auction?"
     );
-
+  
     if (!confirmComplete) return;
-
+  
     try {
       await axios.put(
         `http://localhost:5000/api/admin/biddings/complete/${id}`,
         {},
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
+  
       fetchProducts();
-    } catch {
+    } catch (error) {
       alert("Auction complete failed");
     }
   };

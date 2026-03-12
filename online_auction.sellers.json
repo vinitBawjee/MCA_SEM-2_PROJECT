@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "69a33169781955f5787b640e"
+  },
+  "name": "admin",
+  "email": "admin@gmail.com",
+  "mobile": "1234567890",
+  "role": "admin",
+  "password": "$2b$10$1wwVNcDDgh05uto6e2Iz1OIYcX1f3YcpToNtt2ACUiflWKZVnqxra",
+  "isBlocked": false,
+  "createdAt": {
+    "$date": "2026-02-28T18:18:17.795Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-28T18:18:17.795Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69ada9b86597e2182ac0655f"
+  },
+  "name": "vinit",
+  "email": "bawjee0@gmail.com",
+  "mobile": "9998748019",
+  "role": "seller",
+  "password": "$2b$10$lvne3KbwfVOLtCZ5gTuca.0d7VdyZRJ.DlfljTRpBLOdEv1nHksye",
+  "isBlocked": false,
+  "createdAt": {
+    "$date": "2026-03-08T16:54:16.361Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T16:54:16.361Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69ada9d16597e2182ac06563"
+  },
+  "name": "sirivi",
+  "email": "sirviyadav13@gmail.com",
+  "mobile": "9998748010",
+  "role": "seller",
+  "password": "$2b$10$LQX0l9zrFoWbYW.kj5coLeNkXLmEq4zf6zCCAbdZuulj4qlZ81Eha",
+  "isBlocked": false,
+  "createdAt": {
+    "$date": "2026-03-08T16:54:41.597Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T16:54:41.597Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69adaa056597e2182ac06567"
+  },
+  "name": "ujjwala",
+  "email": "waghujjwala489@gmail.com",
+  "mobile": "9998748011",
+  "role": "seller",
+  "password": "$2b$10$W9Mq755ETqNpl07TZAAUJeq6Ayy9yORXQlWYQCeQZclnRG5jXd.Ni",
+  "isBlocked": false,
+  "createdAt": {
+    "$date": "2026-03-08T16:55:33.343Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-08T16:55:33.343Z"
+  },
+  "__v": 0
+}]

@@ -7,13 +7,16 @@ const ProductDetails = () => {
   const location = useLocation();
   const from = location.state?.from;
   const token = sessionStorage.getItem("token");
-
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
   const [history, setHistory] = useState([]);
   const [currentBid, setCurrentBid] = useState(0);
   const [amount, setAmount] = useState(0);
+
+  const [daysLeft, setDaysLeft] = useState(0);
+  const [timeLeft, setTimeLeft] = useState("");
+  const [isBiddingOpen, setIsBiddingOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:5000/api/public/products/${id}`).then((res) => {
@@ -23,6 +26,63 @@ const ProductDetails = () => {
       setAmount(res.data.currentBid);
     });
   }, [id]);
+
+  useEffect(() => {
+    if (!product) return;
+
+    const timer = setInterval(() => {
+      const now = new Date();
+
+      const start = new Date(product.createdAt);
+      const end = new Date(start.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+      const totalDiff = end.getTime() - now.getTime();
+
+      if (totalDiff <= 0) {
+        setDaysLeft(0);
+        setTimeLeft("Auction Ended");
+        setIsBiddingOpen(false);
+        return;
+      }
+
+      const days = Math.floor(totalDiff / (1000 * 60 * 60 * 24));
+      setDaysLeft(days);
+
+      const todayStart = new Date(now);
+      todayStart.setHours(9, 0, 0, 0);
+
+      const todayEnd = new Date(now);
+      todayEnd.setHours(16, 0, 0, 0);
+
+      if (now < todayStart) {
+        const diff = todayStart - now;
+
+        const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        setTimeLeft(`Starts in ${hrs}h ${mins}m ${secs}s`);
+        setIsBiddingOpen(false);
+      } 
+      else if (now >= todayStart && now <= todayEnd) {
+        const diff = todayEnd - now;
+
+        const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        setTimeLeft(`${hrs}h ${mins}m ${secs}s`);
+        setIsBiddingOpen(true);
+      } 
+      else {
+        setTimeLeft("Bidding closed for today");
+        setIsBiddingOpen(false);
+      }
+
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [product]);
 
   const increaseBid = () => {
     setAmount((prev) => prev + 10);
@@ -61,16 +121,12 @@ const ProductDetails = () => {
     <div className="container">
       <div className="productPage">
         <div className="breadcrumb">
-          <Link to="/" className="home">
-            Home
-          </Link>
+          <Link to="/" className="home">Home</Link>
 
           {from === "auctions" && (
             <>
               <span className="arrow">›</span>
-              <Link to="/auctions" className="home">
-                Live Auctions
-              </Link>
+              <Link to="/auctions" className="home">Live Auctions</Link>
             </>
           )}
 
@@ -105,32 +161,31 @@ const ProductDetails = () => {
               <p className="currentBid">Current Bid : ₹{currentBid}</p>
 
               {product.status === "pending" && (
-                <p className="loginMessage">
-                  This auction has not started yet.
-                </p>
+                <p className="loginMessage">This auction has not started yet.</p>
               )}
 
               {product.status === "inactive" && (
-                <p className="loginMessage">
-                  This auction is currently unavailable.
-                </p>
+                <p className="loginMessage">This auction is currently unavailable.</p>
               )}
 
               {product.status === "active" && (
                 <>
                   {token ? (
                     <div className="bidInput">
-                      <button onClick={decreaseBid}>-</button>
+                      <button onClick={decreaseBid} disabled={!isBiddingOpen}>-</button>
 
                       <input
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(Number(e.target.value))}
+                        disabled={!isBiddingOpen}
                       />
 
-                      <button onClick={increaseBid}>+</button>
+                      <button onClick={increaseBid} disabled={!isBiddingOpen}>+</button>
 
-                      <button onClick={submitBid}>Submit</button>
+                      <button onClick={submitBid} disabled={!isBiddingOpen}>
+                        Submit
+                      </button>
                     </div>
                   ) : (
                     <p className="loginMessage">Login to place a bid.</p>
@@ -138,6 +193,10 @@ const ProductDetails = () => {
                 </>
               )}
             </div>
+          </div>
+          <div>
+          <p>Days Left : {daysLeft}</p>
+          <p>Time Left : {timeLeft}</p>
           </div>
         </div>
 
@@ -172,6 +231,7 @@ const ProductDetails = () => {
             </tbody>
           </table>
         </div>
+
       </div>
     </div>
   );

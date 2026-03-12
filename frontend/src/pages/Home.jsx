@@ -10,7 +10,7 @@ import { clearMessage } from "../features/auth/authSlice";
 export default function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const { message, error } = useSelector((state) => state.auth);
 
   const [liveProducts, setLiveProducts] = useState([]);
@@ -32,9 +32,15 @@ export default function Home() {
 
   const fetchAllProducts = async () => {
     try {
-      const liveRes = await axios.get("http://localhost:5000/api/public/products");
-      const pendingRes = await axios.get("http://localhost:5000/api/public/pending-products");
-      const completeRes = await axios.get("http://localhost:5000/api/public/complete-products");
+      const liveRes = await axios.get(
+        "http://localhost:5000/api/public/products"
+      );
+      const pendingRes = await axios.get(
+        "http://localhost:5000/api/public/pending-products"
+      );
+      const completeRes = await axios.get(
+        "http://localhost:5000/api/public/complete-products"
+      );
 
       setLiveProducts(liveRes.data.data);
       setPendingProducts(pendingRes.data.data);
@@ -76,8 +82,20 @@ export default function Home() {
         <div className="card-grid">
           {filteredLiveProducts.length > 0 ? (
             filteredLiveProducts.map((item) => (
-              <div className="auction-card" key={item._id} onClick={() => navigate(`/product/${item._id}`)}>
+              <div
+                className={`auction-card ${
+                  item.status !== "active" ? "inactive-card" : ""
+                }`}
+                key={item._id}
+                onClick={() => navigate(`/product/${item._id}`)}
+              >
                 <div className="image-box">
+                  {item.status !== "active" && (
+                    <span className="auction-status">
+                      This auction is not active
+                    </span>
+                  )}
+
                   <img
                     src={
                       item.image
@@ -100,20 +118,20 @@ export default function Home() {
 
                 <h2 className="price">₹ {item.price}</h2>
 
-                <p className="margin">
-                  Stock: {item.stock}
-                </p>
+                <p className="margin">Stock: {item.stock}</p>
               </div>
             ))
           ) : (
-            <p style={{ color: "white" }}>
-              No Live Auctions in this category
-            </p>
+            <p style={{ color: "white" }}>No Live Auctions in this category</p>
           )}
         </div>
 
         <div className="view-all">
-          <button onClick={() => navigate("/auctions", { state: { type: "active" } })}>View All</button>
+          <button
+            onClick={() => navigate("/auctions", { state: { type: "active" } })}
+          >
+            View All
+          </button>
         </div>
       </section>
 
@@ -142,7 +160,14 @@ export default function Home() {
                 {/* <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
                   VIEW DETAILS
                 </button> */}
-                <Link className="result-btn" to={`/product/${item._id}`} state={{ from: "home" }}> View Details </Link>
+                <Link
+                  className="result-btn"
+                  to={`/product/${item._id}`}
+                  state={{ from: "home" }}
+                >
+                  {" "}
+                  View Details{" "}
+                </Link>
               </div>
             ))
           ) : (
@@ -151,10 +176,87 @@ export default function Home() {
         </div>
 
         <div className="recent-view">
-          <button onClick={() => navigate("/auctions", { state: { type: "pending" } })}>View All</button>
+          <button
+            onClick={() =>
+              navigate("/auctions", { state: { type: "pending" } })
+            }
+          >
+            View All
+          </button>
         </div>
       </section>
+      <section className="record-section">
+        <div className="record-header">
+          <h1>LIVE AUCTIONS</h1>
 
+          <div className="tabs">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`tab ${activeCategory === cat ? "active" : ""}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="card-grid">
+          {filteredLiveProducts.length > 0 ? (
+            filteredLiveProducts.map((item) => (
+              <div
+                className={`auction-card ${
+                  item.status !== "active" ? "inactive-card" : ""
+                }`}
+                key={item._id}
+                onClick={() => navigate(`/product/${item._id}`)}
+              >
+                <div className="image-box">
+                  {item.status !== "active" && (
+                    <span className="auction-status">
+                      This auction is not active
+                    </span>
+                  )}
+
+                  <img
+                    src={
+                      item.image
+                        ? `http://localhost:5000/${item.image}`
+                        : "https://via.placeholder.com/250x250"
+                    }
+                    alt={item.title}
+                  />
+                </div>
+
+                <span className="lot">{item.category}</span>
+
+                <h3 className="artist">
+                  {item.seller?.name || "Unknown Seller"}
+                </h3>
+
+                <p className="title">{item.title}</p>
+
+                <p className="sold">Starting Price</p>
+
+                <h2 className="price">₹ {item.price}</h2>
+
+                <p className="margin">Stock: {item.stock}</p>
+              </div>
+            ))
+          ) : (
+            <p style={{ color: "white" }}>No Live Auctions in this category</p>
+          )}
+        </div>
+
+        <div className="view-all">
+          <button
+            onClick={() => navigate("/auctions", { state: { type: "active" } })}
+          >
+            View All
+          </button>
+        </div>
+      </section>
       <section className="recent-section">
         <div className="recent-header">
           <h1>PAST AUCTIONS</h1>
@@ -180,7 +282,14 @@ export default function Home() {
                 {/* <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
                   VIEW DETAILS
                 </button> */}
-                <Link className="result-btn" to={`/product/${item._id}`} state={{ from: "home" }}> View Details </Link>
+                <Link
+                  className="result-btn"
+                  to={`/product/${item._id}`}
+                  state={{ from: "home" }}
+                >
+                  {" "}
+                  View Details{" "}
+                </Link>
               </div>
             ))
           ) : (
@@ -189,7 +298,13 @@ export default function Home() {
         </div>
 
         <div className="recent-view">
-          <button onClick={() => navigate("/auctions", { state: { type: "complete" } })}>View All</button>
+          <button
+            onClick={() =>
+              navigate("/auctions", { state: { type: "complete" } })
+            }
+          >
+            View All
+          </button>
         </div>
       </section>
     </div>
