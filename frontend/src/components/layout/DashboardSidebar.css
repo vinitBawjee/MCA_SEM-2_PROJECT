@@ -1,0 +1,57 @@
+.dash-sidebar{
+  width:260px;
+  min-height:100vh;
+  background:#fff;
+  border-right:1px solid #eee;
+  padding:20px 0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.dash-menu{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.dash-menu-item{
+  padding:14px 25px;
+  font-size:16px;
+  cursor:pointer;
+  color:#333;
+  border-radius:30px;
+  margin:8px 15px;
+  transition:0.3s;
+}
+
+.dash-menu-item:hover{
+  background:#e8f4ee;
+  color:#1c8f5f;
+}
+
+.dash-active{
+  background:#e8f4ee;
+  color:#1c8f5f;
+  font-weight:600;
+}
+
+.dash-logout{
+  padding:0 20px;
+}
+
+.dash-logout-btn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:30px;
+  background:#e53935;
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.dash-logout-btn:hover{
+  background:#c62828;
+}

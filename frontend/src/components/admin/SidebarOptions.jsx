@@ -7,9 +7,12 @@ const SidebarOptions = () => {
 
   const buttons = [
     { name: "Dashboard", path: "/admin/dashboard" },
-    { name: "Product", path: "/admin/products" },
     { name: "Seller", path: "/admin/sellers" },
     { name: "Buyer", path: "/admin/buyers" },
+    { name: "Product Management", path: "/admin/products" },
+    { name: "Bidding History", path: "" },
+    { name: "Transaction", path: "" },
+    { name: "Contact Us", path: "" },
   ];
 
   return (

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, clearMessage } from "../../features/auth/authSlice";
 
-export default function LoginForm({ close }) {
+export default function LoginForm({ close, setActiveTab }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { message, error } = useSelector((state) => state.auth);
@@ -89,7 +89,7 @@ export default function LoginForm({ close }) {
         password: "",
         terms: false,
       });
-      
+
       close();
       const role = res.user.role;
 
@@ -152,6 +152,10 @@ export default function LoginForm({ close }) {
       <button type="submit" className="submit-btn">
         Login
       </button>
+
+      <div className="forgot-link" onClick={() => setActiveTab("forgot")}>
+        Forgot Password?
+      </div>
     </form>
   );
 }

@@ -7,7 +7,12 @@ const SidebarOptions = () => {
   const navigate = useNavigate();
 
   const buttons = [
+    { name: "Dashboard", path: "/seller/products" },
     { name: "Product Management", path: "/seller/products" },
+    { name: "Bidding History", path: "/seller/products" },
+    { name: "Transaction History", path: "/seller/products" },
+    { name: "Contact Us", path: "/seller/products" },
+    { name: "Profile", path: "/seller/products" },
   ];
 
   const handleClick = (btn) => {

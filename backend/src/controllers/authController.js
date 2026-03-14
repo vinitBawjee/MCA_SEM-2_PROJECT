@@ -17,3 +17,30 @@ export const login = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+export const sendOtp = async (req, res) => {
+  try {
+    const msg = await authService.sendOtp(req.body);
+    res.status(200).json({ message: msg });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+export const verifyOtp = async (req, res) => {
+  try {
+    const msg = await authService.verifyOtp(req.body);
+    res.status(200).json({ message: msg });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+export const resetPassword = async (req, res) => {
+  try {
+    const msg = await authService.resetPassword(req.body);
+    res.status(200).json({ message: msg });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};

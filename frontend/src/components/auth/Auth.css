@@ -125,3 +125,18 @@
   transform: translateY(-2px);
   background: white;
 }
+
+.forgot-link{
+  text-align:center;
+  font-size:14px;
+  margin-top:20px;
+  /* margin-bottom:10px; */
+  cursor:pointer;
+  color:#dcdcdc;
+  transition:0.3s;
+}
+
+.forgot-link:hover{
+  color:#ffffff;
+  text-decoration:underline;
+}
