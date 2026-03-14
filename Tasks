@@ -1,5 +1,4 @@
 Buyer:
-- Alert Message (change)
 - Automatically Auction Complete
 - Header (auction, about and contact us)
 - Account
@@ -12,6 +11,7 @@ Buyer:
 	
 	
 Seller:
+- Alert Message (change)
 - Dashboard
 - Bidding
 - Transaction
@@ -20,6 +20,7 @@ Seller:
 
 
 Admin:
+- Alert Message (change)
 - Bidding (history)
 - Transaction
 - Contact Us

@@ -1,17 +1,27 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import AuthModal from "../auth/AuthModal";
+import AlertMessage from "./AlertMessage";
+import { clearMessage } from "../../features/auth/authSlice";
 import "./Navbar.css";
 
 export default function Navbar() {
   const [showModal, setShowModal] = useState(false);
 
-  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const { user, message, error } = useSelector((state) => state.auth);
 
   return (
     <>
+      <AlertMessage
+        type={error ? "error" : message ? "success" : ""}
+        message={error || message}
+        onClose={() => dispatch(clearMessage())}
+      />
+
       <nav className="navbar">
         <div className="nav-top">
           <div className="logo-group">

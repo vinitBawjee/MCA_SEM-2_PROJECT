@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   sendOtpAPI,
   verifyOtpAPI,
   resetPasswordAPI
 } from "../../features/auth/authAPI";
+import { setError, setMessage } from "../../features/auth/authSlice";
 
 export default function ForgotForm({ setActiveTab }) {
+
+  const dispatch = useDispatch();
 
   const [step, setStep] = useState(1);
 
@@ -71,13 +75,16 @@ export default function ForgotForm({ setActiveTab }) {
     if (roleError || idError) return;
 
     try {
-      await sendOtpAPI({
+      const res = await sendOtpAPI({
         role: data.role,
         identifier: data.identifier
       });
+
+      dispatch(setMessage(res.data.message));
       setStep(2);
+
     } catch (err) {
-      alert(err.response?.data?.message || "Error sending OTP");
+      dispatch(setError(err.response?.data?.message || "Error sending OTP"));
     }
   };
 
@@ -88,14 +95,17 @@ export default function ForgotForm({ setActiveTab }) {
     if (otpError) return;
 
     try {
-      await verifyOtpAPI({
+      const res = await verifyOtpAPI({
         role: data.role,
         identifier: data.identifier,
         otp: data.otp
       });
+
+      dispatch(setMessage(res.data.message));
       setStep(3);
+
     } catch (err) {
-      alert(err.response?.data?.message || "Invalid OTP");
+      dispatch(setError(err.response?.data?.message || "Invalid OTP"));
     }
   };
 
@@ -108,13 +118,13 @@ export default function ForgotForm({ setActiveTab }) {
     if (passError || confirmError) return;
 
     try {
-      await resetPasswordAPI({
+      const res = await resetPasswordAPI({
         role: data.role,
         identifier: data.identifier,
         password: data.password
       });
 
-      alert("Password reset successful");
+      dispatch(setMessage(res.data.message));
 
       setData({
         role: "",
@@ -129,7 +139,7 @@ export default function ForgotForm({ setActiveTab }) {
       setActiveTab("login");
 
     } catch (err) {
-      alert(err.response?.data?.message || "Error resetting password");
+      dispatch(setError(err.response?.data?.message || "Error resetting password"));
     }
   };
 

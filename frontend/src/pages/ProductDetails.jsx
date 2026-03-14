@@ -32,10 +32,8 @@ const ProductDetails = () => {
 
     const timer = setInterval(() => {
       const now = new Date();
-
       const start = new Date(product.createdAt);
       const end = new Date(start.getTime() + 7 * 24 * 60 * 60 * 1000);
-
       const totalDiff = end.getTime() - now.getTime();
 
       if (totalDiff <= 0) {
@@ -56,29 +54,22 @@ const ProductDetails = () => {
 
       if (now < todayStart) {
         const diff = todayStart - now;
-
         const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const mins = Math.floor((diff / (1000 * 60)) % 60);
         const secs = Math.floor((diff / 1000) % 60);
-
         setTimeLeft(`Starts in ${hrs}h ${mins}m ${secs}s`);
         setIsBiddingOpen(false);
-      } 
-      else if (now >= todayStart && now <= todayEnd) {
+      } else if (now >= todayStart && now <= todayEnd) {
         const diff = todayEnd - now;
-
         const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const mins = Math.floor((diff / (1000 * 60)) % 60);
         const secs = Math.floor((diff / 1000) % 60);
-
         setTimeLeft(`${hrs}h ${mins}m ${secs}s`);
         setIsBiddingOpen(true);
-      } 
-      else {
+      } else {
         setTimeLeft("Bidding closed for today");
         setIsBiddingOpen(false);
       }
-
     }, 1000);
 
     return () => clearInterval(timer);
@@ -108,7 +99,6 @@ const ProductDetails = () => {
           },
         }
       );
-
       window.location.reload();
     } catch (err) {
       alert(err.response.data.message);
@@ -158,7 +148,11 @@ const ProductDetails = () => {
             </div>
 
             <div className="bidBox">
-              <p className="currentBid">Current Bid : ₹{currentBid}</p>
+              {product.status === "complete" ? (
+                <p className="currentBid">Complete Bid : ₹{currentBid}</p>
+              ) : (
+                <p className="currentBid">Current Bid : ₹{currentBid}</p>
+              )}
 
               {product.status === "pending" && (
                 <p className="loginMessage">This auction has not started yet.</p>
@@ -194,10 +188,13 @@ const ProductDetails = () => {
               )}
             </div>
           </div>
-          <div>
-          <p>Days Left : {daysLeft}</p>
-          <p>Time Left : {timeLeft}</p>
-          </div>
+
+          {(product.status === "active" || product.status === "pending") && (
+            <div>
+              <p>Days Left : {daysLeft}</p>
+              <p>Time Left : {timeLeft}</p>
+            </div>
+          )}
         </div>
 
         <div className="tabContent">
@@ -231,7 +228,6 @@ const ProductDetails = () => {
             </tbody>
           </table>
         </div>
-
       </div>
     </div>
   );

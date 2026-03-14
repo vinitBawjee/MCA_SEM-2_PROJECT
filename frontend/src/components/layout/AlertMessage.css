@@ -1,71 +1,48 @@
-.alert-container {
-    position: fixed;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-  
-    min-width: 320px;
-    max-width: 500px;
-  
-    padding: 14px 18px;
-    border-radius: 10px;
-  
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    font-size: 14px;
-    font-weight: 500;
-  
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  
-    animation: slideDown 0.4s ease, fadeOut 0.5s ease 2.5s forwards;
+.alert-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 280px;
+  max-width: 350px;
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  animation: slideIn 0.3s ease;
+}
+
+.alert-success {
+  background: #d1fae5;
+  border-left: 4px solid #10b981;
+  color: #065f46;
+}
+
+.alert-error {
+  background: #fee2e2;
+  border-left: 4px solid #ef4444;
+  color: #991b1b;
+}
+
+.alert-info {
+  background: #dbeafe;
+  border-left: 4px solid #3b82f6;
+  color: #1e40af;
+}
+
+.alert-warning {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  color: #92400e;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
   }
-  
-  /* Success */
-  .alert-container.success {
-    background: linear-gradient(135deg, #28a745, #43d17a);
-    color: #ffffff;
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
-  /* Error */
-  .alert-container.error {
-    background: linear-gradient(135deg, #dc3545, #ff6b6b);
-    color: #ffffff;
-  }
-  
-  /* Text */
-  .alert-text {
-    flex: 1;
-  }
-  
-  /* Close Button */
-  .alert-close {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  /* Slide Down Animation */
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -20px);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, 0);
-    }
-  }
-  
-  /* Fade Out Animation */
-  @keyframes fadeOut {
-    to {
-      opacity: 0;
-      transform: translate(-50%, -10px);
-    }
-  }
+}

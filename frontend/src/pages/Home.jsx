@@ -3,15 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import AlertMessage from "../components/layout/AlertMessage";
-import { clearMessage } from "../features/auth/authSlice";
 
 export default function Home() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const { message, error } = useSelector((state) => state.auth);
 
   const [liveProducts, setLiveProducts] = useState([]);
   const [pendingProducts, setPendingProducts] = useState([]);
@@ -56,12 +50,6 @@ export default function Home() {
 
   return (
     <div className="container">
-      <AlertMessage
-        type={error ? "error" : message ? "success" : ""}
-        message={error || message}
-        onClose={() => dispatch(clearMessage())}
-      />
-
       <section className="record-section">
         <div className="record-header">
           <h1>LIVE AUCTIONS</h1>
@@ -134,7 +122,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-
       <section className="recent-section">
         <div className="recent-header">
           <h1>UPCOMING AUCTIONS</h1>
@@ -185,7 +172,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-      
       <section className="recent-section">
         <div className="recent-header">
           <h1>PAST AUCTIONS</h1>

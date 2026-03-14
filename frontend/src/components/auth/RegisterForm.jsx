@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { registerUser, clearMessage } from "../../features/auth/authSlice";
+
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../features/auth/authSlice";
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
-  const { message, error } = useSelector((state) => state.auth);
 
   const [data, setData] = useState({
     name: "",
@@ -18,17 +18,6 @@ export default function RegisterForm() {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  useEffect(() => {
-    if (message) {
-      alert(message);
-      dispatch(clearMessage());
-    }
-    if (error) {
-      alert(error);
-      dispatch(clearMessage());
-    }
-  }, [message, error, dispatch]);
 
   const validate = (fieldValues = data) => {
     let err = {};
@@ -90,26 +79,26 @@ export default function RegisterForm() {
     e.preventDefault();
     setIsSubmitted(true);
 
-    if (validate()) {
-      const { confirmPassword, terms, ...finalData } = data;
+    if (!validate()) return;
 
-      try {
-        await dispatch(registerUser(finalData)).unwrap();
+    const { confirmPassword, terms, ...finalData } = data;
 
-        setData({
-          name: "",
-          email: "",
-          mobile: "",
-          role: "",
-          password: "",
-          confirmPassword: "",
-          terms: false,
-        });
+    try {
+      await dispatch(registerUser(finalData)).unwrap();
 
-        setErrors({});
-        setIsSubmitted(false);
-      } catch (err) {}
-    }
+      setData({
+        name: "",
+        email: "",
+        mobile: "",
+        role: "",
+        password: "",
+        confirmPassword: "",
+        terms: false,
+      });
+
+      setErrors({});
+      setIsSubmitted(false);
+    } catch (err) {}
   };
 
   return (

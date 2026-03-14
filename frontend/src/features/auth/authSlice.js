@@ -14,7 +14,7 @@ const initialState = {
   token: sessionStorage.getItem("token") || null,
   loading: false,
   error: null,
-  message: null,
+  message: null
 };
 
 export const registerUser = createAsyncThunk(
@@ -97,11 +97,23 @@ const authSlice = createSlice({
       sessionStorage.removeItem("user");
       sessionStorage.removeItem("token");
     },
+
     clearMessage: (state) => {
       state.error = null;
       state.message = null;
     },
+
+    setError: (state, action) => {
+      state.error = action.payload;
+      state.message = null;
+    },
+
+    setMessage: (state, action) => {
+      state.message = action.payload;
+      state.error = null;
+    }
   },
+
   extraReducers: (builder) => {
     builder
 
@@ -127,6 +139,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
+
         sessionStorage.setItem("user", JSON.stringify(action.payload.user));
         sessionStorage.setItem("token", action.payload.token);
       })
@@ -174,9 +187,9 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
-
-  },
+  }
 });
 
-export const { logout, clearMessage } = authSlice.actions;
+export const { logout, clearMessage, setError, setMessage } = authSlice.actions;
+
 export default authSlice.reducer;

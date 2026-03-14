@@ -1,26 +1,28 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./AlertMessage.css";
 
-const AlertMessage = ({ type = "success", message, onClose }) => {
+export default function AlertMessage({ type, message, onClose }) {
+
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
     if (message) {
+      setShow(true);
+
       const timer = setTimeout(() => {
-        onClose();
+        setShow(false);
+        if (onClose) onClose();
       }, 3000);
+
       return () => clearTimeout(timer);
     }
-  }, [message, onClose]);
+  }, [message]);
 
-  if (!message) return null;
+  if (!show || !message) return null;
 
   return (
-    <div className={`alert-container ${type}`}>
-      <span className="alert-text">{message}</span>
-      <button className="alert-close" onClick={onClose}>
-        ×
-      </button>
+    <div className={`alert-toast alert-${type}`}>
+      {message}
     </div>
   );
-};
-
-export default AlertMessage;
+}

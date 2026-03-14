@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser, clearMessage } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../features/auth/authSlice";
 
 export default function LoginForm({ close, setActiveTab }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { message, error } = useSelector((state) => state.auth);
 
   const [data, setData] = useState({
     role: "",
@@ -17,17 +16,6 @@ export default function LoginForm({ close, setActiveTab }) {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  useEffect(() => {
-    if (message) {
-      alert(message);
-      dispatch(clearMessage());
-    }
-    if (error) {
-      alert(error);
-      dispatch(clearMessage());
-    }
-  }, [message, error, dispatch, close]);
 
   const validate = (fieldValues = data) => {
     let err = {};
@@ -91,6 +79,7 @@ export default function LoginForm({ close, setActiveTab }) {
       });
 
       close();
+
       const role = res.user.role;
 
       if (role === "admin") navigate("/admin");
@@ -100,62 +89,66 @@ export default function LoginForm({ close, setActiveTab }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <select
-        name="role"
-        value={data.role}
-        onChange={handleChange}
-        className="glass-input glass-select"
-      >
-        <option value="" disabled>
-          Select Role
-        </option>
-        <option value="admin">Admin</option>
-        <option value="buyer">Buyer</option>
-        <option value="seller">Seller</option>
-      </select>
-      {errors.role && <div className="error-text">{errors.role}</div>}
+    <>
+      <form onSubmit={handleSubmit}>
+        <select
+          name="role"
+          value={data.role}
+          onChange={handleChange}
+          className="glass-input glass-select"
+        >
+          <option value="" disabled>
+            Select Role
+          </option>
+          <option value="admin">Admin</option>
+          <option value="buyer">Buyer</option>
+          <option value="seller">Seller</option>
+        </select>
+        {errors.role && <div className="error-text">{errors.role}</div>}
 
-      <input
-        type="text"
-        name="identifier"
-        placeholder="Email or Mobile"
-        className="glass-input"
-        value={data.identifier}
-        onChange={handleChange}
-      />
-      {errors.identifier && (
-        <div className="error-text">{errors.identifier}</div>
-      )}
-
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        className="glass-input"
-        value={data.password}
-        onChange={handleChange}
-      />
-      {errors.password && <div className="error-text">{errors.password}</div>}
-
-      <div className="terms-container">
         <input
-          type="checkbox"
-          name="terms"
-          checked={data.terms}
+          type="text"
+          name="identifier"
+          placeholder="Email or Mobile"
+          className="glass-input"
+          value={data.identifier}
           onChange={handleChange}
         />
-        <label>Agree to Terms</label>
-      </div>
-      {errors.terms && <div className="error-text">{errors.terms}</div>}
+        {errors.identifier && (
+          <div className="error-text">{errors.identifier}</div>
+        )}
 
-      <button type="submit" className="submit-btn">
-        Login
-      </button>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          className="glass-input"
+          value={data.password}
+          onChange={handleChange}
+        />
+        {errors.password && (
+          <div className="error-text">{errors.password}</div>
+        )}
 
-      <div className="forgot-link" onClick={() => setActiveTab("forgot")}>
-        Forgot Password?
-      </div>
-    </form>
+        <div className="terms-container">
+          <input
+            type="checkbox"
+            name="terms"
+            checked={data.terms}
+            onChange={handleChange}
+          />
+          <label>Agree to Terms</label>
+        </div>
+        {errors.terms && <div className="error-text">{errors.terms}</div>}
+
+        <button type="submit" className="submit-btn">
+          Login
+        </button>
+
+        <div className="forgot-link" onClick={() => setActiveTab("forgot")}>
+          Forgot Password?
+        </div>
+      </form>
+    </>
   );
 }
