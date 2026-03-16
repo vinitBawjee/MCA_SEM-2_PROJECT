@@ -1,13 +1,8 @@
 Buyer:
-- Automatically Auction Complete
 - Header (auction, about and contact us)
 - Account
 	> Dashboard (dynamic)
-	> Product List
-	> Bidding (history)
-	> Winning Bids
 	> Transaction (history)
-	> Profile
 	
 	
 Seller:

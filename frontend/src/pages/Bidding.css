@@ -1,0 +1,36 @@
+.userdash-bidding{
+    width:100%;
+  }
+  
+  .userdash-bidding h2{
+    margin-bottom:20px;
+    color:#fff;
+  }
+  
+  .userdash-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+  }
+  
+  .userdash-table th{
+    background:#e8f4ee;
+    color:#1c8f5f;
+    padding:14px;
+    text-align:left;
+  }
+  
+  .userdash-table td{
+    padding:14px;
+    border-bottom:1px solid #eee;
+  }
+  
+  .bid-win{
+    color:#1c8f5f;
+    font-weight:600;
+  }
+  
+  .bid-lose{
+    color:#e53935;
+    font-weight:600;
+  }

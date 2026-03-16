@@ -1,0 +1,47 @@
+.userdash-winning{
+    width:100%;
+  }
+  
+  .userdash-winning h2{
+    margin-bottom:20px;
+    color:#fff;
+  }
+  
+  .userdash-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+  }
+  
+  .userdash-table th{
+    background:#e8f4ee;
+    color:#1c8f5f;
+    padding:14px;
+    text-align:left;
+  }
+  
+  .userdash-table td{
+    padding:14px;
+    border-bottom:1px solid #eee;
+  }
+  
+  .userdash-product-img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:6px;
+  }
+  
+  .userdash-transaction-btn{
+    padding:8px 16px;
+    border:none;
+    border-radius:20px;
+    background:#1c8f5f;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+  }
+  
+  .userdash-transaction-btn:hover{
+    background:#167a50;
+  }

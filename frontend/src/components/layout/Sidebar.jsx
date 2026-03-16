@@ -1,28 +1,55 @@
-import "./DashboardSidebar.css";
+import "./Sidebar.css";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 
 const Sidebar = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/");
   };
 
+  const active = (path) => {
+    if (path === "/account/profile" && location.pathname === "/account") {
+      return "dash-menu-item dash-active";
+    }
+    return location.pathname === path
+      ? "dash-menu-item dash-active"
+      : "dash-menu-item";
+  };
+
   return (
     <div className="dash-sidebar">
 
       <ul className="dash-menu">
-        <li className="dash-menu-item dash-active">Dashboard</li>
-        <li className="dash-menu-item">Product List</li>
-        <li className="dash-menu-item">Bidding</li>
-        <li className="dash-menu-item">Winning Bids</li>
-        <li className="dash-menu-item">Transaction</li>
-        <li className="dash-menu-item">Profile</li>
+        <li>
+          <Link to="/account/profile" className={active("/account/profile")}>
+            Profile
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/account/products" className={active("/account/products")}>
+            Auctions
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/account/bids" className={active("/account/bids")}>
+            Bidding
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/account/winning-bids" className={active("/account/winning-bids")}>
+            Winning Bids
+          </Link>
+        </li>
       </ul>
 
       <div className="dash-logout">

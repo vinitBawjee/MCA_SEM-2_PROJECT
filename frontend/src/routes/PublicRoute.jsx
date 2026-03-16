@@ -1,9 +1,13 @@
-import { Route } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import Home from "../pages/Home";
 import AuctionsPage from "../pages/AuctionsPage";
 import ProductDetails from "../pages/ProductDetails";
-import Account from "../pages/Account";
+import AccountLayout from "../pages/AccountLayout";
+import ProductList from "../pages/ProductList";
+import Bidding from "../pages/Bidding";
+import WinningBids from "../pages/WinningBids";
+import Profile from "../pages/Profile";
 
 const PublicRoutes = () => {
   return (
@@ -11,7 +15,14 @@ const PublicRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/auctions" element={<AuctionsPage />} />
       <Route path="/product/:id" element={<ProductDetails />} />
-      <Route path="/account" element={<Account />} />
+
+      <Route path="/account" element={<AccountLayout />}>
+        <Route index element={<Navigate to="profile" replace />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="products" element={<ProductList />} />
+        <Route path="bids" element={<Bidding />} />
+        <Route path="winning-bids" element={<WinningBids />} />
+      </Route>
     </Route>
   );
 };

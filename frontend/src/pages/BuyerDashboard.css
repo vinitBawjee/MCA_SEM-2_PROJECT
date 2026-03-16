@@ -1,43 +1,56 @@
-.userdash-layout{
-  display:flex;
-  align-items:flex-start;
-  min-height:100vh;
-  padding: 0 1rem;
-}
+.buyer-dashboard{
+    width:100%;
 
-.userdash-content{
-  flex:1;
-  padding:30px;
-}
-
-h2{
-  color:#fff;
-}
-
-.userdash-cards{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-  margin-top:20px;
-}
-
-.userdash-card{
-  background:#fff;
-  padding:25px;
-  border-radius:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
-  text-align:center;
-}
-
-.userdash-card h3{
-  font-size:28px;
-  margin-bottom:5px;
-}
-
-.userdash-graph{
-  margin-top:40px;
-  background:#fff;
-  padding:25px;
-  border-radius:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
-}
+    h2 {
+        color: #fff;
+        margin-bottom: 1rem;
+    }
+  }
+  
+  .userdash-cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:30px;
+  }
+  
+  .userdash-card{
+    background:#fff;
+    border-radius:8px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+  }
+  
+  .userdash-card h3{
+    font-size:28px;
+    color:#1c8f5f;
+    margin-bottom:6px;
+  }
+  
+  .userdash-card p{
+    font-size:14px;
+    color:#666;
+  }
+  
+  .graph-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+  }
+  
+  .graph-box{
+    background:#fff;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+  }
+  
+  .graph-box h3{
+    margin-bottom:15px;
+    font-size:16px;
+  }
+  
+  .graph-box.full{
+    grid-column:1/3;
+  }

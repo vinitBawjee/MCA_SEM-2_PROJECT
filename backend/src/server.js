@@ -5,6 +5,8 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import routes from "./routes/index.js";
 
+import { runAuctionScheduler } from "./scheduler/auctionScheduler.js";
+
 dotenv.config();
 connectDB();
 
@@ -22,6 +24,8 @@ app.use(express.json());
 routes(app);
 
 app.use("/uploads", express.static("uploads"));
+
+runAuctionScheduler();
 
 app.listen(process.env.PORT, () =>
   console.log("Server running on port " + process.env.PORT)

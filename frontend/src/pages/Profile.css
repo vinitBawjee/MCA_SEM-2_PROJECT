@@ -1,0 +1,17 @@
+.userdash-profile h2{
+    margin-bottom:20px;
+    color: #fff;
+  }
+  
+  .profile-card{
+    background:#fff;
+    padding:25px;
+    border-radius:8px;
+    max-width:400px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+  }
+  
+  .profile-card p{
+    margin:10px 0;
+    font-size:15px;
+  }

@@ -1,0 +1,11 @@
+.userdash-layout {
+  display: flex;
+  min-height: 100vh;
+  padding: 0 1rem;
+}
+
+.userdash-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
