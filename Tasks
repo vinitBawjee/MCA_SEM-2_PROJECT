@@ -1,7 +1,9 @@
 Buyer:
 - Header (auction, about and contact us)
+- InActive Auction
 - Account
 	> Dashboard (dynamic)
+	> Winning Bid (pay)
 	> Transaction (history)
 	
 	

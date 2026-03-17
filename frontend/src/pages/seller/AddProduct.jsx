@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import "./AddProduct.css";
 
@@ -7,6 +8,7 @@ export default function AddProduct() {
   const navigate = useNavigate();
   const { id } = useParams();
   const token = sessionStorage.getItem("token");
+  const { setAlert } = useOutletContext();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -67,32 +69,55 @@ export default function AddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!validate()) return;
-
+  
     const data = new FormData();
-
+  
     Object.keys(formData).forEach((key) =>
       data.append(key, formData[key])
     );
-
+  
     if (image) data.append("image", image);
+  
+    try {
 
-    if (id) {
-      await axios.put(
-        `http://localhost:5000/api/seller/products/${id}`,
-        data,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-    } else {
-      await axios.post(
-        "http://localhost:5000/api/seller/products",
-        data,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      if (id) {
+        await axios.put(
+          `http://localhost:5000/api/seller/products/${id}`,
+          data,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+    
+        setAlert({ type: "success", message: "Product updated successfully" });
+    
+      } else {
+        await axios.post(
+          "http://localhost:5000/api/seller/products",
+          data,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+    
+        setFormData({
+          title: "",
+          description: "",
+          price: "",
+          category: "",
+          stock: "",
+        });
+    
+        setAlert({ type: "success", message: "Product added successfully" });
+      }
+    
+      setImage(null);
+      setExistingImage("");
+      setErrors({});
+    
+      navigate("/seller/products");
+    
+    } catch (err) {
+      setAlert({ type: "error", message: "Something went wrong" });
     }
-
-    navigate("/seller/products");
   };
 
   return (

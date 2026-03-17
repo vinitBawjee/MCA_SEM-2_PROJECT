@@ -34,6 +34,12 @@ const Sidebar = () => {
         </li>
 
         <li>
+          <Link to="/account/dashboard" className={active("/account/dashboard")}>
+            Dashboard
+          </Link>
+        </li>
+
+        <li>
           <Link to="/account/products" className={active("/account/products")}>
             Auctions
           </Link>

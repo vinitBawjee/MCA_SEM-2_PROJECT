@@ -41,21 +41,33 @@ export const getBuyerBids = async (req, res) => {
     .populate("product")
     .sort({ createdAt: -1 });
 
+  const uniqueMap = new Map();
+
+  bids.forEach((bid) => {
+    const productId = bid.product._id.toString();
+
+    if (!uniqueMap.has(productId)) {
+      uniqueMap.set(productId, bid);
+    }
+  });
+
+  const uniqueBids = Array.from(uniqueMap.values());
+
   const result = await Promise.all(
-    bids.map(async (bid) => {
+    uniqueBids.map(async (bid) => {
 
       const highestBid = await Auction.findOne({ product: bid.product._id })
         .sort({ bidAmount: -1 });
 
-        return {
-          _id: bid._id,
-          product: bid.product.title,
-          category: bid.product.category,
-          myBid: bid.bidAmount,
-          highestBid: highestBid.bidAmount,
-          status: highestBid.buyer.toString() === buyerId ? "Winning" : "Losing",
-          createdAt: bid.product.createdAt
-        };
+      return {
+        _id: bid._id,
+        product: bid.product.title,
+        category: bid.product.category,
+        myBid: bid.bidAmount,
+        highestBid: highestBid.bidAmount,
+        status: highestBid.buyer.toString() === buyerId ? "Winning" : "Losing",
+        createdAt: bid.product.createdAt
+      };
 
     })
   );
