@@ -6,14 +6,12 @@ const SidebarOptions = () => {
   const location = useLocation();
 
   const buttons = [
-    // { name: "Dashboard", path: "/seller" },
+    { name: "Profile", path: "/seller" },
+    { name: "Dashboard", path: "/seller/dashboard" },
     { name: "Product Management", path: "/seller/products" },
-    { name: "Bidding", path: "/seller/bids" }
+    { name: "Bidding", path: "/seller/bids" },
+    { name: "Contact Us", path: "/seller/contact" }
   ];
-
-  const handleClick = (path) => {
-    navigate(path);
-  };
 
   return (
     <div className="sidebar">
@@ -23,7 +21,7 @@ const SidebarOptions = () => {
           className={`sidebar-btn ${
             location.pathname === btn.path ? "active" : ""
           }`}
-          onClick={() => handleClick(btn.path)}
+          onClick={() => navigate(btn.path)}
         >
           {btn.name}
         </button>

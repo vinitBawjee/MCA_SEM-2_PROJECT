@@ -1,0 +1,25 @@
+.profile-container {
+    padding: 30px;
+    background: #f4f7fb;
+    min-height: 100vh;
+  }
+  
+ h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #14532d !important;
+    margin-bottom: 20px;
+  }
+
+  .profile-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  .profile-card p {
+    margin: 10px 0;
+    font-size: 16px;
+  }

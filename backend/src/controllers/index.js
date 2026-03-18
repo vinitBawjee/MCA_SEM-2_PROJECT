@@ -8,6 +8,8 @@ import * as adminAuctionController from "./admin/adminAuctionController.js";
 import * as sellerProductController from "./seller/productController.js";
 import * as sellerDashboardController from "./seller/dashboardController.js";
 import * as sellerBidsController from "./seller/sellerBidsController.js";
+import * as sellerProfileController from "./seller/profileController.js";
+import * as sellerContactController from "./seller/contactController.js";
 
 import * as buyerBidController from "./buyer/bidController.js"
 import * as buyerAccountController from "./buyer/accountController.js";
@@ -27,5 +29,7 @@ export {
   buyerAccountController,
   accountController,
   sellerDashboardController,
-  sellerBidsController
+  sellerBidsController,
+  sellerProfileController,
+  sellerContactController
 };

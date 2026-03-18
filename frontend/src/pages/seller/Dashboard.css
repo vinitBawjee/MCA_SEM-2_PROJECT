@@ -1,77 +1,80 @@
-.seller-dashboard {
-  padding: 30px;
+.dashboard-container {
+  padding: 20px;
   background: #f4f7fb;
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-.seller-dashboard h2 {
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: #333;
+.dashboard-container h2 {
+  margin-bottom: 20px;
 }
 
 .dashboard-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .card {
-  background: #ffffff;
+  background: white;
+  padding: 20px;
   border-radius: 10px;
-  padding: 25px 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   text-align: center;
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .card h3 {
   font-size: 16px;
-  color: #666;
   margin-bottom: 10px;
 }
 
 .card p {
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: bold;
   color: #1c8f5f;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.chart-container {
-  background: #ffffff;
+.bid-section {
+  background: white;
+  padding: 20px;
   border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.chart-container canvas {
-  max-height: 400px;
+.bid-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
-@media (max-width: 1200px) {
-  .dashboard-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.bid-section th,
+.bid-section td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
-@media (max-width: 768px) {
-  .seller-dashboard {
-    padding: 20px;
-  }
+.bid-section th {
+  background: #1c8f5f;
+  color: white;
+}
 
-  .dashboard-cards {
-    grid-template-columns: 1fr;
-  }
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
 
-  .card p {
-    font-size: 24px;
-  }
+.chart-box {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chart-box canvas {
+  max-height: 250px !important;
 }
