@@ -5,6 +5,7 @@ import ProductManagement from "../pages/seller/ProductManagement";
 import AddProduct from "../pages/seller/AddProduct";
 import ViewProduct from "../pages/seller/ViewProduct";
 // import Dashboard from "../pages/seller/Dashboard";
+import SellerBids from "../pages/seller/SellerBids";
 
 const SellerRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const SellerRoutes = () => {
         <Route path="add-product" element={<AddProduct />} />
         <Route path="edit-product/:id" element={<AddProduct />} />
         <Route path="view-product/:id" element={<ViewProduct />} />
+        <Route path="bids" element={<SellerBids />} />
       </Route>
     </>
   );

@@ -1,0 +1,53 @@
+.bids-container {
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.bids-container h2 {
+  margin-bottom: 20px;
+  color: #14532d;
+}
+
+.bids-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bids-table th {
+  background: #14532d;
+  color: #fff;
+  padding: 14px 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.bids-table td {
+  padding: 14px 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.bids-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.bids-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-cell img {
+  width: 50px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 5px;
+}

@@ -7,7 +7,8 @@ const SidebarOptions = () => {
 
   const buttons = [
     // { name: "Dashboard", path: "/seller" },
-    { name: "Product Management", path: "/seller/products" }
+    { name: "Product Management", path: "/seller/products" },
+    { name: "Bidding", path: "/seller/bids" }
   ];
 
   const handleClick = (path) => {
