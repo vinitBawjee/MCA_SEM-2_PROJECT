@@ -144,16 +144,12 @@ export default function Home() {
 
                 <h3 className="recent-title">{item.title}</h3>
 
-                {/* <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
-                  VIEW DETAILS
-                </button> */}
                 <Link
                   className="result-btn"
                   to={`/product/${item._id}`}
                   state={{ from: "home" }}
                 >
-                  {" "}
-                  View Details{" "}
+                  View Details
                 </Link>
               </div>
             ))
@@ -194,16 +190,12 @@ export default function Home() {
 
                 <h3 className="recent-title">{item.title}</h3>
 
-                {/* <button className="result-btn" onClick={() => navigate(`/product/${item._id}`)}>
-                  VIEW DETAILS
-                </button> */}
                 <Link
                   className="result-btn"
                   to={`/product/${item._id}`}
                   state={{ from: "home" }}
                 >
-                  {" "}
-                  View Details{" "}
+                  View Details
                 </Link>
               </div>
             ))

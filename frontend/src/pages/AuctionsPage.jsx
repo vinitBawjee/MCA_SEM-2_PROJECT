@@ -60,50 +60,50 @@ export default function AuctionsPage() {
         </div>
 
         <div className="auction-grid">
-  {filteredProducts.length > 0 ? (
-    filteredProducts.map((item) => (
-      <div
-        className={`auction-card ${
-          item.status === "inactive" ? "inactive-card" : ""
-        }`}
-        key={item._id}
-      >
-        <div className="image-box">
-          {item.status === "inactive" && (
-            <span className="auction-status">
-              This auction is not active
-            </span>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((item) => (
+              <div
+                className={`auction-card ${
+                  item.status === "inactive" ? "inactive-card" : ""
+                }`}
+                key={item._id}
+              >
+                <div className="image-box">
+                  {item.status === "inactive" && (
+                    <span className="auction-status">
+                      This auction is not active
+                    </span>
+                  )}
+
+                  <img
+                    src={
+                      item.image
+                        ? `http://localhost:5000/${item.image}`
+                        : "https://via.placeholder.com/250"
+                    }
+                    alt={item.title}
+                  />
+                </div>
+
+                <span className="lot">{item.category}</span>
+
+                <p className="title">{item.title}</p>
+
+                <h2 className="price">₹ {item.price}</h2>
+
+                <Link
+                  className="result-btn"
+                  to={`/product/${item._id}`}
+                  state={{ from: "auctions", type }}
+                >
+                  View Details
+                </Link>
+              </div>
+            ))
+          ) : (
+            <p>No Auctions Found</p>
           )}
-
-          <img
-            src={
-              item.image
-                ? `http://localhost:5000/${item.image}`
-                : "https://via.placeholder.com/250"
-            }
-            alt={item.title}
-          />
         </div>
-
-        <span className="lot">{item.category}</span>
-
-        <p className="title">{item.title}</p>
-
-        <h2 className="price">₹ {item.price}</h2>
-
-        <Link
-          className="result-btn"
-          to={`/product/${item._id}`}
-          state={{ from: "auctions" }}
-        >
-          View Details
-        </Link>
-      </div>
-    ))
-  ) : (
-    <p>No Auctions Found</p>
-  )}
-</div>
       </div>
     </div>
   );

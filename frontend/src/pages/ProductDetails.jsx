@@ -5,7 +5,7 @@ import axios from "axios";
 
 const ProductDetails = () => {
   const location = useLocation();
-  const from = location.state?.from;
+
   const token = sessionStorage.getItem("token");
   const { id } = useParams();
 
@@ -29,51 +29,86 @@ const ProductDetails = () => {
 
   useEffect(() => {
     if (!product) return;
-
+  
     const timer = setInterval(() => {
       const now = new Date();
-      const start = new Date(product.createdAt);
-      const end = new Date(start.getTime() + 7 * 24 * 60 * 60 * 1000);
+  
+      // If no startTime → don't calculate
+      if (!product.startTime) {
+        setDaysLeft(0);
+        setTimeLeft("Not started yet");
+        setIsBiddingOpen(false);
+        return;
+      }
+  
+      // Use backend endTime (BEST)
+      const end = new Date(product.startTime);
+      end.setDate(end.getDate() + 7);
+      end.setHours(16, 0, 0, 0);
+  
       const totalDiff = end.getTime() - now.getTime();
-
-      if (totalDiff <= 0) {
+  
+      // Auction Ended
+      if (totalDiff <= 0 || product.status === "complete") {
         setDaysLeft(0);
         setTimeLeft("Auction Ended");
         setIsBiddingOpen(false);
         return;
       }
-
+  
+      // Days Left
       const days = Math.floor(totalDiff / (1000 * 60 * 60 * 24));
       setDaysLeft(days);
-
+  
+      // Daily timing (9AM–4PM)
       const todayStart = new Date(now);
       todayStart.setHours(9, 0, 0, 0);
-
+  
       const todayEnd = new Date(now);
       todayEnd.setHours(16, 0, 0, 0);
-
+  
+      // Before 9AM
       if (now < todayStart) {
         const diff = todayStart - now;
-        const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  
+        const hrs = Math.floor(diff / (1000 * 60 * 60));
         const mins = Math.floor((diff / (1000 * 60)) % 60);
         const secs = Math.floor((diff / 1000) % 60);
+  
         setTimeLeft(`Starts in ${hrs}h ${mins}m ${secs}s`);
         setIsBiddingOpen(false);
-      } else if (now >= todayStart && now <= todayEnd) {
+      }
+  
+      // Between 9AM–4PM
+      else if (now >= todayStart && now <= todayEnd) {
         const diff = todayEnd - now;
-        const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  
+        const hrs = Math.floor(diff / (1000 * 60 * 60));
         const mins = Math.floor((diff / (1000 * 60)) % 60);
         const secs = Math.floor((diff / 1000) % 60);
+  
         setTimeLeft(`${hrs}h ${mins}m ${secs}s`);
         setIsBiddingOpen(true);
-      } else {
+      }
+  
+      // After 4PM
+      else {
         setTimeLeft("Bidding closed for today");
         setIsBiddingOpen(false);
       }
     }, 1000);
-
+  
     return () => clearInterval(timer);
   }, [product]);
+
+  const type = location.state?.type;
+  const from = location.state?.from;
+
+  const pageTitle = {
+    pending: "Upcoming Auctions",
+    active: "Live Auctions",
+    complete: "Past Auctions",
+  };
 
   const increaseBid = () => {
     setAmount((prev) => prev + 10);
@@ -111,12 +146,16 @@ const ProductDetails = () => {
     <div className="container">
       <div className="productPage">
         <div className="breadcrumb">
-          <Link to="/" className="home">Home</Link>
+          <Link to="/" className="home">
+            Home
+          </Link>
 
-          {from === "auctions" && (
+          {from === "auctions" && type && (
             <>
               <span className="arrow">›</span>
-              <Link to="/auctions" className="home">Live Auctions</Link>
+              <Link to="/auctions" state={{ type }} className="home">
+                {pageTitle[type]}
+              </Link>
             </>
           )}
 
@@ -155,18 +194,24 @@ const ProductDetails = () => {
               )}
 
               {product.status === "pending" && (
-                <p className="loginMessage">This auction has not started yet.</p>
+                <p className="loginMessage">
+                  This auction has not started yet.
+                </p>
               )}
 
               {product.status === "inactive" && (
-                <p className="loginMessage">This auction is currently unavailable.</p>
+                <p className="loginMessage">
+                  This auction is currently unavailable.
+                </p>
               )}
 
               {product.status === "active" && (
                 <>
                   {token ? (
                     <div className="bidInput">
-                      <button onClick={decreaseBid} disabled={!isBiddingOpen}>-</button>
+                      <button onClick={decreaseBid} disabled={!isBiddingOpen}>
+                        -
+                      </button>
 
                       <input
                         type="number"
@@ -175,7 +220,9 @@ const ProductDetails = () => {
                         disabled={!isBiddingOpen}
                       />
 
-                      <button onClick={increaseBid} disabled={!isBiddingOpen}>+</button>
+                      <button onClick={increaseBid} disabled={!isBiddingOpen}>
+                        +
+                      </button>
 
                       <button onClick={submitBid} disabled={!isBiddingOpen}>
                         Submit

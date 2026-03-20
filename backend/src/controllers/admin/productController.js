@@ -44,25 +44,40 @@ export const updateProductStatus = async (req, res) => {
       });
     }
 
+    // IMPORTANT LOGIC
+    // If activating first time → set startTime
+    if (status === "active") {
+      if (!product.startTime) {
+        product.startTime = new Date(); // first time start
+      }
+      // DO NOT reset startTime if already exists (resume logic)
+    }
+
     product.status = status;
     await product.save();
 
-    const emailText =
-      status === "active"
-        ? `Hello ${product.seller.name},
+    // Email content
+    let emailText = "";
+
+    if (status === "active") {
+      emailText = `Hello ${product.seller.name},
 
 Your product "${product.title}" has been APPROVED by the admin.
 
-It is now live andggj visible to buyers.
+It is now LIVE and visible to buyers.
 
-Thank you.`
-        : `Hello ${product.seller.name},
+You can start receiving bids now.
 
-Your product "${product.title}" has been REJECTED or DISABLED by the admin.
+Thank you.`;
+    } else {
+      emailText = `Hello ${product.seller.name},
 
-It is currently inactive.
+Your product "${product.title}" has been DISABLED by the admin.
+
+It is currently inactive and not visible to buyers.
 
 If you believe this is a mistake, please contact support.`;
+    }
 
     await sendEmail({
       to: product.seller.email,
@@ -72,7 +87,7 @@ If you believe this is a mistake, please contact support.`;
 
     res.status(200).json({
       success: true,
-      message: "Status updated and email sent",
+      message: "Status updated successfully",
       data: product,
     });
   } catch (error) {
