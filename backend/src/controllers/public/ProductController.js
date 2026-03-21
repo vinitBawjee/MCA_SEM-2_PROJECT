@@ -1,5 +1,6 @@
 import Product from "../../models/Product.js";
 import Auction from "../../models/Auction.js";
+import AuctionStatus from "../../models/AuctionStatus.js";
 
 export const getActiveProducts = async (req, res) => {
   try {
@@ -48,6 +49,10 @@ export const getProductDetails = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
+    const auction = await AuctionStatus.findOne({
+      product: product._id,
+    });
+
     const history = await Auction.find({ product: req.params.id })
       .populate("buyer", "name")
       .sort({ createdAt: -1 });
@@ -56,21 +61,14 @@ export const getProductDetails = async (req, res) => {
       ? Math.max(...history.map((h) => h.bidAmount))
       : product.price;
 
-    let endTime = null;
-
-    if (product.startTime) {
-      const end = new Date(
-        new Date(product.startTime).getTime() + 7 * 24 * 60 * 60 * 1000
-      );
-      end.setHours(16, 0, 0, 0);
-      endTime = end;
-    }
-
     res.status(200).json({
-      product,
+      product: {
+        ...product._doc,
+        startTime: auction?.startTime || null,
+        endTime: auction?.endTime || null,
+      },
       history,
       currentBid: highestBid,
-      endTime,
     });
   } catch (err) {
     res.status(500).json({ message: "Failed to fetch product" });

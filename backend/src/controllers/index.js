@@ -14,6 +14,7 @@ import * as sellerContactController from "./seller/contactController.js";
 import * as buyerBidController from "./buyer/bidController.js"
 import * as buyerAccountController from "./buyer/accountController.js";
 import * as accountController from "./buyer/accountController.js";
+import * as buyerContactController from "./buyer/accountController.js";
 
 import * as publicProductController from "./public/ProductController.js";
 
@@ -31,5 +32,6 @@ export {
   sellerDashboardController,
   sellerBidsController,
   sellerProfileController,
-  sellerContactController
+  sellerContactController,
+  buyerContactController
 };

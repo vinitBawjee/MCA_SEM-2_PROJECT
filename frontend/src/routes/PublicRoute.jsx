@@ -9,6 +9,7 @@ import Bidding from "../pages/Bidding";
 import WinningBids from "../pages/WinningBids";
 import Profile from "../pages/Profile";
 import BuyerDashboard from "../pages/BuyerDashboard";
+import Contact from "../pages/Contact";
 
 const PublicRoutes = () => {
   return (
@@ -18,12 +19,13 @@ const PublicRoutes = () => {
       <Route path="/product/:id" element={<ProductDetails />} />
 
       <Route path="/account" element={<AccountLayout />}>
-        <Route index element={<Navigate to="profile" replace />} />
+        <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<BuyerDashboard />} />
         <Route path="profile" element={<Profile />} />
         <Route path="products" element={<ProductList />} />
         <Route path="bids" element={<Bidding />} />
         <Route path="winning-bids" element={<WinningBids />} />
+        <Route path="contact" element={<Contact />} />
       </Route>
     </Route>
   );

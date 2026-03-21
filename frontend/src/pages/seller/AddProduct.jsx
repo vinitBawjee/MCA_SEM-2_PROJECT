@@ -121,11 +121,11 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="form-container">
+    <div className="aform-container">
       <h2>{id ? "Edit Product" : "Add Product"}</h2>
 
-      <form onSubmit={handleSubmit} className="product-form">
-        <div className="form-group">
+      <form onSubmit={handleSubmit} className="aproduct-form">
+        <div className="aform-group">
           <input
             type="text"
             name="title"
@@ -136,7 +136,7 @@ export default function AddProduct() {
           {errors.title && <p className="error">{errors.title}</p>}
         </div>
 
-        <div className="form-group">
+        <div className="aform-group">
           <textarea
             name="description"
             value={formData.description}
@@ -145,7 +145,7 @@ export default function AddProduct() {
           />
         </div>
 
-        <div className="form-group">
+        <div className="aform-group">
           <input
             type="number"
             name="price"
@@ -156,7 +156,7 @@ export default function AddProduct() {
           {errors.price && <p className="error">{errors.price}</p>}
         </div>
 
-        <div className="form-group">
+        <div className="aform-group">
           <input
             type="number"
             name="stock"
@@ -167,7 +167,7 @@ export default function AddProduct() {
           {errors.stock && <p className="error">{errors.stock}</p>}
         </div>
 
-        <div className="form-group">
+        <div className="aform-group">
           <select
             name="category"
             value={formData.category}
@@ -183,7 +183,7 @@ export default function AddProduct() {
           {errors.category && <p className="error">{errors.category}</p>}
         </div>
 
-        <div className="form-group">
+        <div className="aform-group">
           {existingImage && (
             <img
               src={`http://localhost:5000/${existingImage}`}

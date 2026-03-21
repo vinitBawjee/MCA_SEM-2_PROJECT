@@ -1,17 +1,17 @@
-.form-container {
+.aform-container {
   padding: 30px;
   background-color: #f4f6f9;
   min-height: 100vh;
 }
 
-.form-container h2 {
+.aform-container h2 {
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 600;
   color: #14532d;
 }
 
-.product-form {
+.aproduct-form {
   background: #ffffff;
   padding: 30px;
   border-radius: 10px;
@@ -22,14 +22,14 @@
   gap: 18px;
 }
 
-.form-group {
+.aform-group {
   display: flex;
   flex-direction: column;
 }
 
-.product-form input,
-.product-form textarea,
-.product-form select {
+.aproduct-form input,
+.aproduct-form textarea,
+.aproduct-form select {
   padding: 12px 14px;
   border-radius: 6px;
   border: 1px solid #e5e7eb;
@@ -37,19 +37,19 @@
   transition: 0.2s ease;
 }
 
-.product-form input:focus,
-.product-form textarea:focus,
-.product-form select:focus {
+.aproduct-form input:focus,
+.aproduct-form textarea:focus,
+.aproduct-form select:focus {
   border-color: #14532d;
   outline: none;
 }
 
-.product-form textarea {
+.aproduct-form textarea {
   min-height: 100px;
   resize: vertical;
 }
 
-.product-form input[type="file"] {
+.aproduct-form input[type="file"] {
   border: none;
   padding: 5px 0;
 }
@@ -60,7 +60,7 @@
   margin-top: 6px;
 }
 
-.product-form button {
+.aproduct-form button {
   padding: 10px 16px;
   border: none;
   border-radius: 6px;
@@ -71,6 +71,6 @@
   transition: 0.2s ease;
 }
 
-.product-form button:hover {
+.aproduct-form button:hover {
   background-color: #0f3d21;
 }

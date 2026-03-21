@@ -1,5 +1,5 @@
-import Product from "../models/Product.js";
 import Auction from "../models/Auction.js";
+import AuctionStatus from "../models/AuctionStatus.js";
 import sendEmail from "../utils/sendEmail.js";
 
 export const runAuctionScheduler = () => {
@@ -7,31 +7,20 @@ export const runAuctionScheduler = () => {
     const now = new Date();
 
     try {
-      const products = await Product.find({ status: "active" }).populate("seller");
+      const auctions = await AuctionStatus.find().populate({
+        path: "product",
+        populate: { path: "seller" },
+      });
 
-      for (const product of products) {
+      for (const auction of auctions) {
 
-        if (!product.startTime) continue;
+        if (!auction.product || auction.product.status !== "active") continue;
 
-        const start = new Date(product.startTime);
+        if (!auction.endTime) continue;
 
-        let end = new Date(start.getTime() + 7 * 24 * 60 * 60 * 1000);
-        end.setHours(16, 0, 0, 0);
+        if (now >= new Date(auction.endTime)) {
 
-        const lastBid = await Auction.findOne({ product: product._id })
-          .sort({ createdAt: -1 });
-
-        let finalEnd = end;
-
-        if (lastBid) {
-          const diff = end.getTime() - new Date(lastBid.createdAt).getTime();
-
-          if (diff <= 60000 && diff >= 0) {
-            finalEnd = new Date(end.getTime() + 2 * 60 * 1000);
-          }
-        }
-
-        if (now >= finalEnd) {
+          const product = auction.product;
 
           const highestBid = await Auction.findOne({ product: product._id })
             .sort({ bidAmount: -1 })
@@ -40,24 +29,26 @@ export const runAuctionScheduler = () => {
           product.status = "complete";
           await product.save();
 
-          const sellerEmail = product.seller.email;
-          const sellerName = product.seller.name;
+          const sellerEmail = product.seller?.email;
+          const sellerName = product.seller?.name;
           const productTitle = product.title;
 
           let buyerEmail = null;
           let buyerName = null;
 
-          if (highestBid && highestBid.buyer) {
+          if (highestBid?.buyer) {
             buyerEmail = highestBid.buyer.email;
             buyerName = highestBid.buyer.name;
           }
 
           try {
-            await sendEmail({
-              to: sellerEmail,
-              subject: "Auction Completed",
-              text: `Hello ${sellerName}, your auction for "${productTitle}" has been completed.`,
-            });
+            if (sellerEmail) {
+              await sendEmail({
+                to: sellerEmail,
+                subject: "Auction Completed",
+                text: `Hello ${sellerName}, your auction for "${productTitle}" has been completed.`,
+              });
+            }
 
             if (buyerEmail) {
               await sendEmail({
@@ -67,19 +58,21 @@ export const runAuctionScheduler = () => {
               });
             }
 
-            await sendEmail({
-              to: process.env.ADMIN_EMAIL,
-              subject: "Auction Completed",
-              text: `Auction completed for product: ${productTitle}`,
-            });
+            if (process.env.ADMIN_EMAIL) {
+              await sendEmail({
+                to: process.env.ADMIN_EMAIL,
+                subject: "Auction Completed",
+                text: `Auction completed for product: ${productTitle}`,
+              });
+            }
 
           } catch (error) {
-            console.log("Email Error:", error.message);
+            console.log(error.message);
           }
         }
       }
     } catch (err) {
-      console.log("Scheduler Error:", err.message);
+      console.log(err.message);
     }
 
   }, 60000);

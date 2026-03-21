@@ -4,7 +4,6 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 
 const Sidebar = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,16 +24,12 @@ const Sidebar = () => {
 
   return (
     <div className="dash-sidebar">
-
       <ul className="dash-menu">
         <li>
-          <Link to="/account/profile" className={active("/account/profile")}>
-            Profile
-          </Link>
-        </li>
-
-        <li>
-          <Link to="/account/dashboard" className={active("/account/dashboard")}>
+          <Link
+            to="/account/dashboard"
+            className={active("/account/dashboard")}
+          >
             Dashboard
           </Link>
         </li>
@@ -52,8 +47,25 @@ const Sidebar = () => {
         </li>
 
         <li>
-          <Link to="/account/winning-bids" className={active("/account/winning-bids")}>
+          <Link
+            to="/account/winning-bids"
+            className={active("/account/winning-bids")}
+          >
             Winning Bids
+          </Link>
+        </li>
+
+        <hr style={{ margin: "15px 20px" }} />
+
+        <li>
+          <Link to="/account/profile" className={active("/account/profile")}>
+            Profile
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/account/contact" className={active("/account/contact")}>
+            Contact Us
           </Link>
         </li>
       </ul>
@@ -63,7 +75,6 @@ const Sidebar = () => {
           Logout
         </button>
       </div>
-
     </div>
   );
 };

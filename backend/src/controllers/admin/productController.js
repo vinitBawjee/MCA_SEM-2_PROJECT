@@ -1,5 +1,6 @@
 import Product from "../../models/Product.js";
 import sendEmail from "../../utils/sendEmail.js";
+import AuctionStatus from "../../models/AuctionStatus.js";
 
 export const getAllProducts = async (req, res) => {
   try {
@@ -23,76 +24,60 @@ export const updateProductStatus = async (req, res) => {
   try {
     const { status } = req.body;
 
-    const allowedStatus = ["active", "inactive"];
-
-    if (!allowedStatus.includes(status)) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid status value",
-      });
-    }
-
-    const product = await Product.findById(req.params.id).populate(
-      "seller",
-      "name email"
-    );
+    const product = await Product.findById(req.params.id).populate("seller");
 
     if (!product) {
-      return res.status(404).json({
-        success: false,
-        message: "Product not found",
-      });
+      return res.status(404).json({ message: "Product not found" });
     }
 
-    // IMPORTANT LOGIC
-    // If activating first time → set startTime
+    let auction = await AuctionStatus.findOne({ product: product._id });
+
+    const now = new Date();
+
     if (status === "active") {
-      if (!product.startTime) {
-        product.startTime = new Date(); // first time start
+      if (!auction) {
+        auction = await AuctionStatus.create({
+          product: product._id,
+          startTime: now,
+          endTime: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000),
+        });
+      } else {
+        if (!auction.startTime) {
+          auction.startTime = now;
+          auction.endTime = new Date(now.getTime() + auction.remainingTime);
+        } else if (auction.lastPausedAt) {
+          auction.endTime = new Date(now.getTime() + auction.remainingTime);
+          auction.lastPausedAt = null;
+        }
+        await auction.save();
       }
-      // DO NOT reset startTime if already exists (resume logic)
+    }
+
+    if (status === "inactive") {
+      if (auction && auction.endTime) {
+        const remaining =
+          new Date(auction.endTime).getTime() - now.getTime();
+        auction.remainingTime = remaining > 0 ? remaining : 0;
+        auction.lastPausedAt = now;
+        await auction.save();
+      }
     }
 
     product.status = status;
     await product.save();
 
-    // Email content
-    let emailText = "";
-
-    if (status === "active") {
-      emailText = `Hello ${product.seller.name},
-
-Your product "${product.title}" has been APPROVED by the admin.
-
-It is now LIVE and visible to buyers.
-
-You can start receiving bids now.
-
-Thank you.`;
-    } else {
-      emailText = `Hello ${product.seller.name},
-
-Your product "${product.title}" has been DISABLED by the admin.
-
-It is currently inactive and not visible to buyers.
-
-If you believe this is a mistake, please contact support.`;
-    }
-
     await sendEmail({
-      to: product.seller.email,
+      to: process.env.EMAIL,
       subject: "Product Status Updated",
-      text: emailText,
+      text: `Product "${product.title}" status changed to "${status}" by admin for seller ${product.seller.name} (${product.seller.email}).`,
     });
 
     res.status(200).json({
       success: true,
-      message: "Status updated successfully",
       data: product,
     });
   } catch (error) {
     res.status(500).json({
-      success: false,
       message: error.message,
     });
   }

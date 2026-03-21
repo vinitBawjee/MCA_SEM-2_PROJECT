@@ -2,6 +2,31 @@ import mongoose from "mongoose";
 import Auction from "../../models/Auction.js";
 import Product from "../../models/Product.js";
 import Buyer from "../../models/Buyer.js";
+import Contact from "../../models/Contact.js";
+
+export const createContact = async (req, res) => {
+  try {
+    const { message } = req.body;
+
+    if (!message || message.trim() === "") {
+      return res.status(400).json({ message: "Message is required" });
+    }
+
+    const contact = await Contact.create({
+      userId: req.user.id,
+      userModel: req.user.role === "buyer" ? "Buyer" : "Seller",
+      message
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Message sent successfully",
+      data: contact
+    });
+  } catch {
+    res.status(500).json({ message: "Failed to send message" });
+  }
+};
 
 export const getBuyerProducts = async (req, res) => {
 
@@ -66,17 +91,14 @@ export const getBuyerBids = async (req, res) => {
         myBid: bid.bidAmount,
         highestBid: highestBid.bidAmount,
         status: highestBid.buyer.toString() === buyerId ? "Winning" : "Losing",
-        createdAt: bid.product.createdAt
+        createdAt: bid.product.createdAt,
+        productStatus: bid.product.status
       };
 
     })
   );
 
-  res.json({
-    success: true,
-    bids: result
-  });
-
+  res.json({ bids: result });
 };
 
 export const getWinningBids = async (req,res) => {

@@ -3,7 +3,6 @@ import axios from "axios";
 import "./Bidding.css";
 
 function Bidding() {
-
   const [bids, setBids] = useState([]);
 
   useEffect(() => {
@@ -11,27 +10,26 @@ function Bidding() {
   }, []);
 
   const fetchBids = async () => {
-
     const token = sessionStorage.getItem("token");
 
-    const res = await axios.get(
-      "http://localhost:5000/api/buyer/bids",
-      {
-        headers:{
-          Authorization:`Bearer ${token}`
-        }
-      }
+    const res = await axios.get("http://localhost:5000/api/buyer/bids", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const activeBids = res.data.bids.filter(
+      (b) => b.productStatus === "active"
     );
 
-    setBids(res.data.bids);
+    setBids(activeBids);
   };
 
   const getAuctionInfo = (b) => {
-
-    if(!b.createdAt){
+    if (!b.createdAt) {
       return {
         status: b.status,
-        days: "--"
+        days: "--",
       };
     }
 
@@ -42,31 +40,26 @@ function Bidding() {
     const now = new Date();
     const diff = end - now;
 
-    if(diff <= 0){
-
+    if (diff <= 0) {
       return {
         status: b.status === "Winning" ? "Win" : "Loss",
-        days: "--"
+        days: "--",
       };
-
     }
 
-    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
     return {
       status: b.status,
-      days: `${days} days`
+      days: `${days} days`,
     };
-
   };
 
   return (
     <div className="userdash-bidding">
-
       <h2>My Bids</h2>
 
       <table className="userdash-table">
-
         <thead>
           <tr>
             <th>Product</th>
@@ -79,38 +72,32 @@ function Bidding() {
         </thead>
 
         <tbody>
-
           {bids.map((b) => {
-
             const info = getAuctionInfo(b);
 
             return (
               <tr key={b._id}>
-
                 <td>{b.product}</td>
                 <td>{b.category}</td>
                 <td>₹{b.myBid}</td>
                 <td>₹{b.highestBid}</td>
 
-                <td className={
-                  info.status === "Winning" || info.status === "Win"
-                  ? "bid-win"
-                  : "bid-lose"
-                }>
+                <td
+                  className={
+                    info.status === "Winning" || info.status === "Win"
+                      ? "bid-win"
+                      : "bid-lose"
+                  }
+                >
                   {info.status}
                 </td>
 
                 <td>{info.days}</td>
-
               </tr>
             );
-
           })}
-
         </tbody>
-
       </table>
-
     </div>
   );
 }

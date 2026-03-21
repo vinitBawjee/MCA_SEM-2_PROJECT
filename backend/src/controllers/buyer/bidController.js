@@ -27,7 +27,10 @@ export const placeBid = async (req, res) => {
       bidAmount: amount,
     });
 
-    res.status(201).json(bid);
+    res.status(201).json({
+      message: "Bid placed successfully",
+      data: bid,
+    });
   } catch {
     res.status(500).json({ message: "Bid failed" });
   }

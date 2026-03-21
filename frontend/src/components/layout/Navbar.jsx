@@ -40,10 +40,6 @@ export default function Navbar() {
             <li className="menu-item">
               <Link to="/about">About</Link>
             </li>
-
-            <li className="menu-item">
-              <Link to="/contact">Contact</Link>
-            </li>
           </ul>
 
           {!user ? (
