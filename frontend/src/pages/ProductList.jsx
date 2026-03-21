@@ -25,7 +25,7 @@ function ProductList() {
       }
     );
 
-    setProducts(res.data.products);
+    setProducts(res.data.products || []);
   };
 
   return (
@@ -48,32 +48,34 @@ function ProductList() {
 
         <tbody>
 
-          {products.map((p) => (
-            <tr 
-              key={p._id}
-              onClick={() => navigate(`/product/${p._id}`)}
-              className="userdash-row"
-            >
-              <td>
-                <img
-                  src={`http://localhost:5000/${p.image}`}
-                  alt={p.title}
-                  className="userdash-product-img"
-                />
+          {products.length === 0 ? (
+            <tr>
+              <td colSpan="6" className="no-data">
+                No Products Found
               </td>
-
-              <td>{p.title}</td>
-
-              <td>{p.category}</td>
-
-              <td>{p.stock}</td>
-
-              <td>₹{p.price}</td>
-
-              <td>{p.status}</td>
-
             </tr>
-          ))}
+          ) : (
+            products.map((p) => (
+              <tr 
+                key={p._id}
+                onClick={() => navigate(`/product/${p._id}`)}
+                className="userdash-row"
+              >
+                <td>
+                  <img
+                    src={`http://localhost:5000/${p.image}`}
+                    alt={p.title}
+                    className="userdash-product-img"
+                  />
+                </td>
+                <td>{p.title}</td>
+                <td>{p.category}</td>
+                <td>{p.stock}</td>
+                <td>₹{p.price}</td>
+                <td>{p.status}</td>
+              </tr>
+            ))
+          )}
 
         </tbody>
 

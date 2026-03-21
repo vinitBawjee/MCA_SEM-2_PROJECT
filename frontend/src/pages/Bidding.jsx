@@ -18,7 +18,7 @@ function Bidding() {
       },
     });
 
-    const activeBids = res.data.bids.filter(
+    const activeBids = (res.data.bids || []).filter(
       (b) => b.productStatus === "active"
     );
 
@@ -72,30 +72,38 @@ function Bidding() {
         </thead>
 
         <tbody>
-          {bids.map((b) => {
-            const info = getAuctionInfo(b);
+          {bids.length === 0 ? (
+            <tr>
+              <td colSpan="6" className="no-data">
+                No Bids Found
+              </td>
+            </tr>
+          ) : (
+            bids.map((b) => {
+              const info = getAuctionInfo(b);
 
-            return (
-              <tr key={b._id}>
-                <td>{b.product}</td>
-                <td>{b.category}</td>
-                <td>₹{b.myBid}</td>
-                <td>₹{b.highestBid}</td>
+              return (
+                <tr key={b._id}>
+                  <td>{b.product}</td>
+                  <td>{b.category}</td>
+                  <td>₹{b.myBid}</td>
+                  <td>₹{b.highestBid}</td>
 
-                <td
-                  className={
-                    info.status === "Winning" || info.status === "Win"
-                      ? "bid-win"
-                      : "bid-lose"
-                  }
-                >
-                  {info.status}
-                </td>
+                  <td
+                    className={
+                      info.status === "Winning" || info.status === "Win"
+                        ? "bid-win"
+                        : "bid-lose"
+                    }
+                  >
+                    {info.status}
+                  </td>
 
-                <td>{info.days}</td>
-              </tr>
-            );
-          })}
+                  <td>{info.days}</td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>

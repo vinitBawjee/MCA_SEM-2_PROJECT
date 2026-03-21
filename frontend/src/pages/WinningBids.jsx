@@ -23,7 +23,7 @@ function WinningBids() {
       }
     );
 
-    setBids(res.data.bids);
+    setBids(res.data.bids || []);
   };
 
   return (
@@ -46,32 +46,38 @@ function WinningBids() {
 
         <tbody>
 
-          {bids.map((b) => (
-
-            <tr key={b._id}>
-
-              <td>
-                <img
-                  src={`http://localhost:5000/${b.image}`}
-                  alt={b.product}
-                  className="userdash-product-img"
-                />
+          {bids.length === 0 ? (
+            <tr>
+              <td colSpan="6" className="no-data">
+                No Winning Auctions Found
               </td>
-
-              <td>{b.product}</td>
-              <td>{b.category}</td>
-              <td>{b.stock}</td>
-              <td>₹{b.myBid}</td>
-
-              <td>
-                <button className="userdash-transaction-btn">
-                  Pay
-                </button>
-              </td>
-
             </tr>
+          ) : (
+            bids.map((b) => (
+              <tr key={b._id}>
 
-          ))}
+                <td>
+                  <img
+                    src={`http://localhost:5000/${b.image}`}
+                    alt={b.product}
+                    className="userdash-product-img"
+                  />
+                </td>
+
+                <td>{b.product}</td>
+                <td>{b.category}</td>
+                <td>{b.stock}</td>
+                <td>₹{b.myBid}</td>
+
+                <td>
+                  <button className="userdash-transaction-btn">
+                    Pay
+                  </button>
+                </td>
+
+              </tr>
+            ))
+          )}
 
         </tbody>
 

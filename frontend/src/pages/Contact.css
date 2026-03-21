@@ -1,37 +1,33 @@
-.contact-page{
-    padding:30px;
-  }
-  
-  .contact-page h2{
-    margin-bottom:20px;
-  }
-  
-  .contact-page textarea{
-    width:100%;
-    height:500px;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:6px;
-    resize:none;
-    outline: none;
-  }
-  
-  .contact-page button{
-    padding:10px 20px;
-    background:#1c8f5f;
-    color:#fff;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-    margin-top: 3px;
-  }
+.contact-page h2 {
+  margin-bottom: 20px;
+}
 
-  .input-error {
-    border: 1px solid red;
-  }
-  
-  .error-text {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-  }
+.contact-page textarea {
+  width: 100%;
+  height: 500px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: none;
+  outline: none;
+}
+
+.contact-page button {
+  padding: 10px 20px;
+  background: #1c8f5f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+.input-error {
+  border: 1px solid red;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
