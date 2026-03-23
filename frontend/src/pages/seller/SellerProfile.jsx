@@ -5,7 +5,7 @@ import "./SellerProfile.css";
 export default function SellerProfile() {
   const token = sessionStorage.getItem("token");
 
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     fetchProfile();
@@ -23,12 +23,8 @@ export default function SellerProfile() {
       );
 
       setProfile(res.data);
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   };
-
-  if (!profile || !profile._id) return <p>Loading...</p>;
 
   return (
     <div className="profile-container">
@@ -38,7 +34,7 @@ export default function SellerProfile() {
         <p><strong>Name:</strong> {profile.name || "-"}</p>
         <p><strong>Email:</strong> {profile.email || "-"}</p>
         <p><strong>Mobile:</strong> {profile.mobile || "-"}</p>
-        <p><strong>isBlocked:</strong> {profile.isBlocked ? "True" : "False" || "-"}</p>
+        <p><strong>isBlocked:</strong> {profile.isBlocked ? "True" : "False"}</p>
       </div>
     </div>
   );

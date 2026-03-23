@@ -13,13 +13,19 @@
 }
 
 .contact-page button {
-  padding: 10px 20px;
+  width: 200px;
+  padding: 12px;
   background: #1c8f5f;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 3px;
+  font-size: 15px;
+  margin-top: 1rem;
+}
+
+.contact-page button:hover {
+  background: #157a4f;
 }
 
 .input-error {

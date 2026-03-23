@@ -54,7 +54,7 @@
 }
 
 .product-table tbody tr {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: none;
   transition: 0.2s ease;
 }
 
@@ -95,6 +95,10 @@
 }
 
 .product-table td:last-child {
+  display: table-cell;
+}
+
+.action-box {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -200,4 +204,13 @@
 
 .yes-btn:hover {
   background: #b91c1c;
+}
+
+.strike {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.withdrawn-row {
+  background-color: #f9f9f9;
 }

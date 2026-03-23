@@ -86,3 +86,12 @@
   .delete-btn:hover {
     background-color: #b91c1c;
   }
+
+  .disabled-row {
+    background-color: #f9f9f9;
+  }
+  
+  .strike {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }

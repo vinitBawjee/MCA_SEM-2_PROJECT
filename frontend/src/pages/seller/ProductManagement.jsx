@@ -22,7 +22,8 @@ export default function ProductManagement() {
     const res = await axios.get("http://localhost:5000/api/seller/products", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    setProducts(res.data.data);
+    const filtered = res.data.data.filter(item => item.status !== "closed");
+    setProducts(filtered);
   };
 
   const openConfirm = (id, type) => {
@@ -79,16 +80,11 @@ export default function ProductManagement() {
           <div className="confirm-box">
             <h3>{actionType === "withdraw" ? "Withdraw" : "Close"}</h3>
             <p>
-              Do you want to{" "}
-              {actionType === "withdraw" ? "withdraw" : "close"} this record?
+              Do you want to {actionType === "withdraw" ? "withdraw" : "close"} this record?
             </p>
             <div className="confirm-actions">
-              <button className="no-btn" onClick={handleNo}>
-                No
-              </button>
-              <button className="yes-btn" onClick={handleYes}>
-                Yes
-              </button>
+              <button className="no-btn" onClick={handleNo}>No</button>
+              <button className="yes-btn" onClick={handleYes}>Yes</button>
             </div>
           </div>
         </div>
@@ -96,10 +92,7 @@ export default function ProductManagement() {
 
       <div className="product-header">
         <h2>Product Management</h2>
-        <button
-          className="add-btn"
-          onClick={() => navigate("/seller/add-product")}
-        >
+        <button className="add-btn" onClick={() => navigate("/seller/add-product")}>
           + Add Product
         </button>
       </div>
@@ -120,81 +113,85 @@ export default function ProductManagement() {
 
         <tbody>
           {products.map((item) => (
-            <tr key={item._id}>
+            <tr key={item._id} className={item.status === "withdrawn" ? "withdrawn-row" : ""}>
               <td>
-                {item.image && (
-                  <img
-                    src={`http://localhost:5000/${item.image}`}
-                    alt=""
-                    width="60"
-                  />
+                {item.status !== "withdrawn" && item.image && (
+                  <img src={`http://localhost:5000/${item.image}`} alt="" width="60" />
                 )}
               </td>
-              <td>{item.title}</td>
-              <td>₹ {item.price}</td>
-              <td>{item.stock}</td>
-              <td>{item.category}</td>
-              <td className={`status ${item.status}`}>
-                {item.status}
+
+              <td className={item.status === "withdrawn" ? "strike" : ""}>{item.title}</td>
+              <td className={item.status === "withdrawn" ? "strike" : ""}>₹ {item.price}</td>
+              <td className={item.status === "withdrawn" ? "strike" : ""}>{item.stock}</td>
+              <td className={item.status === "withdrawn" ? "strike" : ""}>{item.category}</td>
+
+              <td className={`status ${item.status}`}>{item.status}</td>
+
+              <td className={item.status === "withdrawn" ? "strike" : ""}>
+                {new Date(item.createdAt).toISOString().split("T")[0]}
               </td>
-              <td>{new Date(item.createdAt).toISOString().split("T")[0]}</td>
+
               <td>
-                {(item.status === "inactive" ||
-                  item.status === "complete" ||
-                  item.status === "active") && (
-                  <button
-                    className="view-btn"
-                    onClick={() =>
-                      navigate(`/seller/view-product/${item._id}`)
-                    }
-                  >
-                    View
-                  </button>
-                )}
+                <div className="action-box">
+                  {item.status === "withdrawn" ? (
+                    <del>Withdrawn</del>
+                  ) : (
+                    <>
+                      {(item.status === "inactive" ||
+                        item.status === "complete" ||
+                        item.status === "active") && (
+                        <button
+                          className="view-btn"
+                          onClick={() =>
+                            navigate(`/seller/view-product/${item._id}`)
+                          }
+                        >
+                          View
+                        </button>
+                      )}
 
-                {item.status === "rejected" && (
-                  <>
-                    <button
-                      className="edit-btn"
-                      onClick={() =>
-                        navigate(`/seller/edit-product/${item._id}`)
-                      }
-                    >
-                      Edit
-                    </button>
+                      {item.status === "rejected" && (
+                        <>
+                          <button
+                            className="edit-btn"
+                            onClick={() =>
+                              navigate(`/seller/edit-product/${item._id}`)
+                            }
+                          >
+                            Edit
+                          </button>
 
-                    <button
-                      className="delete-btn"
-                      onClick={() =>
-                        openConfirm(item._id, "close")
-                      }
-                    >
-                      Close
-                    </button>
-                  </>
-                )}
+                          <button
+                            className="delete-btn"
+                            onClick={() => openConfirm(item._id, "close")}
+                          >
+                            Close
+                          </button>
+                        </>
+                      )}
 
-                {item.status === "pending" && (
-                  <>
-                    <button
-                      className="delete-btn"
-                      onClick={() =>
-                        openConfirm(item._id, "withdraw")
-                      }
-                    >
-                      Withdraw
-                    </button>
+                      {item.status === "pending" && (
+                        <>
+                          <button
+                            className="delete-btn"
+                            onClick={() => openConfirm(item._id, "withdraw")}
+                          >
+                            Withdraw
+                          </button>
 
-                    <button
-                      className="view-btn"
-                      onClick={() =>
-                        navigate(`/seller/view-product/${item._id}`)
-                      }
-                    >
-                      View
-                    </button>
-                  </>
-                )}
+                          <button
+                            className="view-btn"
+                            onClick={() =>
+                              navigate(`/seller/view-product/${item._id}`)
+                            }
+                          >
+                            View
+                          </button>
+                        </>
+                      )}
+                    </>
+                  )}
+                </div>
               </td>
             </tr>
           ))}

@@ -97,18 +97,25 @@ export const deleteProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
+    let actionText = "closed";
+
+    if (product.status === "pending") {
+      product.status = "withdrawn";
+      actionText = "withdrawn";
+    } else {
+      product.status = "closed";
+    }
+
     await sendEmail({
       to: process.env.EMAIL,
-      subject: "Product Closed by Seller",
-      text: `Product "${product.title}" has been closed by seller ${product.seller.name} (${product.seller.email}).`,
+      subject: "Product Status Update",
+      text: `Product "${product.title}" has been ${actionText} by seller ${product.seller.name} (${product.seller.email}).`,
     });
-
-    product.status = "closed";
 
     await product.save();
 
-    res.status(200).json({ message: "Product closed successfully" });
+    res.status(200).json({ message: `Product ${actionText} successfully` });
   } catch (error) {
-    res.status(500).json({ message: "Close failed" });
+    res.status(500).json({ message: "Action failed" });
   }
 };

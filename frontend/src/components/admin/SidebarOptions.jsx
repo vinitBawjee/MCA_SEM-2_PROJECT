@@ -5,19 +5,33 @@ const SidebarOptions = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const buttons = [
+  const topButtons = [
     { name: "Dashboard", path: "/admin/dashboard" },
+    { name: "Product Management", path: "/admin/products" },
+  ];
+
+  const bottomButtons = [
     { name: "Seller", path: "/admin/sellers" },
     { name: "Buyer", path: "/admin/buyers" },
-    { name: "Product Management", path: "/admin/products" },
-    { name: "Bidding History", path: "" },
-    { name: "Transaction", path: "" },
-    { name: "Contact Us", path: "" },
   ];
 
   return (
     <div className="sidebar">
-      {buttons.map((btn) => (
+      {topButtons.map((btn) => (
+        <button
+          key={btn.name}
+          className={`sidebar-btn ${
+            location.pathname === btn.path ? "active" : ""
+          }`}
+          onClick={() => navigate(btn.path)}
+        >
+          {btn.name}
+        </button>
+      ))}
+
+      <div className="divider"></div>
+
+      {bottomButtons.map((btn) => (
         <button
           key={btn.name}
           className={`sidebar-btn ${

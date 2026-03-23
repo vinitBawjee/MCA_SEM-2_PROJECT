@@ -1,0 +1,45 @@
+.completed-container {
+    padding: 30px;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+  }
+  
+  .completed-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+  }
+  
+  .completed-table thead {
+    background-color: #14532d;
+    color: #fff;
+  }
+  
+  .completed-table th,
+  .completed-table td {
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: middle;
+  }
+  
+  .completed-table tbody tr {
+    transition: 0.2s ease;
+  }
+  
+  .completed-table tbody tr:hover {
+    background-color: #f0fdf4;
+  }
+  
+  .completed-table td {
+    color: #374151;
+    font-weight: 500;
+  }
+  
+  /* .completed-table td:last-child {
+    font-weight: 600;
+    color: #16a34a;
+  } */
