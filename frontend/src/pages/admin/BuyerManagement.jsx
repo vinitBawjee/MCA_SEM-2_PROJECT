@@ -1,7 +1,7 @@
 import "./BuyerManagement.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import AlertMessage from "../../components/common/AlertMessage";
+import AlertMessage from "../../components/layout/AlertMessage";
 
 export default function BuyerManagement() {
   const [buyers, setBuyers] = useState([]);
@@ -25,48 +25,53 @@ export default function BuyerManagement() {
     setBuyers(res.data.data || []);
   };
 
-  const handleBlock = async (id) => {
-    const token = sessionStorage.getItem("token");
-
-    const res = await axios.put(
-      `http://localhost:5000/api/admin/buyer/block/${id}`,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-
-    setBuyers((prev) =>
-      prev.map((b) =>
-        b._id === id ? { ...b, isBlocked: res.data.isBlocked } : b
-      )
-    );
-
-    setAlert({ type: "success", message: res.data.message });
+  const handleActionConfirm = (id, type) => {
+    setConfirmBox({ id, type });
   };
 
-  const handleDeleteConfirm = (id) => {
-    setConfirmBox(id);
-  };
-
-  const handleDelete = async () => {
+  const handleConfirm = async () => {
     const token = sessionStorage.getItem("token");
 
-    await axios.delete(
-      `http://localhost:5000/api/admin/buyer/${confirmBox}`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    if (confirmBox.type === "toggle") {
+      const res = await axios.put(
+        `http://localhost:5000/api/admin/buyer/block/${confirmBox.id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-    setBuyers((prev) =>
-      prev.map((b) =>
-        b._id === confirmBox ? { ...b, isBlocked: true } : b
-      )
-    );
+      setBuyers((prev) =>
+        prev.map((b) =>
+          b._id === confirmBox.id
+            ? { ...b, isBlocked: res.data.isBlocked }
+            : b
+        )
+      );
+
+      setAlert({ type: "success", message: res.data.message });
+    }
+
+    if (confirmBox.type === "delete") {
+      await axios.delete(
+        `http://localhost:5000/api/admin/buyer/${confirmBox.id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setBuyers((prev) =>
+        prev.map((b) =>
+          b._id === confirmBox.id
+            ? { ...b, isDeleted: true, isBlocked: true }
+            : b
+        )
+      );
+
+      setAlert({ type: "success", message: "Buyer deleted successfully" });
+    }
 
     setConfirmBox(null);
-    setAlert({ type: "success", message: "Buyer disabled successfully" });
   };
 
   return (
@@ -95,25 +100,21 @@ export default function BuyerManagement() {
           {buyers.map((buyer) => (
             <tr
               key={buyer._id}
-              className={buyer.isBlocked ? "disabled-row" : ""}
+              className={buyer.isDeleted ? "disabled-row" : ""}
             >
-              <td className={buyer.isBlocked ? "strike" : ""}>
+              <td className={buyer.isDeleted ? "strike" : ""}>
                 {buyer.name}
               </td>
-              <td className={buyer.isBlocked ? "strike" : ""}>
+              <td className={buyer.isDeleted ? "strike" : ""}>
                 {buyer.email}
               </td>
-              <td className={buyer.isBlocked ? "strike" : ""}>
+              <td className={buyer.isDeleted ? "strike" : ""}>
                 {buyer.mobile}
               </td>
 
               <td>
-                <span
-                  className={
-                    buyer.isBlocked ? "blocked" : "active"
-                  }
-                >
-                  {buyer.isBlocked ? "Blocked" : "Active"}
+                <span className={buyer.isBlocked ? "blocked" : "active"}>
+                  {buyer.isBlocked ? "Inactive" : "Active"}
                 </span>
               </td>
 
@@ -124,19 +125,27 @@ export default function BuyerManagement() {
               </td>
 
               <td>
-                <button
-                  className="block-btn"
-                  onClick={() => handleBlock(buyer._id)}
-                >
-                  {buyer.isBlocked ? "Unblock" : "Block"}
-                </button>
+                {!buyer.isDeleted && (
+                  <button
+                    className="block-btn"
+                    onClick={() =>
+                      handleActionConfirm(buyer._id, "toggle")
+                    }
+                  >
+                    {buyer.isBlocked ? "Active" : "Inactive"}
+                  </button>
+                )}
 
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDeleteConfirm(buyer._id)}
-                >
-                  Disable
-                </button>
+                {!buyer.isDeleted && (
+                  <button
+                    className="delete-btn"
+                    onClick={() =>
+                      handleActionConfirm(buyer._id, "delete")
+                    }
+                  >
+                    Delete
+                  </button>
+                )}
               </td>
             </tr>
           ))}
@@ -147,7 +156,11 @@ export default function BuyerManagement() {
         <div className="confirm-overlay">
           <div className="confirm-box">
             <h3>Confirm</h3>
-            <p>Are you sure you want to disable this buyer?</p>
+            <p>
+              {confirmBox.type === "toggle"
+                ? "Are you sure you want to change status?"
+                : "Are you sure you want to delete this buyer?"}
+            </p>
             <div className="confirm-actions">
               <button
                 className="no-btn"
@@ -155,7 +168,7 @@ export default function BuyerManagement() {
               >
                 No
               </button>
-              <button className="yes-btn" onClick={handleDelete}>
+              <button className="yes-btn" onClick={handleConfirm}>
                 Yes
               </button>
             </div>

@@ -29,34 +29,38 @@ const CompletedAuctions = () => {
       <table className="completed-table">
         <thead>
           <tr>
-            <th>#</th>
+            <th>Image</th>
             <th>Product</th>
+            <th>Start Price</th>
             <th>Winner</th>
             <th>Email</th>
             <th>Winning Bid</th>
-            <th>Date</th>
           </tr>
         </thead>
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
+              <td colSpan="7" style={{ textAlign: "center", padding: "20px" }}>
                 No Winning Auctions Found
               </td>
             </tr>
           ) : (
-            data.map((item, index) => (
+            data.map((item) => (
               <tr key={item.productId}>
-                <td>{index + 1}</td>
+                <td>
+                  {item.productImage && (
+                    <img
+                      src={`http://localhost:5000/${item.productImage}`}
+                      alt={item.productTitle}
+                      width="60"
+                    />
+                  )}
+                </td>
                 <td>{item.productTitle}</td>
+                <td>₹ {item.startPrice}</td>
                 <td>{item.buyerName}</td>
                 <td>{item.buyerEmail}</td>
                 <td>₹ {item.highestBid}</td>
-                <td>
-                  {item.createdAt
-                    ? new Date(item.createdAt).toLocaleDateString()
-                    : "-"}
-                </td>
               </tr>
             ))
           )}

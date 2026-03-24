@@ -1,4 +1,3 @@
-// buyerController.js
 import { fetchBuyersService } from "../../services/buyerService.js";
 import Buyer from "../../models/Buyer.js";
 import sendEmail from "../../utils/sendEmail.js";
@@ -28,10 +27,23 @@ export const deleteBuyer = async (req, res) => {
       return res.status(404).json({ message: "Buyer not found" });
     }
 
+    buyer.isDeleted = true;
     buyer.isBlocked = true;
     await buyer.save();
 
-    res.status(200).json({ message: "Buyer disabled successfully" });
+    const subject = "Account Deleted";
+
+    const text = `Hello ${buyer.name}, your account has been deleted by admin. You can no longer access the platform.`;
+
+    try {
+      await sendEmail({
+        to: buyer.email,
+        subject,
+        text,
+      });
+    } catch (err) {}
+
+    res.status(200).json({ message: "Buyer deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "Delete failed" });
   }
@@ -45,16 +57,20 @@ export const toggleBlockBuyer = async (req, res) => {
       return res.status(404).json({ message: "Buyer not found" });
     }
 
+    if (buyer.isDeleted) {
+      return res.status(400).json({ message: "Deleted buyer cannot be updated" });
+    }
+
     buyer.isBlocked = !buyer.isBlocked;
     await buyer.save();
 
     const subject = buyer.isBlocked
-      ? "Account Blocked"
-      : "Account Unblocked";
+      ? "Account Inactive"
+      : "Account Active";
 
     const text = buyer.isBlocked
-      ? `Hello ${buyer.name}, your account has been blocked by admin.`
-      : `Hello ${buyer.name}, your account has been unblocked by admin.`;
+      ? `Hello ${buyer.name}, your account has been set to inactive by admin.`
+      : `Hello ${buyer.name}, your account has been activated by admin.`;
 
     try {
       await sendEmail({
@@ -65,10 +81,10 @@ export const toggleBlockBuyer = async (req, res) => {
     } catch (err) {}
 
     res.status(200).json({
-      message: buyer.isBlocked ? "Buyer blocked" : "Buyer unblocked",
+      message: buyer.isBlocked ? "Buyer Inactive" : "Buyer Active",
       isBlocked: buyer.isBlocked,
     });
   } catch (error) {
-    res.status(500).json({ message: "Block action failed" });
+    res.status(500).json({ message: "Status update failed" });
   }
 };

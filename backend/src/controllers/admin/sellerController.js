@@ -21,46 +21,35 @@ export const toggleBlockSeller = async (req, res) => {
       return res.status(404).json({ message: "Seller not found" });
     }
 
+    if (seller.isDeleted) {
+      return res.status(400).json({ message: "Deleted seller cannot be updated" });
+    }
+
     seller.isBlocked = !seller.isBlocked;
     await seller.save();
 
-    const subjectRepos = seller.isBlocked
-      ? "Seller Account Blocked"
-      : "Seller Account Unblocked";
+    const subject = seller.isBlocked
+      ? "Account Inactive"
+      : "Account Active";
 
-      const textRepos = seller.isBlocked
-      ? `Hello ${seller.name},
-    
-        Your Seller account has been BLOCKED by the admin.
-        
-        You can still login to your account, but you will NOT be able to add, edit, or manage products until your account is unblocked.
-        
-        If you believe this action was taken by mistake, please contact support.`
-          : `Hello ${seller.name},
-        
-        Your Seller account has been UNBLOCKED by the admin.
-        
-        You can now login and manage your products normally.`;
+    const text = seller.isBlocked
+      ? `Hello ${seller.name}, your account has been set to inactive by admin.`
+      : `Hello ${seller.name}, your account has been activated by admin.`;
 
     try {
       await sendEmail({
         to: seller.email,
-        subject: subjectRepos,
-        text: textRepos,
+        subject,
+        text,
       });
-    } catch (err) {
-      console.log("Mail failed:", err.message);
-    }
+    } catch (err) {}
 
     res.status(200).json({
-      message: seller.isBlocked
-        ? "Seller account blocked"
-        : "Seller account unblocked",
+      message: seller.isBlocked ? "Seller Inactive" : "Seller Active",
       isBlocked: seller.isBlocked,
     });
-
   } catch (error) {
-    res.status(500).json({ message: "Block action failed" });
+    res.status(500).json({ message: "Status update failed" });
   }
 };
 
@@ -72,29 +61,19 @@ export const deleteSeller = async (req, res) => {
       return res.status(404).json({ message: "Seller not found" });
     }
 
-    const email = seller.email;
-    const name = seller.name;
-
-    await seller.deleteOne();
+    seller.isDeleted = true;
+    seller.isBlocked = true;
+    await seller.save();
 
     try {
       await sendEmail({
-        to: email,
-        subject: "Seller Account Deleted",
-        text: `Hello ${name},
-
-        Your Seller account has been permanently DELETED by the admin.
-
-        You will no longer be able to access the system.
-
-        If you think this was done in error, please contact support.`,
+        to: seller.email,
+        subject: "Account Deleted",
+        text: `Hello ${seller.name}, your account has been deleted by admin. You can no longer access the platform.`,
       });
-    } catch (err) {
-      console.log("Mail failed:", err.message);
-    }
+    } catch (err) {}
 
     res.status(200).json({ message: "Seller deleted successfully" });
-
   } catch (error) {
     res.status(500).json({ message: "Delete failed" });
   }

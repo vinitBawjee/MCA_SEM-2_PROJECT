@@ -1,147 +1,176 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./SellerManagement.css";
+import AlertMessage from "../../components/layout/AlertMessage";
 
 const SellerManagement = () => {
   const [sellers, setSellers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [confirmBox, setConfirmBox] = useState(null);
+  const [alert, setAlert] = useState({ type: "", message: "" });
 
   useEffect(() => {
     fetchSellers();
   }, []);
 
   const fetchSellers = async () => {
-    try {
-      setLoading(true);
-      const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
-      const res = await axios.get(
-        "http://localhost:5000/api/admin/sellers",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+    const res = await axios.get(
+      "http://localhost:5000/api/admin/sellers",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
-      setSellers(res.data?.data || []);
-      setError(null);
-    } catch (err) {
-      setError(
-        err.response?.data?.message || "Failed to fetch sellers"
-      );
-      setSellers([]);
-    } finally {
-      setLoading(false);
-    }
+    setSellers(res.data?.data || []);
   };
 
-  const handleBlock = async (id) => {
-    try {
-      const token = sessionStorage.getItem("token");
+  const handleConfirmAction = (id, type) => {
+    setConfirmBox({ id, type });
+  };
 
+  const handleConfirm = async () => {
+    const token = sessionStorage.getItem("token");
+
+    if (confirmBox.type === "toggle") {
       const res = await axios.put(
-        `http://localhost:5000/api/seller/block/${id}`,
+        `http://localhost:5000/api/admin/seller/block/${confirmBox.id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       setSellers((prev) =>
-        prev.map((seller) =>
-          seller._id === id
-            ? { ...seller, isBlocked: res.data.isBlocked }
-            : seller
+        prev.map((s) =>
+          s._id === confirmBox.id
+            ? { ...s, isBlocked: res.data.isBlocked }
+            : s
         )
       );
-    } catch (error) {
-      alert("Block action failed");
+
+      setAlert({ type: "success", message: res.data.message });
     }
-  };
 
-  const handleDelete = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this seller?"
-    );
-
-    if (!confirmDelete) return;
-
-    try {
-      const token = sessionStorage.getItem("token");
-
-      await axios.delete(
-        `http://localhost:5000/api/admin/seller/${id}`,
+    if (confirmBox.type === "delete") {
+      const res = await axios.delete(
+        `http://localhost:5000/api/admin/seller/${confirmBox.id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       setSellers((prev) =>
-        prev.filter((seller) => seller._id !== id)
+        prev.map((s) =>
+          s._id === confirmBox.id
+            ? { ...s, isDeleted: true, isBlocked: true }
+            : s
+        )
       );
-    } catch (error) {
-      alert("Delete failed");
+
+      setAlert({ type: "success", message: res.data.message });
     }
+
+    setConfirmBox(null);
   };
 
   return (
     <div className="seller-container">
+      <AlertMessage
+        type={alert.type}
+        message={alert.message}
+        onClose={() => setAlert({ type: "", message: "" })}
+      />
+
       <h2 className="seller-title">Seller Management</h2>
 
-      {loading && <p>Loading sellers...</p>}
-      {error && <p className="error-text">{error}</p>}
+      <table className="seller-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-      {!loading && sellers.length > 0 && (
-        <table className="seller-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Mobile</th>
-              <th>Role</th>
-              <th>Status</th>
-              <th>Created</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+        <tbody>
+          {sellers.map((seller) => (
+            <tr
+              key={seller._id}
+              className={seller.isDeleted ? "disabled-row" : ""}
+            >
+              <td className={seller.isDeleted ? "strike" : ""}>
+                {seller.name}
+              </td>
+              <td className={seller.isDeleted ? "strike" : ""}>
+                {seller.email}
+              </td>
+              <td className={seller.isDeleted ? "strike" : ""}>
+                {seller.mobile}
+              </td>
 
-          <tbody>
-            {sellers.map((seller) => (
-              <tr key={seller._id}>
-                <td>{seller.name}</td>
-                <td>{seller.email}</td>
-                <td>{seller.mobile}</td>
-                <td>{seller.role}</td>
+              <td className={seller.isBlocked ? "blocked" : "active"}>
+                {seller.isBlocked ? "Inactive" : "Active"}
+              </td>
 
-                <td className={seller.isBlocked ? "blocked" : "active"}>
-                  {seller.isBlocked ? "Blocked" : "Active"}
-                </td>
+              <td>
+                {new Date(seller.createdAt)
+                  .toISOString()
+                  .split("T")[0]}
+              </td>
 
-                <td>
-                  {new Date(seller.createdAt)
-                    .toISOString()
-                    .split("T")[0]}
-                </td>
-
-                <td>
+              <td>
+                {!seller.isDeleted && (
                   <button
                     className="block-btn"
-                    onClick={() => handleBlock(seller._id)}
+                    onClick={() =>
+                      handleConfirmAction(seller._id, "toggle")
+                    }
                   >
-                    {seller.isBlocked ? "Unblock" : "Block"}
+                    {seller.isBlocked ? "Active" : "Inactive"}
                   </button>
+                )}
 
+                {!seller.isDeleted && (
                   <button
                     className="delete-btn"
-                    onClick={() => handleDelete(seller._id)}
+                    onClick={() =>
+                      handleConfirmAction(seller._id, "delete")
+                    }
                   >
                     Delete
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      {!loading && sellers.length === 0 && !error && (
-        <p>No sellers found</p>
+      {confirmBox && (
+        <div className="confirm-overlay">
+          <div className="confirm-box">
+            <h3>Confirm</h3>
+            <p>
+              {confirmBox.type === "toggle"
+                ? "Are you sure you want to change status?"
+                : "Are you sure you want to delete this seller?"}
+            </p>
+            <div className="confirm-actions">
+              <button
+                className="no-btn"
+                onClick={() => setConfirmBox(null)}
+              >
+                No
+              </button>
+              <button
+                className="yes-btn"
+                onClick={handleConfirm}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

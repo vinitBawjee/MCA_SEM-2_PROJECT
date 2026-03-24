@@ -43,6 +43,9 @@ export const getCompletedAuctions = async (req, res) => {
       return {
         productId: item._id,
         productTitle: product?.title,
+        productImage: product?.image,
+        startPrice: product?.price,
+        createdAt: product?.createdAt,
         highestBid: item.highestBid,
         buyerName: item.buyer?.name,
         buyerEmail: item.buyer?.email
