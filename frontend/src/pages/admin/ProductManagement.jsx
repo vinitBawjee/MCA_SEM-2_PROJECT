@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import AlertMessage from "../../components/layout/AlertMessage";
 import "./ProductManagement.css";
 
 export default function ProductManagement() {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState([]);
+  const [alertMsg, setAlertMsg] = useState("");
+  const [alertType, setAlertType] = useState("success");
+  const [confirmBox, setConfirmBox] = useState(null);
+
+  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  const token = sessionStorage.getItem("token");
 
   const fetchProducts = async () => {
     try {
@@ -18,87 +25,60 @@ export default function ProductManagement() {
       });
       setProducts(res.data.data);
     } catch {
-      alert("Failed to fetch products");
+      setAlertType("error");
+      setAlertMsg("Failed to fetch products");
     }
   };
 
-  const updateStatus = async (id, currentStatus, action) => {
-    let newStatus = currentStatus;
+  const handleAction = (id, newStatus, actionName) => {
+    setConfirmBox({
+      id,
+      newStatus,
+      actionName,
+    });
+  };
 
-    if (currentStatus === "pending" && action === "approve")
-      newStatus = "active";
-    if (currentStatus === "pending" && action === "reject")
-      newStatus = "inactive";
-    if (currentStatus === "active" && action === "disable")
-      newStatus = "inactive";
-    if (currentStatus === "inactive" && action === "activate")
-      newStatus = "active";
-
-    const confirmAction = window.confirm(
-      `Are you sure you want to ${action} this product?`
-    );
-
-    if (!confirmAction) return;
-
+  const confirmAction = async () => {
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/products/${id}/status`,
-        { status: newStatus },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        `http://localhost:5000/api/admin/products/${confirmBox.id}/status`,
+        { status: confirmBox.newStatus },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
+
+      setAlertType("success");
+      setAlertMsg(`Product ${confirmBox.actionName} successfully`);
+      setConfirmBox(null);
       fetchProducts();
     } catch {
-      alert("Status update failed");
-    }
-  };
-
-  const completeAuction = async (id) => {
-    const confirmComplete = window.confirm(
-      "Are you sure you want to complete this auction?"
-    );
-  
-    if (!confirmComplete) return;
-  
-    try {
-      await axios.put(
-        `http://localhost:5000/api/admin/biddings/complete/${id}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-  
-      fetchProducts();
-    } catch (error) {
-      alert("Auction complete failed");
-    }
-  };
-
-  const handleDelete = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this product?"
-    );
-
-    if (!confirmDelete) return;
-
-    try {
-      await axios.delete(`http://localhost:5000/api/admin/products/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      fetchProducts();
-    } catch {
-      alert("Delete failed");
+      setAlertType("error");
+      setAlertMsg("Action failed");
+      setConfirmBox(null);
     }
   };
 
   return (
     <div className="product-container">
       <h2>Product Management</h2>
+
+      <AlertMessage
+        type={alertType}
+        message={alertMsg}
+        onClose={() => setAlertMsg("")}
+      />
+
+      {confirmBox && (
+        <div className="confirm-overlay">
+          <div className="confirm-box">
+            <h3>Confirm</h3>
+            <p>Are you sure you want to change status?</p>
+            <div className="confirm-actions">
+              <button onClick={() => setConfirmBox(null)}>No</button>
+              <button onClick={confirmAction}>Yes</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <table className="product-table">
         <thead>
@@ -115,7 +95,10 @@ export default function ProductManagement() {
 
         <tbody>
           {products.map((product) => (
-            <tr key={product._id}>
+            <tr
+              key={product._id}
+              className={product.status === "closed" ? "closed-row" : ""}
+            >
               <td>
                 {product.image && (
                   <img
@@ -130,7 +113,6 @@ export default function ProductManagement() {
               <td>{product.seller?.name}</td>
               <td>₹ {product.price}</td>
               <td>{product.stock}</td>
-
               <td className={`status ${product.status}`}>{product.status}</td>
 
               <td>
@@ -139,16 +121,15 @@ export default function ProductManagement() {
                     <button
                       className="approve-btn"
                       onClick={() =>
-                        updateStatus(product._id, product.status, "approve")
+                        handleAction(product._id, "active", "approved")
                       }
                     >
                       Approve
                     </button>
-
                     <button
                       className="reject-btn"
                       onClick={() =>
-                        updateStatus(product._id, product.status, "reject")
+                        handleAction(product._id, "rejected", "rejected")
                       }
                     >
                       Reject
@@ -160,39 +141,63 @@ export default function ProductManagement() {
                   <>
                     <button
                       className="complete-btn"
-                      onClick={() => completeAuction(product._id)}
+                      onClick={() =>
+                        handleAction(product._id, "complete", "completed")
+                      }
                     >
                       Complete
                     </button>
-
                     <button
-                      className="reject-btn"
+                      className="action-btn"
                       onClick={() =>
-                        updateStatus(product._id, product.status, "disable")
+                        handleAction(product._id, "inactive", "disabled")
                       }
                     >
-                      Disable
+                      Inactive
                     </button>
                   </>
                 )}
 
                 {product.status === "inactive" && (
+                  <>
+                    <button
+                      className="approve-btn"
+                      onClick={() =>
+                        handleAction(product._id, "active", "activated")
+                      }
+                    >
+                      Active
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() =>
+                        handleAction(product._id, "closed", "closed")
+                      }
+                    >
+                      Close
+                    </button>
+                  </>
+                )}
+
+                {product.status === "rejected" && (
                   <button
-                    className="approve-btn"
+                    className="delete-btn"
                     onClick={() =>
-                      updateStatus(product._id, product.status, "activate")
+                      handleAction(product._id, "closed", "closed")
                     }
                   >
-                    Activate
+                    Close
                   </button>
                 )}
 
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(product._id)}
-                >
-                  Delete
-                </button>
+                {product.status === "complete" && (
+                  <button
+                    className="view-btn"
+                    onClick={() => navigate(`/admin/products/${product._id}`)}
+                  >
+                    View
+                  </button>
+                )}
               </td>
             </tr>
           ))}

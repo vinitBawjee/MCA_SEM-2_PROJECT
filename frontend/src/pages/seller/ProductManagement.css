@@ -107,13 +107,15 @@
 .edit-btn,
 .delete-btn,
 .view-btn {
-  padding: 6px 14px;
+  padding: 8px 0;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   color: #fff;
   font-weight: 500;
   transition: 0.2s ease;
+  width: 100px;
+  text-align: center;
 }
 
 .edit-btn {

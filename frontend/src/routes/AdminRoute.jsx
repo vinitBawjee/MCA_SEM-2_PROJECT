@@ -5,6 +5,7 @@ import AdminDashboard from "../pages/admin/Dashboard";
 import BuyerManagement from "../pages/admin/BuyerManagement";
 import SellerManagement from "../pages/admin/SellerManagement";
 import ProductManagement from "../pages/admin/ProductManagement";
+import ViewProduct from "../pages/admin/ViewProduct";
 
 const AdminRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AdminRoutes = () => {
       <Route path="buyers" element={<BuyerManagement />} />
       <Route path="sellers" element={<SellerManagement />} />
       <Route path="products" element={<ProductManagement />} />
+      <Route path="products/:id" element={<ViewProduct />} />
     </Route>
   );
 };

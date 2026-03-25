@@ -60,14 +60,6 @@ export default function ProductManagement() {
   };
 
   const handleNo = () => {
-    setAlert(null);
-    setTimeout(() => {
-      setAlert({
-        type: "error",
-        message: `${actionType} cancelled`,
-      });
-    }, 100);
-
     setShowConfirm(false);
   };
 

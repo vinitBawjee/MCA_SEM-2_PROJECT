@@ -11,33 +11,38 @@ export default function ViewProduct() {
   const [bids, setBids] = useState([]);
 
   useEffect(() => {
-    fetchProduct();
+    fetchData();
   }, []);
 
-  const fetchProduct = async () => {
-    const res = await axios.get(
-      `http://localhost:5000/api/seller/products/${id}`,
+  const fetchData = async () => {
+    const productRes = await axios.get(
+      `http://localhost:5000/api/admin/products/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
-    setProduct(res.data.data.product);
-    setBids(res.data.data.bids);
+    const bidsRes = await axios.get(
+      `http://localhost:5000/api/admin/products/${id}/bids`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    setProduct(productRes.data.data);
+    setBids(bidsRes.data.data);
   };
 
   if (!product) return <p>Loading...</p>;
 
   return (
     <div className="view-container">
+
       <div className="view-card">
+
         {product.image && (
-          <img
-            src={`http://localhost:5000/${product.image}`}
-            alt=""
-          />
+          <img src={`http://localhost:5000/${product.image}`} alt="" />
         )}
 
         <div className="view-details">
           <h2>{product.title}</h2>
+
           <p><strong>Description:</strong> {product.description}</p>
           <p><strong>Price:</strong> ₹ {product.price}</p>
           <p><strong>Stock:</strong> {product.stock}</p>
@@ -59,27 +64,33 @@ export default function ViewProduct() {
               <th>Buyer</th>
               <th>Email</th>
               <th>Bid Amount</th>
-              <th>Date</th>
+              <th>Date & Time</th>
             </tr>
           </thead>
+
           <tbody>
-            {bids.length === 0 ? (
-              <tr>
-                <td colSpan="4">No bids available</td>
-              </tr>
-            ) : (
+            {bids.length > 0 ? (
               bids.map((bid) => (
                 <tr key={bid._id}>
                   <td>{bid.buyer?.name}</td>
                   <td>{bid.buyer?.email}</td>
                   <td>₹ {bid.bidAmount}</td>
-                  <td>{new Date(bid.createdAt).toISOString().split("T")[0]}</td>
+                  <td>
+                    {new Date(bid.createdAt).toLocaleString("en-GB")}
+                  </td>
                 </tr>
               ))
+            ) : (
+              <tr>
+                <td colSpan="4" style={{ textAlign: "center" }}>
+                  No bids available
+                </td>
+              </tr>
             )}
           </tbody>
         </table>
       </div>
+
     </div>
   );
 }

@@ -9,6 +9,8 @@ router.put("/products/:id/status", protect, authorize("admin"), adminProductCont
 router.delete("/products/:id", protect, authorize("admin"), adminProductController.deleteProductByAdmin);
 router.get("/biddings", protect, authorize("admin"), adminAuctionController.getAllBiddings);
 router.put("/biddings/complete/:id", protect, authorize("admin"), adminAuctionController.completeBidding);
+router.get("/products/:id", protect, authorize("admin"), adminProductController.getSingleProduct);
+router.get("/products/:id/bids", protect, authorize("admin"), adminProductController.getProductBids);
 
 router.get("/buyers", protect, authorize("admin"), adminBuyerController.getAllBuyers);
 router.delete("/buyer/:id", protect, authorize("admin"), adminBuyerController.deleteBuyer);

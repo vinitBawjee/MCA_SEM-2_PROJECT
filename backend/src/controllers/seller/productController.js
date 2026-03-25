@@ -1,4 +1,5 @@
 import Product from "../../models/Product.js";
+import Auction from "../../models/Auction.js";
 import sendEmail from "../../utils/sendEmail.js";
 
 export const createProduct = async (req, res) => {
@@ -47,7 +48,11 @@ export const getSingleProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    res.status(200).json({ data: product });
+    const bids = await Auction.find({ product: product._id })
+      .populate("buyer", "name email")
+      .sort({ bidAmount: -1 });
+
+    res.status(200).json({ data: { product, bids } });
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch product" });
   }
