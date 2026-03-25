@@ -45,7 +45,7 @@ export const getSingleProductWithBidsAdmin = async (req, res) => {
 
 export const updateProductStatus = async (req, res) => {
   try {
-    const { status } = req.body;
+    const { status, reason } = req.body;
 
     const product = await Product.findById(req.params.id).populate("seller");
 
@@ -95,10 +95,16 @@ export const updateProductStatus = async (req, res) => {
     product.status = status;
     await product.save();
 
+    let message = `Hello ${product.seller.name}, your product "${product.title}" status is now "${status}".`;
+
+    if (status === "rejected" && reason) {
+      message = `Hello ${product.seller.name}, your product "${product.title}" has been rejected.\nReason: ${reason}`;
+    }
+
     await sendEmail({
       to: product.seller.email,
       subject: "Product Status Updated",
-      text: `Hello ${product.seller.name}, your product "${product.title}" status is now "${status}".`,
+      text: message,
     });
 
     res.status(200).json({

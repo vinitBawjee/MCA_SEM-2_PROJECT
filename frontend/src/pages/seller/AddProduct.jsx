@@ -34,7 +34,7 @@ export default function AddProduct() {
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
-    const product = res.data.data;
+    const product = res.data.data.product;
 
     setFormData({
       title: product.title || "",
@@ -69,35 +69,33 @@ export default function AddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!validate()) return;
-  
+
     const data = new FormData();
-  
+
     Object.keys(formData).forEach((key) =>
       data.append(key, formData[key])
     );
-  
-    if (image) data.append("image", image);
-  
-    try {
 
+    if (image) data.append("image", image);
+
+    try {
       if (id) {
         await axios.put(
           `http://localhost:5000/api/seller/products/${id}`,
           data,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-    
+
         setAlert({ type: "success", message: "Product updated successfully" });
-    
       } else {
         await axios.post(
           "http://localhost:5000/api/seller/products",
           data,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-    
+
         setFormData({
           title: "",
           description: "",
@@ -105,17 +103,16 @@ export default function AddProduct() {
           category: "",
           stock: "",
         });
-    
+
         setAlert({ type: "success", message: "Product added successfully" });
       }
-    
+
       setImage(null);
       setExistingImage("");
       setErrors({});
-    
+
       navigate("/seller/products");
-    
-    } catch (err) {
+    } catch {
       setAlert({ type: "error", message: "Something went wrong" });
     }
   };

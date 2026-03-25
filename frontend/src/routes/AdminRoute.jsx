@@ -6,6 +6,7 @@ import BuyerManagement from "../pages/admin/BuyerManagement";
 import SellerManagement from "../pages/admin/SellerManagement";
 import ProductManagement from "../pages/admin/ProductManagement";
 import ViewProduct from "../pages/admin/ViewProduct";
+import RejectProduct from "../pages/admin/RejectProduct";
 
 const AdminRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AdminRoutes = () => {
       <Route path="sellers" element={<SellerManagement />} />
       <Route path="products" element={<ProductManagement />} />
       <Route path="products/:id" element={<ViewProduct />} />
+      <Route path="products/reject/:id" element={<RejectProduct />} />
     </Route>
   );
 };

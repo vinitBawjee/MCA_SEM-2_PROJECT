@@ -31,11 +31,7 @@ export default function ProductManagement() {
   };
 
   const handleAction = (id, newStatus, actionName) => {
-    setConfirmBox({
-      id,
-      newStatus,
-      actionName,
-    });
+    setConfirmBox({ id, newStatus, actionName });
   };
 
   const confirmAction = async () => {
@@ -95,10 +91,7 @@ export default function ProductManagement() {
 
         <tbody>
           {products.map((product) => (
-            <tr
-              key={product._id}
-              className={product.status === "closed" ? "closed-row" : ""}
-            >
+            <tr key={product._id}>
               <td>
                 {product.image && (
                   <img
@@ -129,7 +122,7 @@ export default function ProductManagement() {
                     <button
                       className="reject-btn"
                       onClick={() =>
-                        handleAction(product._id, "rejected", "rejected")
+                        navigate(`/admin/products/reject/${product._id}`)
                       }
                     >
                       Reject
