@@ -4,6 +4,8 @@ import * as adminProductController from "./admin/productController.js";
 import * as adminBuyerController from "./admin/buyerController.js";
 import * as adminSellerController from "./admin/sellerController.js";
 import * as adminAuctionController from "./admin/adminAuctionController.js";
+import * as AuctionController from "./admin/AuctionController.js";
+import * as ContactController from "./admin/ContactController.js";
 
 import * as sellerProductController from "./seller/productController.js";
 import * as sellerDashboardController from "./seller/dashboardController.js";
@@ -35,5 +37,7 @@ export {
   sellerProfileController,
   sellerContactController,
   buyerContactController,
-  sellerCompletedAuctionsController
+  sellerCompletedAuctionsController,
+  AuctionController,
+  ContactController
 };

@@ -21,11 +21,6 @@ const Index = () => {
                 <h5 className="mb-0 brand-title">
                     Auction Admin
                 </h5>
-
-                {/* <button className="btn btn-new-admin" onClick={() => navigate("/admin/new-admin")}>
-                    <i className="fa-solid fa-user-plus me-2"></i>
-                    New Admin
-                </button> */}
                 <div className="logout">
                 <span className="user-name">{user.name}</span>
                     <button

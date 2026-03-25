@@ -8,11 +8,14 @@ const SidebarOptions = () => {
   const topButtons = [
     { name: "Dashboard", path: "/admin/dashboard" },
     { name: "Product Management", path: "/admin/products" },
+    { name: "Bids", path: "/admin/bids" },
+    { name: "Winning Bids", path: "/admin/winning-bids" },
   ];
 
   const bottomButtons = [
     { name: "Seller", path: "/admin/sellers" },
     { name: "Buyer", path: "/admin/buyers" },
+    { name: "Contact", path: "/admin/contacts" },
   ];
 
   return (

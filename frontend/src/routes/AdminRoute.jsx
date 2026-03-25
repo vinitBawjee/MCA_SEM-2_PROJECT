@@ -7,6 +7,10 @@ import SellerManagement from "../pages/admin/SellerManagement";
 import ProductManagement from "../pages/admin/ProductManagement";
 import ViewProduct from "../pages/admin/ViewProduct";
 import RejectProduct from "../pages/admin/RejectProduct";
+import AdminBids from "../pages/admin/AdminBids";
+import AdminWinningBids from "../pages/admin/AdminWinningBids";
+import AdminContact from "../pages/admin/AdminContact";
+import ContactDetails from "../pages/admin/ContactDetails";
 
 const AdminRoutes = () => {
   return (
@@ -18,6 +22,10 @@ const AdminRoutes = () => {
       <Route path="products" element={<ProductManagement />} />
       <Route path="products/:id" element={<ViewProduct />} />
       <Route path="products/reject/:id" element={<RejectProduct />} />
+      <Route path="bids" element={<AdminBids />} />
+      <Route path="winning-bids" element={<AdminWinningBids />} />
+      <Route path="contacts" element={<AdminContact />} />
+      <Route path="contact/:id" element={<ContactDetails />} />
     </Route>
   );
 };

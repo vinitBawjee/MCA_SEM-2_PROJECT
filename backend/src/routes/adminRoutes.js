@@ -1,5 +1,5 @@
 import express from "express";
-import { adminProductController, adminBuyerController, adminSellerController, adminAuctionController } from "../controllers/index.js";
+import { adminProductController, adminBuyerController, adminSellerController, adminAuctionController, AuctionController, ContactController } from "../controllers/index.js";
 import { protect, authorize } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
@@ -11,6 +11,15 @@ router.get("/biddings", protect, authorize("admin"), adminAuctionController.getA
 router.put("/biddings/complete/:id", protect, authorize("admin"), adminAuctionController.completeBidding);
 router.get("/products/:id", protect, authorize("admin"), adminProductController.getSingleProduct);
 router.get("/products/:id/bids", protect, authorize("admin"), adminProductController.getProductBids);
+router.get("/all-bids", protect, authorize("admin"), AuctionController.getAllProductsWithTopBids);
+router.get("/completed-winning-bids", protect, authorize("admin"), AuctionController.getCompletedWinningBids);
+router.get("/contacts", protect, authorize("admin"), ContactController.getAllContacts);
+router.get(
+    "/contact/:id",
+    protect,
+    authorize("admin"),
+    ContactController.getSingleContact
+  );
 
 router.get("/buyers", protect, authorize("admin"), adminBuyerController.getAllBuyers);
 router.delete("/buyer/:id", protect, authorize("admin"), adminBuyerController.deleteBuyer);

@@ -191,3 +191,13 @@
 .view-btn:hover {
   background: #6d28d9 !important;
 }
+
+.buyer-table td {
+  vertical-align: top; /* message upar se start ho */
+}
+
+.message-cell {
+  max-width: 350px;
+  white-space: pre-wrap; /* line breaks bhi respect kare */
+  word-break: break-word;
+}
