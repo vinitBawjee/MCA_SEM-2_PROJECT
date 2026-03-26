@@ -81,6 +81,7 @@ export default function ProductManagement() {
           <tr>
             <th>Image</th>
             <th>Title</th>
+            <th>Category</th>
             <th>Seller</th>
             <th>Price</th>
             <th>Stock</th>
@@ -90,77 +91,99 @@ export default function ProductManagement() {
         </thead>
 
         <tbody>
-          {products.map((product) => (
-            <tr key={product._id}>
-              <td>
-                {product.image && (
-                  <img
-                    src={`http://localhost:5000/${product.image}`}
-                    alt={product.title}
-                    className="product-img"
-                  />
-                )}
+          {products.length === 0 ? (
+            <tr>
+              <td colSpan="7" className="no-data">
+                No products available
               </td>
+            </tr>
+          ) : (
+            products.map((product) => (
+              <tr key={product._id}>
+                <td>
+                  {product.image && (
+                    <img
+                      src={`http://localhost:5000/${product.image}`}
+                      alt={product.title}
+                      className="product-img"
+                    />
+                  )}
+                </td>
 
-              <td>{product.title}</td>
-              <td>{product.seller?.name}</td>
-              <td>₹ {product.price}</td>
-              <td>{product.stock}</td>
-              <td className={`status ${product.status}`}>{product.status}</td>
+                <td>{product.title}</td>
+                <td>{product.category}</td>
+                <td>{product.seller?.name}</td>
+                <td>₹ {product.price}</td>
+                <td>{product.stock}</td>
+                <td className={`status ${product.status}`}>
+                  {product.status}
+                </td>
 
-              <td>
-                {product.status === "pending" && (
-                  <>
-                    <button
-                      className="approve-btn"
-                      onClick={() =>
-                        handleAction(product._id, "active", "approved")
-                      }
-                    >
-                      Approve
-                    </button>
-                    <button
-                      className="reject-btn"
-                      onClick={() =>
-                        navigate(`/admin/products/reject/${product._id}`)
-                      }
-                    >
-                      Reject
-                    </button>
-                  </>
-                )}
+                <td>
+                  {product.status === "pending" && (
+                    <>
+                      <button
+                        className="approve-btn"
+                        onClick={() =>
+                          handleAction(product._id, "active", "approved")
+                        }
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="reject-btn"
+                        onClick={() =>
+                          navigate(`/admin/products/reject/${product._id}`)
+                        }
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
 
-                {product.status === "active" && (
-                  <>
-                    <button
-                      className="complete-btn"
-                      onClick={() =>
-                        handleAction(product._id, "complete", "completed")
-                      }
-                    >
-                      Complete
-                    </button>
-                    <button
-                      className="action-btn"
-                      onClick={() =>
-                        handleAction(product._id, "inactive", "disabled")
-                      }
-                    >
-                      Inactive
-                    </button>
-                  </>
-                )}
+                  {product.status === "active" && (
+                    <>
+                      <button
+                        className="complete-btn"
+                        onClick={() =>
+                          handleAction(product._id, "complete", "completed")
+                        }
+                      >
+                        Complete
+                      </button>
+                      <button
+                        className="action-btn"
+                        onClick={() =>
+                          handleAction(product._id, "inactive", "disabled")
+                        }
+                      >
+                        Inactive
+                      </button>
+                    </>
+                  )}
 
-                {product.status === "inactive" && (
-                  <>
-                    <button
-                      className="approve-btn"
-                      onClick={() =>
-                        handleAction(product._id, "active", "activated")
-                      }
-                    >
-                      Active
-                    </button>
+                  {product.status === "inactive" && (
+                    <>
+                      <button
+                        className="approve-btn"
+                        onClick={() =>
+                          handleAction(product._id, "active", "activated")
+                        }
+                      >
+                        Active
+                      </button>
+                      <button
+                        className="delete-btn"
+                        onClick={() =>
+                          handleAction(product._id, "closed", "closed")
+                        }
+                      >
+                        Close
+                      </button>
+                    </>
+                  )}
+
+                  {product.status === "rejected" && (
                     <button
                       className="delete-btn"
                       onClick={() =>
@@ -169,31 +192,22 @@ export default function ProductManagement() {
                     >
                       Close
                     </button>
-                  </>
-                )}
+                  )}
 
-                {product.status === "rejected" && (
-                  <button
-                    className="delete-btn"
-                    onClick={() =>
-                      handleAction(product._id, "closed", "closed")
-                    }
-                  >
-                    Close
-                  </button>
-                )}
-
-                {product.status === "complete" && (
-                  <button
-                    className="view-btn"
-                    onClick={() => navigate(`/admin/products/${product._id}`)}
-                  >
-                    View
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
+                  {product.status === "complete" && (
+                    <button
+                      className="view-btn"
+                      onClick={() =>
+                        navigate(`/admin/products/${product._id}`)
+                      }
+                    >
+                      View
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

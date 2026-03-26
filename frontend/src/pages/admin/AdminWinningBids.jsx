@@ -39,7 +39,7 @@ export default function AdminWinningBids() {
           <tbody>
             {data.length === 0 ? (
               <tr>
-                <td colSpan="9" style={{ textAlign: "center" }}>
+                <td colSpan="9">
                   No completed bids available
                 </td>
               </tr>

@@ -31,7 +31,7 @@ const ProductDetails = () => {
   }, [id]);
 
   useEffect(() => {
-    if (!product) return;
+    if (!product || product.status === "pending") return;
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -154,6 +154,8 @@ const ProductDetails = () => {
 
   if (!product) return null;
 
+  const isInactive = product.status !== "active" || !isBiddingOpen;
+
   return (
     <div className="container">
       <AlertMessage
@@ -201,35 +203,41 @@ const ProductDetails = () => {
               <p>Price : ₹{product.price}</p>
             </div>
 
-            <div className="bidBox">
-              {product.status === "complete" ? (
-                <p className="currentBid">Complete Bid : ₹{currentBid}</p>
-              ) : (
-                <p className="currentBid">Current Bid : ₹{currentBid}</p>
-              )}
+            {product.status !== "pending" && (
+              <div className="bidBox">
+                {product.status === "complete" ? (
+                  <p className="currentBid">Complete Bid : ₹{currentBid}</p>
+                ) : product.status === "active" && !token ? (
+                  <p className="currentBid">Login is required to place a bid</p>
+                ) : isInactive ? (
+                  <p className="currentBid">Auction is temporarily inactive</p>
+                ) : (
+                  <p className="currentBid">Current Bid : ₹{currentBid}</p>
+                )}
 
-              {product.status === "active" && token && (
-                <div className="bidInput">
-                  <button onClick={decreaseBid} disabled={!isBiddingOpen}>-</button>
+                {product.status === "active" && token && (
+                  <div className="bidInput">
+                    <button onClick={decreaseBid} disabled={!isBiddingOpen}>-</button>
 
-                  <input
-                    type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(Number(e.target.value))}
-                    disabled={!isBiddingOpen}
-                  />
+                    <input
+                      type="number"
+                      value={amount}
+                      onChange={(e) => setAmount(Number(e.target.value))}
+                      disabled={!isBiddingOpen}
+                    />
 
-                  <button onClick={increaseBid} disabled={!isBiddingOpen}>+</button>
+                    <button onClick={increaseBid} disabled={!isBiddingOpen}>+</button>
 
-                  <button onClick={submitBid} disabled={!isBiddingOpen}>
-                    Submit
-                  </button>
-                </div>
-              )}
-            </div>
+                    <button onClick={submitBid} disabled={!isBiddingOpen}>
+                      Submit
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
-          {(product.status === "active" || product.status === "pending") && (
+          {product.status === "active" && (
             <div>
               <p>Days Left : {daysLeft}</p>
               <p>Time Left : {timeLeft}</p>

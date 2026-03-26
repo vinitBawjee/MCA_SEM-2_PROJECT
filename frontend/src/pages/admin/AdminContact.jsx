@@ -38,7 +38,7 @@ export default function AdminContact() {
           <tbody>
             {data.length === 0 ? (
               <tr>
-                <td colSpan="6" style={{ textAlign: "center" }}>
+                <td colSpan="6">
                   No messages available
                 </td>
               </tr>

@@ -93,56 +93,64 @@ const SellerManagement = () => {
         </thead>
 
         <tbody>
-          {sellers.map((seller) => (
-            <tr
-              key={seller._id}
-              className={seller.isDeleted ? "disabled-row" : ""}
-            >
-              <td className={seller.isDeleted ? "strike" : ""}>
-                {seller.name}
-              </td>
-              <td className={seller.isDeleted ? "strike" : ""}>
-                {seller.email}
-              </td>
-              <td className={seller.isDeleted ? "strike" : ""}>
-                {seller.mobile}
-              </td>
-
-              <td className={seller.isBlocked ? "blocked" : "active"}>
-                {seller.isBlocked ? "Inactive" : "Active"}
-              </td>
-
-              <td>
-                {new Date(seller.createdAt)
-                  .toISOString()
-                  .split("T")[0]}
-              </td>
-
-              <td>
-                {!seller.isDeleted && (
-                  <button
-                    className="block-btn"
-                    onClick={() =>
-                      handleConfirmAction(seller._id, "toggle")
-                    }
-                  >
-                    {seller.isBlocked ? "Active" : "Inactive"}
-                  </button>
-                )}
-
-                {!seller.isDeleted && (
-                  <button
-                    className="delete-btn"
-                    onClick={() =>
-                      handleConfirmAction(seller._id, "delete")
-                    }
-                  >
-                    Delete
-                  </button>
-                )}
+          {sellers.length === 0 ? (
+            <tr>
+              <td colSpan="6" className="no-data">
+                No sellers available
               </td>
             </tr>
-          ))}
+          ) : (
+            sellers.map((seller) => (
+              <tr
+                key={seller._id}
+                className={seller.isDeleted ? "disabled-row" : ""}
+              >
+                <td className={seller.isDeleted ? "strike" : ""}>
+                  {seller.name}
+                </td>
+                <td className={seller.isDeleted ? "strike" : ""}>
+                  {seller.email}
+                </td>
+                <td className={seller.isDeleted ? "strike" : ""}>
+                  {seller.mobile}
+                </td>
+
+                <td className={seller.isBlocked ? "blocked" : "active"}>
+                  {seller.isBlocked ? "Inactive" : "Active"}
+                </td>
+
+                <td>
+                  {new Date(seller.createdAt)
+                    .toISOString()
+                    .split("T")[0]}
+                </td>
+
+                <td>
+                  {!seller.isDeleted && (
+                    <button
+                      className="block-btn"
+                      onClick={() =>
+                        handleConfirmAction(seller._id, "toggle")
+                      }
+                    >
+                      {seller.isBlocked ? "Active" : "Inactive"}
+                    </button>
+                  )}
+
+                  {!seller.isDeleted && (
+                    <button
+                      className="delete-btn"
+                      onClick={() =>
+                        handleConfirmAction(seller._id, "delete")
+                      }
+                    >
+                      Delete
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 

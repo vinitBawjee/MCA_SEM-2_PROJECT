@@ -15,9 +15,9 @@ export default function SellerBids() {
       const res = await axios.get("http://localhost:5000/api/seller/bids", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setBids(res.data.data);
-    } catch (err) {
-      console.log(err);
+      setBids(res.data.data || []);
+    } catch {
+      setBids([]);
     }
   };
 
@@ -37,7 +37,13 @@ export default function SellerBids() {
         </thead>
 
         <tbody>
-          {bids.length > 0 ? (
+          {bids.length === 0 ? (
+            <tr>
+              <td colSpan="5" className="no-data">
+                No bids available
+              </td>
+            </tr>
+          ) : (
             bids.map((item) =>
               item.topBids.map((bid, index) => (
                 <tr key={bid._id}>
@@ -64,12 +70,6 @@ export default function SellerBids() {
                 </tr>
               ))
             )
-          ) : (
-            <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
-                No bids found
-              </td>
-            </tr>
           )}
         </tbody>
       </table>

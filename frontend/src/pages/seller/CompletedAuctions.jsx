@@ -40,7 +40,7 @@ const CompletedAuctions = () => {
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan="7" style={{ textAlign: "center", padding: "20px" }}>
+              <td colSpan="7">
                 No Winning Auctions Found
               </td>
             </tr>

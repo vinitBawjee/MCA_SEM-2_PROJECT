@@ -104,73 +104,41 @@ export default function ProductManagement() {
         </thead>
 
         <tbody>
-          {products.map((item) => (
-            <tr key={item._id} className={item.status === "withdrawn" ? "withdrawn-row" : ""}>
-              <td>
-                {item.status !== "withdrawn" && item.image && (
-                  <img src={`http://localhost:5000/${item.image}`} alt="" width="60" />
-                )}
+          {products.length === 0 ? (
+            <tr>
+              <td colSpan="8" className="no-data">
+                No products available
               </td>
+            </tr>
+          ) : (
+            products.map((item) => (
+              <tr key={item._id} className={item.status === "withdrawn" ? "withdrawn-row" : ""}>
+                <td>
+                  {item.status !== "withdrawn" && item.image && (
+                    <img src={`http://localhost:5000/${item.image}`} alt="" width="60" />
+                  )}
+                </td>
 
-              <td className={item.status === "withdrawn" ? "strike" : ""}>{item.title}</td>
-              <td className={item.status === "withdrawn" ? "strike" : ""}>₹ {item.price}</td>
-              <td className={item.status === "withdrawn" ? "strike" : ""}>{item.stock}</td>
-              <td className={item.status === "withdrawn" ? "strike" : ""}>{item.category}</td>
+                <td className={item.status === "withdrawn" ? "strike" : ""}>{item.title}</td>
+                <td className={item.status === "withdrawn" ? "strike" : ""}>₹ {item.price}</td>
+                <td className={item.status === "withdrawn" ? "strike" : ""}>{item.stock}</td>
+                <td className={item.status === "withdrawn" ? "strike" : ""}>{item.category}</td>
 
-              <td className={`status ${item.status}`}>{item.status}</td>
+                <td className={`status ${item.status}`}>{item.status}</td>
 
-              <td className={item.status === "withdrawn" ? "strike" : ""}>
-                {new Date(item.createdAt).toISOString().split("T")[0]}
-              </td>
+                <td className={item.status === "withdrawn" ? "strike" : ""}>
+                  {new Date(item.createdAt).toISOString().split("T")[0]}
+                </td>
 
-              <td>
-                <div className="action-box">
-                  {item.status === "withdrawn" ? (
-                    <del>Withdrawn</del>
-                  ) : (
-                    <>
-                      {(item.status === "inactive" ||
-                        item.status === "complete" ||
-                        item.status === "active") && (
-                        <button
-                          className="view-btn"
-                          onClick={() =>
-                            navigate(`/seller/view-product/${item._id}`)
-                          }
-                        >
-                          View
-                        </button>
-                      )}
-
-                      {item.status === "rejected" && (
-                        <>
-                          <button
-                            className="edit-btn"
-                            onClick={() =>
-                              navigate(`/seller/edit-product/${item._id}`)
-                            }
-                          >
-                            Edit
-                          </button>
-
-                          <button
-                            className="delete-btn"
-                            onClick={() => openConfirm(item._id, "close")}
-                          >
-                            Close
-                          </button>
-                        </>
-                      )}
-
-                      {item.status === "pending" && (
-                        <>
-                          <button
-                            className="delete-btn"
-                            onClick={() => openConfirm(item._id, "withdraw")}
-                          >
-                            Withdraw
-                          </button>
-
+                <td>
+                  <div className="action-box">
+                    {item.status === "withdrawn" ? (
+                      <del>Withdrawn</del>
+                    ) : (
+                      <>
+                        {(item.status === "inactive" ||
+                          item.status === "complete" ||
+                          item.status === "active") && (
                           <button
                             className="view-btn"
                             onClick={() =>
@@ -179,14 +147,54 @@ export default function ProductManagement() {
                           >
                             View
                           </button>
-                        </>
-                      )}
-                    </>
-                  )}
-                </div>
-              </td>
-            </tr>
-          ))}
+                        )}
+
+                        {item.status === "rejected" && (
+                          <>
+                            <button
+                              className="edit-btn"
+                              onClick={() =>
+                                navigate(`/seller/edit-product/${item._id}`)
+                              }
+                            >
+                              Edit
+                            </button>
+
+                            <button
+                              className="delete-btn"
+                              onClick={() => openConfirm(item._id, "close")}
+                            >
+                              Close
+                            </button>
+                          </>
+                        )}
+
+                        {item.status === "pending" && (
+                          <>
+                            <button
+                              className="delete-btn"
+                              onClick={() => openConfirm(item._id, "withdraw")}
+                            >
+                              Withdraw
+                            </button>
+
+                            <button
+                              className="view-btn"
+                              onClick={() =>
+                                navigate(`/seller/view-product/${item._id}`)
+                              }
+                            >
+                              View
+                            </button>
+                          </>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

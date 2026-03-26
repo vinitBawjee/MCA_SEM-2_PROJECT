@@ -97,58 +97,66 @@ export default function BuyerManagement() {
         </thead>
 
         <tbody>
-          {buyers.map((buyer) => (
-            <tr
-              key={buyer._id}
-              className={buyer.isDeleted ? "disabled-row" : ""}
-            >
-              <td className={buyer.isDeleted ? "strike" : ""}>
-                {buyer.name}
-              </td>
-              <td className={buyer.isDeleted ? "strike" : ""}>
-                {buyer.email}
-              </td>
-              <td className={buyer.isDeleted ? "strike" : ""}>
-                {buyer.mobile}
-              </td>
-
-              <td>
-                <span className={buyer.isBlocked ? "blocked" : "active"}>
-                  {buyer.isBlocked ? "Inactive" : "Active"}
-                </span>
-              </td>
-
-              <td>
-                {new Date(buyer.createdAt)
-                  .toISOString()
-                  .split("T")[0]}
-              </td>
-
-              <td>
-                {!buyer.isDeleted && (
-                  <button
-                    className="block-btn"
-                    onClick={() =>
-                      handleActionConfirm(buyer._id, "toggle")
-                    }
-                  >
-                    {buyer.isBlocked ? "Active" : "Inactive"}
-                  </button>
-                )}
-
-                {!buyer.isDeleted && (
-                  <button
-                    className="delete-btn"
-                    onClick={() =>
-                      handleActionConfirm(buyer._id, "delete")
-                    }
-                  >
-                    Delete
-                  </button>
-                )}
+          {buyers.length === 0 ? (
+            <tr>
+              <td colSpan="6" className="no-data">
+                No buyers available
               </td>
             </tr>
-          ))}
+          ) : (
+            buyers.map((buyer) => (
+              <tr
+                key={buyer._id}
+                className={buyer.isDeleted ? "disabled-row" : ""}
+              >
+                <td className={buyer.isDeleted ? "strike" : ""}>
+                  {buyer.name}
+                </td>
+                <td className={buyer.isDeleted ? "strike" : ""}>
+                  {buyer.email}
+                </td>
+                <td className={buyer.isDeleted ? "strike" : ""}>
+                  {buyer.mobile}
+                </td>
+
+                <td>
+                  <span className={buyer.isBlocked ? "blocked" : "active"}>
+                    {buyer.isBlocked ? "Inactive" : "Active"}
+                  </span>
+                </td>
+
+                <td>
+                  {new Date(buyer.createdAt)
+                    .toISOString()
+                    .split("T")[0]}
+                </td>
+
+                <td>
+                  {!buyer.isDeleted && (
+                    <button
+                      className="block-btn"
+                      onClick={() =>
+                        handleActionConfirm(buyer._id, "toggle")
+                      }
+                    >
+                      {buyer.isBlocked ? "Active" : "Inactive"}
+                    </button>
+                  )}
+
+                  {!buyer.isDeleted && (
+                    <button
+                      className="delete-btn"
+                      onClick={() =>
+                        handleActionConfirm(buyer._id, "delete")
+                      }
+                    >
+                      Delete
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 
