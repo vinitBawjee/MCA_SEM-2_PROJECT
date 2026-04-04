@@ -33,9 +33,9 @@ export default function Navbar() {
               <Link to="/">Home</Link>
             </li>
 
-            <li className="menu-item">
+            {/* <li className="menu-item">
               <Link to="/auctions">Auction</Link>
-            </li>
+            </li> */}
 
             <li className="menu-item">
               <Link to="/about">About</Link>

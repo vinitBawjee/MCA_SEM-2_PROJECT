@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import {
   LineChart,
   Line,
@@ -6,8 +8,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  BarChart,
-  Bar,
   PieChart,
   Pie,
   Cell,
@@ -15,61 +15,111 @@ import {
 } from "recharts";
 import "./BuyerDashboard.css";
 
-const bidsData = [
-  { name: "Mon", bids: 3 },
-  { name: "Tue", bids: 6 },
-  { name: "Wed", bids: 4 },
-  { name: "Thu", bids: 8 },
-  { name: "Fri", bids: 5 },
-  { name: "Sat", bids: 9 },
-  { name: "Sun", bids: 7 }
-];
-
-const auctionData = [
-  { name: "Active", value: 10 },
-  { name: "Completed", value: 5 },
-  { name: "Pending", value: 3 }
-];
-
-const categoryData = [
-  { name: "Electronics", products: 12 },
-  { name: "Mobiles", products: 8 },
-  { name: "Fashion", products: 6 },
-  { name: "Accessories", products: 5 }
-];
-
-const colors = ["#1c8f5f", "#4caf50", "#ff9800"];
-
 function BuyerDashboard() {
+  const [stats, setStats] = useState({
+    totalProducts: 0,
+    activeAuctions: 0,
+    completedAuctions: 0,
+    totalBids: 0
+  });
+
+  const [bidsData, setBidsData] = useState([]);
+  const [auctionData, setAuctionData] = useState([]);
+
+  const colors = ["#1c8f5f", "#4caf50", "#ff9800"];
+
+  useEffect(() => {
+    fetchDashboard();
+  }, []);
+
+  const fetchDashboard = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+
+      const [productsRes, bidsRes] = await Promise.all([
+        axios.get("http://localhost:5000/api/buyer/products", {
+          headers: { Authorization: `Bearer ${token}` }
+        }),
+        axios.get("http://localhost:5000/api/buyer/bids", {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      ]);
+
+      const products = productsRes.data.products || productsRes.data;
+      const bids = bidsRes.data.bids || bidsRes.data;
+
+      const totalProducts = products.length;
+
+      const activeAuctions = products.filter(
+        p => p.status === "active"
+      ).length;
+
+      const completedAuctions = products.filter(
+        p => p.status === "complete"
+      ).length;
+
+      const totalBids = bids.length;
+
+      setStats({
+        totalProducts,
+        activeAuctions,
+        completedAuctions,
+        totalBids
+      });
+
+      const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+      const weekly = [0,0,0,0,0,0,0];
+
+      bids.forEach(b => {
+        const d = new Date(b.createdAt).getDay();
+        weekly[d] += 1;
+      });
+
+      setBidsData(
+        days.map((d, i) => ({
+          name: d,
+          bids: weekly[i]
+        }))
+      );
+
+      setAuctionData([
+        { name: "Active", value: activeAuctions },
+        { name: "Completed", value: completedAuctions },
+        { name: "Pending", value: totalProducts - activeAuctions - completedAuctions }
+      ]);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="buyer-dashboard">
-
       <h2>Buyer Dashboard</h2>
 
       <div className="userdash-cards">
         <div className="userdash-card">
-          <h3>25</h3>
+          <h3>{stats.totalProducts}</h3>
           <p>Total Products</p>
         </div>
 
         <div className="userdash-card">
-          <h3>10</h3>
+          <h3>{stats.activeAuctions}</h3>
           <p>Active Auctions</p>
         </div>
 
         <div className="userdash-card">
-          <h3>5</h3>
+          <h3>{stats.completedAuctions}</h3>
           <p>Completed Auctions</p>
         </div>
 
         <div className="userdash-card">
-          <h3>18</h3>
+          <h3>{stats.totalBids}</h3>
           <p>Total Bids</p>
         </div>
       </div>
 
       <div className="graph-grid">
-
         <div className="graph-box">
           <h3>Weekly Bids</h3>
           <ResponsiveContainer width="100%" height={280}>
@@ -87,12 +137,7 @@ function BuyerDashboard() {
           <h3>Auction Status</h3>
           <ResponsiveContainer width="100%" height={280}>
             <PieChart>
-              <Pie
-                data={auctionData}
-                dataKey="value"
-                outerRadius={100}
-                label
-              >
+              <Pie data={auctionData} dataKey="value" outerRadius={100} label>
                 {auctionData.map((entry, index) => (
                   <Cell key={index} fill={colors[index % colors.length]} />
                 ))}
@@ -102,22 +147,7 @@ function BuyerDashboard() {
             </PieChart>
           </ResponsiveContainer>
         </div>
-
-        {/* <div className="graph-box full">
-          <h3>Products by Category</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={categoryData}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey="name"/>
-              <YAxis/>
-              <Tooltip/>
-              <Bar dataKey="products" fill="#1c8f5f"/>
-            </BarChart>
-          </ResponsiveContainer>
-        </div> */}
-
       </div>
-
     </div>
   );
 }

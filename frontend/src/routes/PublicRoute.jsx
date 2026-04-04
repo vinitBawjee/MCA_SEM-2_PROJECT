@@ -10,6 +10,8 @@ import WinningBids from "../pages/WinningBids";
 import Profile from "../pages/Profile";
 import BuyerDashboard from "../pages/BuyerDashboard";
 import Contact from "../pages/Contact";
+import About from "../pages/About";
+
 
 const PublicRoutes = () => {
   return (
@@ -17,6 +19,7 @@ const PublicRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/auctions" element={<AuctionsPage />} />
       <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="/about" element={<About />} />
 
       <Route path="/account" element={<AccountLayout />}>
         <Route index element={<Navigate to="dashboard" replace />} />
