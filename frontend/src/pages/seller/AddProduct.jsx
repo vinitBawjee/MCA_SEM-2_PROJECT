@@ -55,14 +55,15 @@ export default function AddProduct() {
 
   const validate = () => {
     let newErrors = {};
-
+  
     if (!formData.title.trim()) newErrors.title = "Title is required";
+    if (!formData.description.trim()) newErrors.description = "Description is required";
     if (!formData.price || Number(formData.price) <= 0)
       newErrors.price = "Valid price required";
     if (formData.stock === "" || Number(formData.stock) < 0)
       newErrors.stock = "Valid stock required";
     if (!formData.category) newErrors.category = "Category required";
-
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -140,6 +141,7 @@ export default function AddProduct() {
             onChange={handleChange}
             placeholder="Description"
           />
+          {errors.description && <p className="error">{errors.description}</p>}
         </div>
 
         <div className="aform-group">
