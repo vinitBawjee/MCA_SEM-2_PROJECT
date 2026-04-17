@@ -1,330 +1,902 @@
 [{
   "_id": {
-    "$oid": "69adad046597e2182ac0656a"
+    "$oid": "69c3ed67bb99a03e8b0a2b80"
   },
   "seller": {
-    "$oid": "69ada9b86597e2182ac0655f"
+    "$oid": "69c3e926bb99a03e8b0a2b13"
   },
-  "title": "Raja Ravi Varma Original Painting",
-  "description": "Rare collectible artwork inspired by the legendary Indian painter Raja Ravi Varma.",
+  "title": "Rolex Submariner Watch",
+  "description": "This iconic Rolex Submariner is a masterpiece of luxury and precision engineering. Crafted with high-grade stainless steel and featuring a unidirectional rotatable bezel, this watch is designed for professional divers yet admired globally as a symbol of status. The luminous hands and markers ensure visibility in all lighting conditions. Powered by a self-winding automatic movement, it offers exceptional reliability and accuracy. Its sapphire crystal is scratch-resistant, and the oyster bracelet provides both durability and comfort. Owning this timepiece is not just about telling time—it represents heritage, prestige, and timeless elegance.",
   "price": 850000,
-  "category": "painting",
+  "category": "timepieces",
   "stock": 1,
-  "image": "uploads/1772989700796.jpeg",
-  "status": "active",
+  "image": "uploads/1774448194838.jpg",
+  "status": "withdrawn",
   "createdAt": {
-    "$date": "2026-03-08T17:08:20.805Z"
+    "$date": "2026-03-25T14:12:55.069Z"
   },
   "updatedAt": {
-    "$date": "2026-03-08T17:27:40.720Z"
+    "$date": "2026-04-04T03:48:23.867Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "69adad4c6597e2182ac0656d"
+    "$oid": "69c3ef08bb99a03e8b0a2bbc"
   },
   "seller": {
-    "$oid": "69ada9b86597e2182ac0655f"
+    "$oid": "69c3e926bb99a03e8b0a2b13"
   },
-  "title": "Vintage Mughal Era Gold Necklace",
-  "description": "Handcrafted Mughal style gold necklace with traditional design.",
-  "price": 620000,
+  "title": "Louis Vuitton Leather Handbag",
+  "description": "This Louis Vuitton handbag is crafted from premium full-grain leather and showcases the brand's signature craftsmanship. Designed for modern luxury lovers, it features a spacious interior with multiple compartments for organized storage. The elegant stitching, gold-tone hardware, and iconic branding make it a fashion statement. Whether used for formal occasions or daily outings, this handbag enhances your style while ensuring durability. Its soft leather texture and ergonomic handles provide maximum comfort, making it both practical and luxurious.",
+  "price": 320000,
+  "category": "timepieces",
+  "stock": 1,
+  "image": "uploads/1774448556186.avif",
+  "status": "closed",
+  "createdAt": {
+    "$date": "2026-03-25T14:19:52.539Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-26T04:46:40.332Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c4238dbb99a03e8b0a2c23"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Diamond Stud Earrings",
+  "description": "These exquisite diamond stud earrings are crafted with precision and brilliance. Each diamond is carefully selected for its clarity, cut, and sparkle, ensuring unmatched elegance. Set in high-quality white gold, these earrings are perfect for special occasions or everyday luxury. Their timeless design makes them a valuable addition to any jewelry collection. The secure locking mechanism ensures comfort and safety, while the dazzling shine enhances your overall appearance with sophistication.",
+  "price": 450000,
   "category": "jewellery",
   "stock": 1,
-  "image": "uploads/1772989772358.jpeg",
-  "status": "pending",
+  "image": "uploads/1774461837387.webp",
+  "status": "complete",
   "createdAt": {
-    "$date": "2026-03-08T17:09:32.362Z"
+    "$date": "2026-03-25T18:03:57.391Z"
   },
   "updatedAt": {
-    "$date": "2026-03-08T17:09:32.362Z"
+    "$date": "2026-04-04T03:37:47.551Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "69adadb36597e2182ac06570"
+    "$oid": "69c425b9bb99a03e8b0a2c3b"
   },
   "seller": {
-    "$oid": "69ada9b86597e2182ac0655f"
+    "$oid": "69c3e926bb99a03e8b0a2b13"
   },
-  "title": "Rolex Submariner Luxury Watch",
-  "description": "Premium Swiss luxury watch highly demanded in collectors auctions.",
+  "title": "Mercedes-Benz S-Class Model Car (Collector Edition)",
+  "description": "This limited-edition Mercedes-Benz S-Class model is a collector’s dream. Built with extreme attention to detail, it replicates the luxury and engineering excellence of the real vehicle. The interior, exterior finish, and precision detailing make it a premium collectible. Designed for enthusiasts, this model represents innovation, luxury, and automotive excellence. A perfect addition to your collection or display, it captures the essence of one of the world’s most prestigious car brands.",
+  "price": 150000,
+  "category": "timepieces",
+  "stock": 3,
+  "image": "uploads/1774462498898.jpg",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T18:13:13.875Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-26T04:46:19.433Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c427f2bb99a03e8b0a2c6f"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Luxury Gold Necklace",
+  "description": "This handcrafted gold necklace is a symbol of elegance and tradition. Made from 22K pure gold, it features intricate designs inspired by royal craftsmanship. The smooth finish and detailed patterns reflect exceptional artistry. Perfect for weddings, celebrations, or special occasions, this necklace enhances your overall look with a touch of luxury. Its durability ensures long-term value, making it both an investment and a statement piece.",
+  "price": 600000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1774462962771.jpeg",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T18:22:42.775Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:37:40.183Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c42858bb99a03e8b0a2c82"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Gucci Designer Sneakers",
+  "description": "These Gucci sneakers redefine luxury street fashion. Crafted with premium materials, they provide both comfort and durability. The stylish design features signature branding and modern aesthetics, making them ideal for fashion-forward individuals. The cushioned sole ensures maximum comfort for daily wear, while the unique design makes a bold statement. Perfect for casual outings or premium styling.",
+  "price": 120000,
+  "category": "timepieces",
+  "stock": 4,
+  "image": "uploads/1774463064169.avif",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T18:24:24.172Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:37:55.129Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c428afbb99a03e8b0a2c8d"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Omega Speedmaster Watch",
+  "description": "The Omega Speedmaster is a legendary timepiece known for its association with space exploration. Designed with precision chronograph functionality, it offers exceptional accuracy. The sleek design, combined with a durable build, makes it both stylish and reliable. Its timeless appeal ensures it remains a valuable piece for collectors and watch enthusiasts.",
+  "price": 700000,
+  "category": "timepieces",
+  "stock": 2,
+  "image": "uploads/1774463229712.jpg",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T18:25:51.456Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:37:51.342Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c4307ebb99a03e8b0a2cf3"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Royal Palace Oil Painting",
+  "description": "This luxurious oil painting captures the grandeur of a royal palace with exceptional artistic detail. Crafted by a skilled artist using premium oil colors, it reflects elegance, history, and cultural richness. The deep textures and vibrant tones bring life to the canvas, making it a centerpiece for any sophisticated interior. Ideal for collectors and art lovers, this painting enhances the ambiance of any room with a sense of royalty and timeless beauty.",
+  "price": 120000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1774465150484.jpeg",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T18:59:10.487Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:37:28.721Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c43129bb99a03e8b0a2d0b"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Abstract Modern Art Canvas",
+  "description": "This abstract modern painting is a perfect blend of creativity and luxury. Designed with bold strokes and contemporary patterns, it reflects artistic innovation and premium craftsmanship. The high-quality canvas and fade-resistant colors ensure durability and long-lasting beauty. It is ideal for modern homes, offices, or galleries where artistic expression meets luxury living.",
+  "price": 95000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1774465321455.avif",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T19:02:01.457Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:37:23.929Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c43184bb99a03e8b0a2d18"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Diamond Necklace Set",
+  "description": "This exquisite diamond necklace set is crafted with precision and brilliance. Each diamond is carefully selected to ensure superior clarity and sparkle. Set in high-quality gold, the design reflects elegance and luxury. Perfect for weddings and premium occasions, it enhances your personality and adds unmatched charm. A true investment piece for jewelry collectors.",
+  "price": 750000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1774465727452.avif",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T19:03:32.854Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-10T04:43:53.011Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c431cebb99a03e8b0a2d1c"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Gold Bridal Jewelry Set",
+  "description": "This premium gold bridal set is handcrafted with intricate detailing and traditional artistry. Made from pure gold, it showcases timeless design and luxurious appeal. The set includes a necklace, earrings, and matching accessories, making it ideal for grand occasions. It symbolizes wealth, tradition, and elegance in every detail.",
+  "price": 680000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1774465486639.jpeg",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T19:04:46.642Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:37:36.493Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c43211bb99a03e8b0a2d20"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Platinum Ring with Diamonds",
+  "description": "This platinum ring features a stunning arrangement of high-quality diamonds that shine brilliantly from every angle. The sleek platinum band ensures durability and a luxurious finish. Perfect for engagements or special celebrations, this ring represents sophistication, love, and exclusivity.",
+  "price": 320000,
+  "category": "jewellery",
+  "stock": 2,
+  "image": "uploads/1774465553535.jpeg",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T19:05:53.538Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-26T04:41:22.304Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c4336fbb99a03e8b0a2d63"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Luxury Skeleton Watch",
+  "description": "This skeleton watch showcases the intricate internal mechanism with a transparent dial design. Built with precision engineering, it reflects both art and technology. The premium strap and detailed craftsmanship make it a unique and luxurious timepiece for enthusiasts.",
+  "price": 450000,
+  "category": "timepieces",
+  "stock": 1,
+  "image": "uploads/1774466027375.webp",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-03-25T19:11:43.101Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-25T19:13:47.380Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c434b6bb99a03e8b0a2d84"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Silver Dinner Set",
+  "description": "This premium silver dinner set is crafted with pure silver and designed with elegant patterns. It represents luxury dining and traditional richness. The polished finish and intricate detailing make it perfect for special occasions and gifting. It is both a functional and decorative investment.",
+  "price": 300000,
+  "category": "silver",
+  "stock": 2,
+  "image": "uploads/1774466230813.webp",
+  "status": "rejected",
+  "createdAt": {
+    "$date": "2026-03-25T19:17:10.816Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:38:02.707Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c43609bb99a03e8b0a2dbc"
+  },
+  "seller": {
+    "$oid": "69c43583bb99a03e8b0a2db0"
+  },
+  "title": "Silver Antique Vase",
+  "description": "This antique silver vase is a masterpiece of craftsmanship and design. Featuring detailed carvings and a polished surface, it adds elegance to any interior. Ideal for decoration, it reflects luxury and artistic excellence in every detail.",
+  "price": 180000,
+  "category": "silver",
+  "stock": 2,
+  "image": "uploads/1774466569803.jpg",
+  "status": "rejected",
+  "createdAt": {
+    "$date": "2026-03-25T19:22:49.807Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:37:57.996Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c4365dbb99a03e8b0a2dc3"
+  },
+  "seller": {
+    "$oid": "69c43583bb99a03e8b0a2db0"
+  },
+  "title": "Luxury Wooden Sofa Set",
+  "description": "This handcrafted wooden sofa set is made from premium quality wood with luxurious upholstery. Designed for comfort and elegance, it enhances the beauty of any living space. The fine finishing and durability make it a perfect investment for luxury interiors.",
+  "price": 250000,
+  "category": "furniture and decorative",
+  "stock": 1,
+  "image": "uploads/1774466653813.avif",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T19:24:13.815Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:38:15.423Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c436b3bb99a03e8b0a2dc8"
+  },
+  "seller": {
+    "$oid": "69c43583bb99a03e8b0a2db0"
+  },
+  "title": "Designer Marble Center Table",
+  "description": "This designer marble center table features a premium marble top with a strong and stylish base. Its elegant design complements modern interiors and adds a touch of sophistication. The durable construction ensures long-term usability with luxurious appeal.",
+  "price": 140000,
+  "category": "furniture and decorative",
+  "stock": 2,
+  "image": "uploads/1774466739526.avif",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T19:25:39.528Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:38:12.734Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c4374dbb99a03e8b0a2dcd"
+  },
+  "seller": {
+    "$oid": "69c43583bb99a03e8b0a2db0"
+  },
+  "title": "Luxury Decorative Chandelier",
+  "description": "This decorative chandelier is crafted with high-quality crystals and designed to provide a stunning lighting experience. It enhances the ambiance of any room with its elegant glow and luxurious design. Perfect for homes, hotels, or banquet halls.",
+  "price": 220000,
+  "category": "furniture and decorative",
+  "stock": 1,
+  "image": "uploads/1774498705545.jpg",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T19:28:13.322Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-04T03:38:06.195Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c437d7bb99a03e8b0a2def"
+  },
+  "seller": {
+    "$oid": "69c43583bb99a03e8b0a2db0"
+  },
+  "title": "Premium Wall Decor Panel",
+  "description": "This premium wall decor panel is designed to elevate interior aesthetics with modern artistic patterns. Made from high-quality materials, it offers durability and style. It serves as a perfect decorative element for luxury homes and offices.",
+  "price": 90000,
+  "category": "furniture and decorative",
+  "stock": 3,
+  "image": "uploads/1774467031519.jpg",
+  "status": "complete",
+  "createdAt": {
+    "$date": "2026-03-25T19:30:31.523Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-28T12:23:12.905Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69d535b5d08a5bbc632faa28"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Luxury Italian Marble Dining Table Set",
+  "description": "Experience timeless elegance with this premium Italian marble dining table set, crafted for those who appreciate luxury and sophistication. The table features a hand-polished Carrara marble top with natural veining, making each piece truly unique. Supported by a solid gold-finished stainless steel base, it offers both durability and a modern aesthetic. \\n\\nThe set includes six ergonomically designed velvet-upholstered chairs with high-density cushioning, ensuring maximum comfort during long dining experiences. Perfect for upscale homes, luxury apartments, or designer interiors, this dining set seamlessly blends classic craftsmanship with contemporary style.\\n\\nKey Features:\\n- Authentic Italian Carrara marble top\\n- Gold-finished stainless steel base for a premium look\\n- 6 luxury velvet chairs with ergonomic support\\n- Scratch-resistant, heat-resistant surface\\n- Ideal for luxury interiors and modern homes\\n\\nThis piece is not just furniture—it's a statement of class, elegance, and refined taste.",
+  "price": 85000,
+  "category": "furniture and decorative",
+  "stock": 1,
+  "image": "uploads/1775580597486.jpeg",
+  "status": "rejected",
+  "createdAt": {
+    "$date": "2026-04-07T16:49:57.502Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-07T17:19:25.539Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69d5383ed08a5bbc632faa6f"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Jacob & Co Astronomia Crystal Tourbillon Watch",
+  "description": "Experience the pinnacle of haute horology with the Jacob & Co Astronomia Crystal Tourbillon, a masterpiece that blends cutting-edge engineering with artistic brilliance. This extraordinary timepiece features a fully transparent sapphire crystal case, offering a 360-degree view of its mesmerizing rotating movement.\\n\\nAt its heart lies a triple-axis tourbillon, rotating continuously to enhance precision while showcasing unmatched craftsmanship. The dial includes a miniature rotating globe, a diamond moon, and a hand-painted Earth, creating a celestial experience on the wrist.\\n\\nCrafted with meticulous attention to detail, this watch is powered by a manual-winding movement with a power reserve of approximately 60 hours. Designed for elite collectors, it represents exclusivity, innovation, and luxury.\\n\\nKey Features:\\n- Transparent sapphire crystal case\\n- Triple-axis tourbillon mechanism\\n- Rotating Earth and diamond moon display\\n- Handcrafted luxury design\\n- Limited edition collector’s piece\\n\\nThis is not just a watch—it's a symbol of prestige, innovation, and ultra-luxury craftsmanship.",
+  "price": 25000000,
+  "category": "timepieces",
+  "stock": 1,
+  "image": "uploads/1775581246512.jpg",
+  "status": "pending",
+  "createdAt": {
+    "$date": "2026-04-07T17:00:46.520Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-07T17:00:46.520Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0abab59f2fe118097b45a"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Abstract Gold Leaf Canvas",
+  "description": "A premium handcrafted abstract painting featuring real gold leaf detailing on a textured canvas. Designed to enhance modern interiors, this artwork reflects elegance, depth, and exclusivity, making it ideal for luxury homes, offices, and galleries.",
+  "price": 250000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1776331691353.jpg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:28:11.371Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T10:18:50.068Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0ac4559f2fe118097b484"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Modern Royal Portrait Painting",
+  "description": "An exquisite oil painting showcasing a royal-themed portrait with intricate brushwork and a high-end wooden frame. This masterpiece blends classical inspiration with modern aesthetics, adding sophistication to any premium space.",
+  "price": 380000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1776331845702.jpg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:30:45.707Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T10:21:03.794Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0acfc59f2fe118097b49d"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Italian Renaissance Replica",
+  "description": "A museum-quality reproduction inspired by Italian Renaissance art. Crafted using traditional techniques, this painting offers historical richness and artistic excellence, perfect for collectors and luxury décor enthusiasts.",
+  "price": 420000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1776332028981.webp",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:33:48.986Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:17:57.575Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0ad7859f2fe118097b4a9"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Luxury Textured Wall Art",
+  "description": "A contemporary 3D textured painting with metallic accents, designed to create a bold visual statement. Its layered composition and premium materials make it a standout decorative piece for upscale interiors.",
+  "price": 190000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1776332152325.webp",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:35:52.329Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:18:52.471Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0add159f2fe118097b4b5"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Minimalist Black & Gold Painting",
+  "description": "A sleek and modern artwork combining black tones with gold highlights. This minimalist design brings a sense of balance and refinement, ideal for stylish and elegant living spaces.",
+  "price": 210000,
+  "category": "painting",
+  "stock": 1,
+  "image": "uploads/1776332241573.avif",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:37:21.576Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:19:02.243Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0ae1f59f2fe118097b4c6"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Diamond Choker Necklace",
+  "description": "A stunning 18K gold choker necklace adorned with certified diamonds. Designed for luxury occasions, this piece offers exceptional brilliance, craftsmanship, and timeless appeal.",
+  "price": 1250000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1776332319940.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:38:39.944Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:19:39.527Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0ae4559f2fe118097b4cc"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Platinum Engagement Ring",
+  "description": "A premium platinum ring featuring a flawless solitaire diamond. Crafted with precision, it symbolizes elegance, commitment, and luxury, making it perfect for special moments.",
+  "price": 1250000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1776332357661.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:39:17.665Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:19:48.966Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0ae7559f2fe118097b4d2"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Emerald Royal Earrings",
+  "description": "Beautifully designed earrings with high-quality emerald gemstones set in gold. These earrings reflect royal charm and sophistication, ideal for weddings and elite events.",
+  "price": 675000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1776332405564.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:40:05.568Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:19:55.871Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0aea559f2fe118097b4db"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Gold Bracelet with Diamonds",
+  "description": "A finely crafted gold bracelet embedded with sparkling diamonds. Its elegant design and luxurious finish make it suitable for both formal occasions and daily luxury wear.",
+  "price": 520000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1776332453366.webp",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:40:53.370Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:20:05.207Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0aee159f2fe118097b4e4"
+  },
+  "seller": {
+    "$oid": "69c43009bb99a03e8b0a2ce7"
+  },
+  "title": "Luxury Pearl Necklace",
+  "description": "A classic necklace made from authentic South Sea pearls. Known for their size and luster, these pearls create a refined and graceful look.",
+  "price": 410000,
+  "category": "jewellery",
+  "stock": 1,
+  "image": "uploads/1776332513955.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:41:53.958Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:20:23.530Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0afdd59f2fe118097b521"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Rolex Submariner Watch",
+  "description": "A world-renowned luxury diving watch known for its precision, durability, and iconic design. Crafted with high-quality materials, it represents status and performance.",
   "price": 950000,
   "category": "timepieces",
   "stock": 1,
-  "image": "uploads/1772989875854.jpeg",
+  "image": "uploads/1776332765954.jpeg",
   "status": "active",
   "createdAt": {
-    "$date": "2026-03-08T17:11:15.860Z"
+    "$date": "2026-04-16T09:46:05.958Z"
   },
   "updatedAt": {
-    "$date": "2026-03-08T17:27:36.505Z"
+    "$date": "2026-04-16T16:22:20.878Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "69adae486597e2182ac06573"
+    "$oid": "69e0b05259f2fe118097b52a"
   },
   "seller": {
-    "$oid": "69ada9b86597e2182ac0655f"
+    "$oid": "69c3e926bb99a03e8b0a2b13"
   },
-  "title": "Antique Silver Royal Dinner Set",
-  "description": "Pure silver royal dinner set used in ceremonial dining.",
-  "price": 540000,
-  "category": "silver",
-  "stock": 1,
-  "image": "uploads/1772990024451.jpeg",
-  "status": "pending",
-  "createdAt": {
-    "$date": "2026-03-08T17:13:44.454Z"
-  },
-  "updatedAt": {
-    "$date": "2026-03-08T17:13:44.454Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "69adae8b6597e2182ac06576"
-  },
-  "seller": {
-    "$oid": "69ada9b86597e2182ac0655f"
-  },
-  "title": "Victorian Style Royal Sofa Set",
-  "description": "Luxury handcrafted Victorian sofa set with premium upholstery.",
-  "price": 790000,
-  "category": "furniture and decorative",
-  "stock": 1,
-  "image": "uploads/1772990091969.jpeg",
-  "status": "active",
-  "createdAt": {
-    "$date": "2026-03-08T17:14:51.973Z"
-  },
-  "updatedAt": {
-    "$date": "2026-03-08T17:28:57.416Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "69adaf176597e2182ac06585"
-  },
-  "seller": {
-    "$oid": "69ada9d16597e2182ac06563"
-  },
-  "title": "Diamond Studded Platinum Ring",
-  "description": "Luxury platinum ring embedded with certified diamonds.",
-  "price": 430000,
-  "category": "jewellery",
-  "stock": 1,
-  "image": "uploads/1772990231251.jpeg",
-  "status": "active",
-  "createdAt": {
-    "$date": "2026-03-08T17:17:11.254Z"
-  },
-  "updatedAt": {
-    "$date": "2026-03-08T17:27:29.059Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "69adaf496597e2182ac06588"
-  },
-  "seller": {
-    "$oid": "69ada9d16597e2182ac06563"
-  },
-  "title": "Patek Philippe Grand Complications Watch",
-  "description": "Ultra luxury Swiss watch famous among collectors.",
-  "price": 2400000,
+  "title": "Omega Speedmaster",
+  "description": "A legendary chronograph watch with a rich history in space exploration. Combining advanced engineering with timeless design, it is a favorite among collectors.",
+  "price": 780000,
   "category": "timepieces",
   "stock": 1,
-  "image": "uploads/1772990281559.jpeg",
-  "status": "pending",
-  "createdAt": {
-    "$date": "2026-03-08T17:18:01.562Z"
-  },
-  "updatedAt": {
-    "$date": "2026-03-08T17:18:01.562Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "69adaf7f6597e2182ac0658b"
-  },
-  "seller": {
-    "$oid": "69ada9d16597e2182ac06563"
-  },
-  "title": "Royal Silver Temple Lamp",
-  "description": "Traditional handcrafted silver temple lamp used in royal ceremonies.",
-  "price": 320000,
-  "category": "silver",
-  "stock": 1,
-  "image": "uploads/1772990335479.jpeg",
-  "status": "pending",
-  "createdAt": {
-    "$date": "2026-03-08T17:18:55.482Z"
-  },
-  "updatedAt": {
-    "$date": "2026-03-08T17:18:55.482Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "69adafc16597e2182ac0658e"
-  },
-  "seller": {
-    "$oid": "69ada9d16597e2182ac06563"
-  },
-  "title": "Modern Abstract Luxury Painting",
-  "description": "Premium abstract artwork designed for luxury interiors.",
-  "price": 275000,
-  "category": "painting",
-  "stock": 1,
-  "image": "uploads/1772990401486.jpeg",
-  "status": "pending",
-  "createdAt": {
-    "$date": "2026-03-08T17:20:01.489Z"
-  },
-  "updatedAt": {
-    "$date": "2026-03-08T17:20:01.489Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "69adaff36597e2182ac06591"
-  },
-  "seller": {
-    "$oid": "69ada9d16597e2182ac06563"
-  },
-  "title": "Antique Carved Wooden Royal Bed",
-  "description": "Luxury king size wooden bed with intricate hand carvings.",
-  "price": 910000,
-  "category": "furniture and decorative",
-  "stock": 1,
-  "image": "uploads/1772990451007.jpeg",
-  "status": "pending",
-  "createdAt": {
-    "$date": "2026-03-08T17:20:51.010Z"
-  },
-  "updatedAt": {
-    "$date": "2026-03-08T17:20:51.010Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "69adb04f6597e2182ac0659a"
-  },
-  "seller": {
-    "$oid": "69adaa056597e2182ac06567"
-  },
-  "title": "Emerald and Diamond Royal Necklace",
-  "description": "Luxury necklace crafted with emerald gemstones and diamonds.",
-  "price": 1500000,
-  "category": "jewellery",
-  "stock": 1,
-  "image": "uploads/1772990543814.jpeg",
+  "image": "uploads/1776332882869.jpeg",
   "status": "active",
   "createdAt": {
-    "$date": "2026-03-08T17:22:23.816Z"
+    "$date": "2026-04-16T09:48:02.871Z"
   },
   "updatedAt": {
-    "$date": "2026-03-08T17:28:06.470Z"
+    "$date": "2026-04-16T16:22:27.852Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "69adb08c6597e2182ac0659f"
+    "$oid": "69e0b0bf59f2fe118097b533"
   },
   "seller": {
-    "$oid": "69adaa056597e2182ac06567"
+    "$oid": "69c3e926bb99a03e8b0a2b13"
   },
-  "title": "Luxury Swiss Skeleton Watch",
-  "description": "High-end skeleton watch showcasing intricate mechanics.",
-  "price": 670000,
+  "title": "Tag Heuer Carrera",
+  "description": "A sporty yet elegant timepiece designed for precision and style. Its sleek design and high-performance movement make it ideal for modern professionals.",
+  "price": 560000,
   "category": "timepieces",
   "stock": 1,
-  "image": "uploads/1772990604126.jpeg",
+  "image": "uploads/1776332991291.jpeg",
   "status": "active",
   "createdAt": {
-    "$date": "2026-03-08T17:23:24.129Z"
+    "$date": "2026-04-16T09:49:51.294Z"
   },
   "updatedAt": {
-    "$date": "2026-03-08T17:27:22.448Z"
+    "$date": "2026-04-16T16:22:35.425Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "69adb0c26597e2182ac065a2"
+    "$oid": "69e0b10759f2fe118097b539"
   },
   "seller": {
-    "$oid": "69adaa056597e2182ac06567"
+    "$oid": "69c3e926bb99a03e8b0a2b13"
   },
-  "title": "Handcrafted Silver Tea Set",
-  "description": "Premium silver tea set with royal engravings.",
-  "price": 390000,
+  "title": "Patek Philippe Classic",
+  "description": "An ultra-luxury watch known for its craftsmanship and exclusivity. This timepiece is a symbol of prestige, often passed down as a legacy.",
+  "price": 2500000,
+  "category": "timepieces",
+  "stock": 1,
+  "image": "uploads/1776333063845.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:51:03.847Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:22:42.859Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0b23359f2fe118097b54b"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Audemars Piguet Royal Oak",
+  "description": "A bold and iconic luxury watch featuring a distinctive octagonal design. Crafted with precision, it represents innovation and elite craftsmanship.",
+  "price": 3000000,
+  "category": "timepieces",
+  "stock": 1,
+  "image": "uploads/1776333363997.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T09:56:03.999Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:22:51.843Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0b2ad59f2fe118097b554"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Sterling Silver Dinner Set",
+  "description": "A complete dining set made from high-quality sterling silver. Designed for royal dining experiences, it adds elegance and tradition to special occasions.",
+  "price": 220000,
   "category": "silver",
   "stock": 1,
-  "image": "uploads/1772990658270.jpeg",
+  "image": "uploads/1776333485108.jpeg",
   "status": "active",
   "createdAt": {
-    "$date": "2026-03-08T17:24:18.272Z"
+    "$date": "2026-04-16T09:58:05.110Z"
   },
   "updatedAt": {
-    "$date": "2026-03-08T17:28:48.975Z"
+    "$date": "2026-04-16T16:23:25.875Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "69adb0f76597e2182ac065a5"
+    "$oid": "69e0b30259f2fe118097b55d"
   },
   "seller": {
-    "$oid": "69adaa056597e2182ac06567"
+    "$oid": "69c3e926bb99a03e8b0a2b13"
   },
-  "title": "Rajasthani Miniature Heritage Painting",
-  "description": "Traditional miniature painting inspired by royal Rajput courts.",
-  "price": 180000,
-  "category": "painting",
+  "title": "Silver Antique Vase",
+  "description": "A handcrafted decorative vase with intricate detailing. Its antique finish makes it a timeless piece for luxury interiors.",
+  "price": 175000,
+  "category": "silver",
   "stock": 1,
-  "image": "uploads/1772990711561.jpeg",
-  "status": "pending",
+  "image": "uploads/1776333570508.jpeg",
+  "status": "active",
   "createdAt": {
-    "$date": "2026-03-08T17:25:11.563Z"
+    "$date": "2026-04-16T09:59:30.511Z"
   },
   "updatedAt": {
-    "$date": "2026-03-08T17:25:11.563Z"
+    "$date": "2026-04-16T16:23:33.425Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "69adb12e6597e2182ac065a8"
+    "$oid": "69e0b43959f2fe118097b56f"
   },
   "seller": {
-    "$oid": "69adaa056597e2182ac06567"
+    "$oid": "69c3e926bb99a03e8b0a2b13"
   },
-  "title": "Italian Marble Luxury Coffee Table",
-  "description": "Luxury imported Italian marble coffee table for premium interiors.",
-  "price": 520000,
-  "category": "furniture and decorative",
+  "title": "Luxury Silver Tea Set",
+  "description": "A beautifully designed tea set crafted from pure silver. Perfect for hosting guests with sophistication and style.",
+  "price": 280000,
+  "category": "silver",
   "stock": 1,
-  "image": "uploads/1772990766760.jpeg",
-  "status": "inactive",
+  "image": "uploads/1776333881277.jpeg",
+  "status": "active",
   "createdAt": {
-    "$date": "2026-03-08T17:26:06.762Z"
+    "$date": "2026-04-16T10:04:41.281Z"
   },
   "updatedAt": {
-    "$date": "2026-03-09T04:47:39.856Z"
+    "$date": "2026-04-16T16:23:41.980Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0b5c359f2fe118097b587"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Silver Idol Sculpture",
+  "description": "A finely detailed silver sculpture representing spiritual and artistic value. Ideal for both décor and religious purposes.",
+  "price": 150000,
+  "category": "silver",
+  "stock": 1,
+  "image": "uploads/1776334275390.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T10:11:15.392Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:23:50.593Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69e0b73659f2fe118097b59c"
+  },
+  "seller": {
+    "$oid": "69c3e926bb99a03e8b0a2b13"
+  },
+  "title": "Designer Silver Tray Set",
+  "description": "An elegant tray set designed for serving in style. Its polished finish and premium quality enhance any hospitality setting.",
+  "price": 120000,
+  "category": "silver",
+  "stock": 1,
+  "image": "uploads/1776334646318.jpeg",
+  "status": "active",
+  "createdAt": {
+    "$date": "2026-04-16T10:17:26.320Z"
+  },
+  "updatedAt": {
+    "$date": "2026-04-16T16:23:58.328Z"
   },
   "__v": 0
 }]
